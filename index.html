@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SoulSound v0</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0e0e0e;
+      color: #f2f2f2;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.25em;
+    }
+
+    p {
+      color: #bdbdbd;
+      line-height: 1.5;
+    }
+
+    .card {
+      max-width: 640px;
+      margin: 0 auto;
+      background: #151515;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    input, textarea, button {
+      width: 100%;
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    input, textarea {
+      background: #1f1f1f;
+      color: #f2f2f2;
+    }
+
+    button {
+      background: #ffffff;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .output {
+      margin-top: 20px;
+      padding: 16px;
+      background: #1b1b1b;
+      border-radius: 12px;
+      white-space: pre-wrap;
+      font-size: 0.95rem;
+    }
+
+    footer {
+      margin-top: 24px;
+      font-size: 0.8rem;
+      color: #777;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <h1>SoulSound v0</h1>
+    <p>
+      Built from the soul.  
+      Paste a Suno or SoundCloud link and generate emotional captions + hashtags.
+    </p>
+
+    <input
+      id="linkInput"
+      type="text"
+      placeholder="Paste Suno or SoundCloud link here"
+    />
+
+    <textarea
+      id="feelingInput"
+      rows="3"
+      placeholder="Describe the feeling (e.g. reflective, hopeful, raw)"
+    ></textarea>
+
+    <button onclick="generate()">Generate Expression</button>
+
+    <div id="output" class="output" style="display:none;"></div>
+
+    <footer>
+      SoulSound — building in public
+    </footer>
+  </div>
+
+  <script>
+    function generate() {
+      const link = document.getElementById("linkInput").value.trim();
+      const feeling = document.getElementById("feelingInput").value.trim();
+
+      if (!link) {
+        alert("Please paste a music link.");
+        return;
+      }
+
+      const caption =
+`This isn’t a promo.
+It’s part of building SoulSound in public.
+
+Feeling: ${feeling || "honest and human"}
+
+Music as emotional language.
+${link}`;
+
+      const hashtags = "#SoulSound #BuildInPublic #MusicWithMeaning #HumanCreativity #IndieMusic";
+
+      const output = document.getElementById("output");
+      output.style.display = "block";
+      output.textContent = caption + "\n\n" + hashtags;
+    }
+  </script>
+</body>
+</html>
