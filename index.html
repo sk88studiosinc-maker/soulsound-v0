@@ -7,140 +7,170 @@
 
   <style>
     :root {
-      --soul-purple: #7b4bff;
-      --soul-purple-soft: #a88bff;
-      --deep-black: #0b0b10;
-      --card-bg: rgba(20, 20, 35, 0.85);
-      --text-main: #f2f2f7;
-      --text-muted: #b8b8d0;
-    }
-
-    * {
-      box-sizing: border-box;
+      --bg: #0b0b14;
+      --card: #121225;
+      --purple: #7b5cff;
+      --text: #e8e8f0;
+      --muted: #b8b8d6;
     }
 
     body {
       margin: 0;
       padding: 24px;
+      background: radial-gradient(circle at top, #1a1235, var(--bg));
       font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background:
-        radial-gradient(circle at top, rgba(123,75,255,0.25), transparent 60%),
-        linear-gradient(180deg, #0b0b10, #060608);
-      color: var(--text-main);
-      min-height: 100vh;
-    }
-
-    .container {
-      max-width: 720px;
-      margin: 0 auto;
+      color: var(--text);
     }
 
     .card {
-      background: var(--card-bg);
-      border-radius: 18px;
+      max-width: 720px;
+      margin: auto;
+      background: linear-gradient(180deg, #161633, var(--card));
+      border-radius: 20px;
       padding: 28px;
-      box-shadow: 0 0 40px rgba(123,75,255,0.15);
-      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
     }
 
     h1 {
       font-size: 2.4rem;
-      margin-bottom: 0.4em;
-      background: linear-gradient(90deg, var(--soul-purple), var(--soul-purple-soft));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--purple);
+      margin-bottom: 8px;
     }
 
     h2 {
-      margin-top: 1.8em;
-      font-size: 1.2rem;
-      color: var(--soul-purple-soft);
+      color: var(--purple);
+      margin-top: 32px;
     }
 
     p {
+      color: var(--muted);
       line-height: 1.6;
-      color: var(--text-muted);
-    }
-
-    .tagline {
-      font-size: 1.05rem;
-      margin-bottom: 1.5em;
-    }
-
-    .divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--soul-purple), transparent);
-      margin: 32px 0;
     }
 
     ul {
       padding-left: 18px;
-      color: var(--text-muted);
+      color: var(--muted);
     }
 
-    li {
-      margin-bottom: 10px;
+    input, textarea, button {
+      width: 100%;
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 14px;
+      border: none;
+      font-size: 1rem;
     }
 
-    .footer {
+    input, textarea {
+      background: #0f0f22;
+      color: var(--text);
+    }
+
+    button {
+      background: linear-gradient(135deg, var(--purple), #a88bff);
+      color: #000;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .output {
+      margin-top: 24px;
+      white-space: pre-wrap;
+      background: #0f0f22;
+      padding: 18px;
+      border-radius: 14px;
+      color: var(--text);
+    }
+
+    footer {
       text-align: center;
-      margin-top: 32px;
-      font-size: 0.85rem;
-      color: #777;
+      margin-top: 40px;
+      color: #666;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <div class="card">
+  <div class="card">
+    <h1>SoulSound</h1>
+    <p>
+      Building from the soul — truthfully, honestly.<br>
+      Make your sound align.
+    </p>
 
-      <h1>SoulSound</h1>
-      <p class="tagline">
-        Building from the soul — truthfully, honestly.<br/>
-        Make your sound align.
-      </p>
+    <h2>What SoulSound Is</h2>
+    <p>
+      SoulSound is a creative alignment platform for artists, creators, and
+      visionaries who make from feeling — not formulas.
+    </p>
+    <p>This is not about trends. This is about resonance.</p>
 
-      <div class="divider"></div>
+    <h2>Core Philosophy</h2>
+    <ul>
+      <li>Music and creation start in the soul</li>
+      <li>Authenticity over algorithms</li>
+      <li>Emotion, depth, and meaning first</li>
+      <li>Technology should amplify truth — not replace it</li>
+    </ul>
 
-      <h2>What SoulSound Is</h2>
-      <p>
-        SoulSound is a creative alignment platform for artists, creators, and
-        visionaries who make from feeling — not formulas.
-      </p>
-      <p>
-        This is not about trends.  
-        This is about resonance.
-      </p>
+    <h2>Align Your Sound</h2>
+    <p>Paste a Suno or SoundCloud link. SoulSound will translate it into resonance.</p>
 
-      <h2>Core Philosophy</h2>
-      <ul>
-        <li>Music and creation start in the soul</li>
-        <li>Authenticity over algorithms</li>
-        <li>Emotion, depth, and meaning first</li>
-        <li>Technology should amplify truth — not replace it</li>
-      </ul>
+    <input id="linkInput" placeholder="Paste Suno or SoundCloud link here…" />
 
-      <h2>Coming in Future Versions</h2>
-      <ul>
-        <li>AI-assisted soul-aligned music tools</li>
-        <li>Creative prompts that spark emotion, not noise</li>
-        <li>Artist-first sharing and expression tools</li>
-        <li>Visual and sonic identity expansion</li>
-      </ul>
+    <button onclick="alignSound()">Align My Sound</button>
 
-      <div class="divider"></div>
+    <div id="output" class="output" style="display:none;"></div>
 
-      <p>
-        <strong>SoulSound v0</strong> is the foundation.<br/>
-        Everything grows from here.
-      </p>
+    <h2>Coming in Future Versions</h2>
+    <ul>
+      <li>AI-assisted soul-aligned music tools</li>
+      <li>Creative prompts that spark emotion — not noise</li>
+      <li>Artist-first sharing and expression tools</li>
+      <li>Visual and sonic identity expansion</li>
+    </ul>
 
-    </div>
-
-    <div class="footer">
-      © SoulSound — Built from the soul
-    </div>
+    <p><strong>SoulSound v0</strong> is the foundation. Everything grows from here.</p>
   </div>
+
+  <footer>© SoulSound — Built from the soul</footer>
+
+  <script>
+    function alignSound() {
+      const link = document.getElementById("linkInput").value.trim();
+      const output = document.getElementById("output");
+
+      if (!link) {
+        alert("Paste a link first.");
+        return;
+      }
+
+      const captions = [
+        "This wasn’t made to trend.\nIt was made to survive something.\nIf it resonates, you already know why.",
+        "Not noise. Not content.\nThis is feeling encoded in sound.",
+        "Some sounds don’t ask for attention.\nThey recognize you."
+      ];
+
+      const hashtags = [
+        "#SoulSound #AlignYourSound #MusicFromTheSoul #CinematicMusic #DarkAesthetic",
+        "#AuthenticArt #ResonanceOverReach #SpiritualCreators #SoundThatSpeaks",
+        "#UndergroundArtists #EmotionFirst #NoAlgorithmOnlyTruth"
+      ];
+
+      const caption = captions[Math.floor(Math.random() * captions.length)];
+      const tags = hashtags[Math.floor(Math.random() * hashtags.length)];
+
+      output.style.display = "block";
+      output.textContent =
+        "CAPTION:\n" + caption +
+        "\n\nHASHTAGS:\n" + tags +
+        "\n\nLINK:\n" + link;
+    }
+  </script>
 </body>
 </html>
