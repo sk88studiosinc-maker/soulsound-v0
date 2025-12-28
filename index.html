@@ -16,29 +16,48 @@
 
     h1 {
       text-align: center;
-      font-size: 2.4rem;
-      margin-bottom: 8px;
+      font-size: 2.5rem;
+      margin-bottom: 6px;
       color: #c9a6ff;
+      letter-spacing: 0.5px;
     }
 
     .subtitle {
       text-align: center;
       opacity: 0.85;
-      margin-bottom: 32px;
+      margin-bottom: 28px;
+    }
+
+    .manifesto {
+      max-width: 680px;
+      margin: 0 auto 44px;
+      text-align: center;
+      font-size: 1rem;
+      line-height: 1.75;
+      color: #e6ddf7;
+      opacity: 0.9;
+    }
+
+    .manifesto p {
+      margin-bottom: 18px;
+    }
+
+    .manifesto strong {
+      color: #c9a6ff;
     }
 
     .card {
       max-width: 720px;
       margin: auto;
-      background: rgba(255,255,255,0.05);
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 0 40px rgba(0,0,0,0.4);
+      background: rgba(255,255,255,0.06);
+      border-radius: 18px;
+      padding: 26px;
+      box-shadow: 0 0 40px rgba(0,0,0,0.45);
     }
 
     label {
       display: block;
-      margin-top: 16px;
+      margin-top: 18px;
       margin-bottom: 6px;
       font-weight: 600;
     }
@@ -46,16 +65,16 @@
     select, input {
       width: 100%;
       padding: 12px;
-      border-radius: 10px;
+      border-radius: 12px;
       border: none;
       font-size: 16px;
     }
 
     button {
-      margin-top: 20px;
+      margin-top: 22px;
       padding: 14px;
       width: 100%;
-      border-radius: 14px;
+      border-radius: 16px;
       border: none;
       font-size: 18px;
       background: linear-gradient(135deg, #7b4dff, #b86bff);
@@ -63,38 +82,41 @@
       cursor: pointer;
     }
 
-    button.copy {
-      margin-top: 10px;
-      background: #2b1a3d;
-      font-size: 14px;
-    }
-
     .output {
       display: none;
-      margin-top: 28px;
-      background: rgba(0,0,0,0.35);
-      padding: 20px;
-      border-radius: 14px;
+      margin-top: 30px;
+      background: rgba(0,0,0,0.4);
+      padding: 22px;
+      border-radius: 16px;
     }
 
     .block {
-      margin-bottom: 18px;
+      margin-bottom: 22px;
     }
 
     .label {
       font-size: 13px;
-      opacity: 0.7;
-      margin-bottom: 4px;
+      opacity: 0.65;
+      margin-bottom: 6px;
+      letter-spacing: 0.4px;
     }
 
     .text {
       white-space: pre-wrap;
-      line-height: 1.5;
+      line-height: 1.6;
+    }
+
+    .copy {
+      margin-top: 10px;
+      background: #2b1a3d;
+      font-size: 14px;
+      border-radius: 12px;
+      padding: 10px;
     }
 
     footer {
       text-align: center;
-      margin-top: 40px;
+      margin-top: 46px;
       font-size: 13px;
       opacity: 0.5;
     }
@@ -105,6 +127,35 @@
 
   <h1>SoulSound</h1>
   <div class="subtitle">Build from the soul. Not the algorithm.</div>
+
+  <section class="manifesto">
+    <p><strong>SoulSound is not built for the algorithm.</strong></p>
+
+    <p>
+      It is built for the moment a sound recognizes you before you recognize it.
+    </p>
+
+    <p>
+      Music is alignment before it is content.<br />
+      Not everything meaningful is measurable.<br />
+      Not everything honest is optimized.
+    </p>
+
+    <p>
+      This space exists for creators who build from feeling,<br />
+      who choose resonance over reach,<br />
+      and who refuse to dilute truth for attention.
+    </p>
+
+    <p>
+      This is not about trends.<br />
+      This is about translation —<br />
+      turning inner states into sound,<br />
+      and sound into connection.
+    </p>
+
+    <p><strong>Align your sound.<br />Let it speak for itself.</strong></p>
+  </section>
 
   <div class="card">
 
@@ -141,7 +192,6 @@
       </div>
 
     </div>
-
   </div>
 
   <footer>
@@ -166,33 +216,33 @@ function alignSound() {
 
   const alignments = {
     grounded: [
-      "This sound is steady, intentional, and rooted in truth.",
-      "Your music feels present, calm, and emotionally centered."
+      "This sound feels steady, intentional, and rooted.",
+      "Your music carries calm presence and emotional balance."
     ],
     cinematic: [
-      "This track feels expansive, visual, and story-driven.",
-      "Your sound carries movement, tension, and release."
+      "This track feels expansive and story-driven.",
+      "Your sound moves with tension, release, and vision."
     ],
     ethereal: [
       "This music floats beyond structure into feeling.",
-      "Your sound feels atmospheric, weightless, and intuitive."
+      "Your sound feels atmospheric and intuitive."
     ],
     raw: [
       "This sound speaks without filtering emotion.",
-      "Your track feels honest, exposed, and human."
+      "Your track feels exposed, honest, and human."
     ]
   };
 
   const captions = [
-    `This wasn’t made to trend.\nIt was made to survive something.\n(${platform})`,
-    `Not noise. Not content.\nThis is feeling encoded in sound.`,
+    `Not built to trend.\nBuilt to translate feeling.\n(${platform})`,
+    `This isn’t content.\nIt’s a moment captured in sound.`,
     `Some sounds don’t ask for attention.\nThey recognize you.`
   ];
 
   const hashtags = [
-    "#SoulSound #AlignYourSound #MusicFromTheSoul #AuthenticArt #ResonanceOverReach",
-    "#UndergroundArtists #EmotionFirst #NoAlgorithmOnlyTruth #SoundThatSpeaks",
-    "#SpiritualCreators #CinematicMusic #RawEmotion #CreativeAlignment"
+    "#SoulSound #AlignYourSound #MusicFromTheSoul #ResonanceOverReach",
+    "#IndependentArtist #EmotionFirst #NoAlgorithmOnlyTruth",
+    "#AuthenticMusic #CreativeAlignment"
   ];
 
   document.getElementById("alignmentText").textContent =
@@ -208,21 +258,11 @@ function alignSound() {
 }
 
 function copyText(id) {
-  const text = document.getElementById(id).textContent;
-  navigator.clipboard.writeText(text);
+  navigator.clipboard.writeText(
+    document.getElementById(id).textContent
+  );
   alert("Copied ✨");
 }
-
-/*
-========================
-SOULSOUND V1 ROADMAP
-- AI tone analysis
-- Lyric & frequency alignment
-- Visual generation
-- Creator profiles
-- Share-ready cards
-========================
-*/
 </script>
 
 </body>
