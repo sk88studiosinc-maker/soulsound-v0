@@ -2,210 +2,228 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <title>SoulSound</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SoulSound v0</title>
 
   <style>
-    :root {
-      --bg: #0b0b14;
-      --card: #121225;
-      --purple: #7b5cff;
-      --text: #e8e8f0;
-      --muted: #a0a0b8;
-    }
-
     body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #1b1028, #09020f);
+      color: #e9e6f0;
       margin: 0;
       padding: 24px;
-      background: radial-gradient(circle at top, #1a1a35, var(--bg));
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      color: var(--text);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.4rem;
+      margin-bottom: 8px;
+      color: #c9a6ff;
+    }
+
+    .subtitle {
+      text-align: center;
+      opacity: 0.85;
+      margin-bottom: 32px;
     }
 
     .card {
       max-width: 720px;
       margin: auto;
-      background: linear-gradient(180deg, #161633, var(--card));
-      border-radius: 20px;
-      padding: 28px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-    }
-
-    h1 {
-      font-size: 2.4rem;
-      color: var(--purple);
-      margin-bottom: 8px;
-    }
-
-    h2 {
-      color: var(--purple);
-      margin-top: 32px;
-    }
-
-    p {
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    ul {
-      padding-left: 18px;
-      color: var(--muted);
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 0 40px rgba(0,0,0,0.4);
     }
 
     label {
       display: block;
-      margin-top: 18px;
+      margin-top: 16px;
       margin-bottom: 6px;
-      color: var(--muted);
+      font-weight: 600;
     }
 
-    input, select, button {
+    select, input {
       width: 100%;
-      margin-top: 12px;
-      padding: 14px;
-      border-radius: 14px;
+      padding: 12px;
+      border-radius: 10px;
       border: none;
-      font-size: 1rem;
-    }
-
-    input, select {
-      background: #0f0f22;
-      color: var(--text);
+      font-size: 16px;
     }
 
     button {
-      background: linear-gradient(135deg, var(--purple), #9b8bff);
-      color: #000;
-      font-weight: 700;
+      margin-top: 20px;
+      padding: 14px;
+      width: 100%;
+      border-radius: 14px;
+      border: none;
+      font-size: 18px;
+      background: linear-gradient(135deg, #7b4dff, #b86bff);
+      color: #fff;
       cursor: pointer;
     }
 
-    button:hover {
-      opacity: 0.92;
+    button.copy {
+      margin-top: 10px;
+      background: #2b1a3d;
+      font-size: 14px;
     }
 
     .output {
       display: none;
-      margin-top: 24px;
-      background: #0f0f22;
-      padding: 18px;
+      margin-top: 28px;
+      background: rgba(0,0,0,0.35);
+      padding: 20px;
       border-radius: 14px;
+    }
+
+    .block {
+      margin-bottom: 18px;
+    }
+
+    .label {
+      font-size: 13px;
+      opacity: 0.7;
+      margin-bottom: 4px;
+    }
+
+    .text {
       white-space: pre-wrap;
+      line-height: 1.5;
     }
 
     footer {
       text-align: center;
       margin-top: 40px;
-      font-size: 0.9rem;
-      color: #666;
+      font-size: 13px;
+      opacity: 0.5;
     }
   </style>
 </head>
 
 <body>
-  <div class="card">
-    <h1>SoulSound</h1>
-    <p>Building from the soul — truthfully, honestly.</p>
 
-    <label for="mood">Select your sound mood</label>
+  <h1>SoulSound</h1>
+  <div class="subtitle">Build from the soul. Not the algorithm.</div>
+
+  <div class="card">
+
+    <label for="mood">Mood / Energy</label>
     <select id="mood">
-      <option value="spiritual">Spiritual / Aligned</option>
-      <option value="cinematic">Cinematic / Expansive</option>
-      <option value="dark">Dark / Raw</option>
-      <option value="truth">Truth / Honest</option>
+      <option value="grounded">Grounded</option>
+      <option value="cinematic">Cinematic</option>
+      <option value="ethereal">Ethereal</option>
+      <option value="raw">Raw / Emotional</option>
     </select>
 
-    <h2>What SoulSound Is</h2>
-    <p>
-      SoulSound is a creative alignment platform for artists, creators,
-      and visionaries who make from feeling — not formulas.
-    </p>
-    <p>This is not about trends. This is about resonance.</p>
-
-    <h2>Core Philosophy</h2>
-    <ul>
-      <li>Music and creation start in the soul</li>
-      <li>Authenticity over algorithms</li>
-      <li>Emotion, depth, and meaning first</li>
-      <li>Technology should amplify truth — not replace it</li>
-    </ul>
-
-    <h2>Align Your Sound</h2>
-    <p>Paste a Suno or SoundCloud link. SoulSound translates it into resonance.</p>
-
-    <input
-      id="linkInput"
-      placeholder="Paste Suno or SoundCloud link here"
-    />
+    <label for="linkInput">Suno or SoundCloud link</label>
+    <input id="linkInput" placeholder="Paste your track link here" />
 
     <button onclick="alignSound()">Align My Sound</button>
 
     <div id="output" class="output">
-      <h3>Soul Alignment</h3>
-      <p id="alignmentText"></p>
 
-      <h3>Caption</h3>
-      <p id="captionText"></p>
+      <div class="block">
+        <div class="label">SOUL ALIGNMENT</div>
+        <div id="alignmentText" class="text"></div>
+      </div>
 
-      <h3>Hashtags</h3>
-      <p id="hashtagText"></p>
+      <div class="block">
+        <div class="label">CAPTION</div>
+        <div id="captionText" class="text"></div>
+        <button class="copy" onclick="copyText('captionText')">Copy Caption</button>
+      </div>
+
+      <div class="block">
+        <div class="label">HASHTAGS</div>
+        <div id="hashtagText" class="text"></div>
+        <button class="copy" onclick="copyText('hashtagText')">Copy Hashtags</button>
+      </div>
+
     </div>
 
-    <h2>Coming in Future Versions</h2>
-    <ul>
-      <li>AI-assisted soul-aligned music tools</li>
-      <li>Creative prompts that spark emotion — not noise</li>
-      <li>Artist-first sharing and expression tools</li>
-      <li>Visual and sonic identity expansion</li>
-    </ul>
-
-    <p><strong>SoulSound v0</strong> is the foundation. Everything grows from here.</p>
   </div>
 
-  <footer>SoulSound — Built from the soul</footer>
+  <footer>
+    SoulSound v0 — Foundation Release
+  </footer>
 
-  <script>
-    function alignSound() {
-      const link = document.getElementById("linkInput").value.trim();
-      const output = document.getElementById("output");
-      const alignment = document.getElementById("alignmentText");
-      const captionEl = document.getElementById("captionText");
-      const hashtagEl = document.getElementById("hashtagText");
+<script>
+function alignSound() {
+  const link = document.getElementById("linkInput").value.trim();
+  const mood = document.getElementById("mood").value;
 
-      if (!link) {
-        alert("Paste a link first.");
-        return;
-      }
+  if (!link) {
+    alert("Paste a Suno or SoundCloud link first.");
+    return;
+  }
 
-      const alignments = [
-        "Your sound carries intention, not noise.",
-        "This track feels grounded, intentional, and emotionally present.",
-        "This sound moves from the soul — not the algorithm."
-      ];
+  const platform = link.includes("suno")
+    ? "Suno"
+    : link.includes("soundcloud")
+    ? "SoundCloud"
+    : "your platform";
 
-      const captions = [
-        "This wasn’t made to trend. It was made to survive something.",
-        "Not noise. Not content. This is feeling encoded in sound.",
-        "Some sounds don’t ask for attention. They recognize you."
-      ];
+  const alignments = {
+    grounded: [
+      "This sound is steady, intentional, and rooted in truth.",
+      "Your music feels present, calm, and emotionally centered."
+    ],
+    cinematic: [
+      "This track feels expansive, visual, and story-driven.",
+      "Your sound carries movement, tension, and release."
+    ],
+    ethereal: [
+      "This music floats beyond structure into feeling.",
+      "Your sound feels atmospheric, weightless, and intuitive."
+    ],
+    raw: [
+      "This sound speaks without filtering emotion.",
+      "Your track feels honest, exposed, and human."
+    ]
+  };
 
-      const hashtags = [
-        "#SoulSound #AlignYourSound #MusicFromTheSoul #AuthenticArt",
-        "#ResonanceOverReach #SpiritualCreators #SoundThatSpeaks",
-        "#UndergroundArtists #EmotionFirst #NoAlgorithmOnlyTruth"
-      ];
+  const captions = [
+    `This wasn’t made to trend.\nIt was made to survive something.\n(${platform})`,
+    `Not noise. Not content.\nThis is feeling encoded in sound.`,
+    `Some sounds don’t ask for attention.\nThey recognize you.`
+  ];
 
-      alignment.textContent =
-        alignments[Math.floor(Math.random() * alignments.length)];
+  const hashtags = [
+    "#SoulSound #AlignYourSound #MusicFromTheSoul #AuthenticArt #ResonanceOverReach",
+    "#UndergroundArtists #EmotionFirst #NoAlgorithmOnlyTruth #SoundThatSpeaks",
+    "#SpiritualCreators #CinematicMusic #RawEmotion #CreativeAlignment"
+  ];
 
-      captionEl.textContent =
-        captions[Math.floor(Math.random() * captions.length)];
+  document.getElementById("alignmentText").textContent =
+    alignments[mood][Math.floor(Math.random() * alignments[mood].length)];
 
-      hashtagEl.textContent =
-        hashtags[Math.floor(Math.random() * hashtags.length)];
+  document.getElementById("captionText").textContent =
+    captions[Math.floor(Math.random() * captions.length)];
 
-      output.style.display = "block";
-    }
-  </script>
+  document.getElementById("hashtagText").textContent =
+    hashtags[Math.floor(Math.random() * hashtags.length)];
+
+  document.getElementById("output").style.display = "block";
+}
+
+function copyText(id) {
+  const text = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(text);
+  alert("Copied ✨");
+}
+
+/*
+========================
+SOULSOUND V1 ROADMAP
+- AI tone analysis
+- Lyric & frequency alignment
+- Visual generation
+- Creator profiles
+- Share-ready cards
+========================
+*/
+</script>
+
 </body>
 </html>
