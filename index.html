@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SoulSound v0</title>
 
   <style>
@@ -11,13 +11,13 @@
       --card: #121225;
       --purple: #7b5cff;
       --text: #e8e8f0;
-      --muted: #b8b8d6;
+      --muted: #a0a0b8;
     }
 
     body {
       margin: 0;
       padding: 24px;
-      background: radial-gradient(circle at top, #1a1235, var(--bg));
+      background: radial-gradient(circle at top, #1a1a35, var(--bg));
       font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       color: var(--text);
     }
@@ -52,70 +52,73 @@
       color: var(--muted);
     }
 
-    input, textarea, button {
+    label {
+      display: block;
+      margin-top: 18px;
+      margin-bottom: 6px;
+      color: var(--muted);
+    }
+
+    input, select, button {
       width: 100%;
-      margin-top: 14px;
+      margin-top: 12px;
       padding: 14px;
       border-radius: 14px;
       border: none;
       font-size: 1rem;
     }
 
-    input, textarea {
+    input, select {
       background: #0f0f22;
       color: var(--text);
     }
 
     button {
-      background: linear-gradient(135deg, var(--purple), #a88bff);
+      background: linear-gradient(135deg, var(--purple), #9b8bff);
       color: #000;
       font-weight: 700;
       cursor: pointer;
     }
 
     button:hover {
-      opacity: 0.9;
+      opacity: 0.92;
     }
 
     .output {
+      display: none;
       margin-top: 24px;
-      white-space: pre-wrap;
       background: #0f0f22;
       padding: 18px;
       border-radius: 14px;
-      color: var(--text);
+      white-space: pre-wrap;
     }
 
     footer {
       text-align: center;
       margin-top: 40px;
-      color: #666;
       font-size: 0.9rem;
+      color: #666;
     }
   </style>
 </head>
 
 <body>
   <div class="card">
-   <h1>SoulSound</h1>
-<p>Building from the soul — truthfully, honestly.</p>
+    <h1>SoulSound</h1>
+    <p>Building from the soul — truthfully, honestly.</p>
 
-<label for="mood">Select your sound mood</label>
-<select id="mood">
-  <option value="spiritual">Spiritual / Aligned</option>
-  <option value="cinematic">Cinematic / Expansive</option>
-  <option value="dark">Dark / Raw</option>
-  <option value="truth">Truth / Honest</option>
-</select>
-    <p>
-      Building from the soul — truthfully, honestly.<br>
-      Make your sound align.
-    </p>
+    <label for="mood">Select your sound mood</label>
+    <select id="mood">
+      <option value="spiritual">Spiritual / Aligned</option>
+      <option value="cinematic">Cinematic / Expansive</option>
+      <option value="dark">Dark / Raw</option>
+      <option value="truth">Truth / Honest</option>
+    </select>
 
     <h2>What SoulSound Is</h2>
     <p>
-      SoulSound is a creative alignment platform for artists, creators, and
-      visionaries who make from feeling — not formulas.
+      SoulSound is a creative alignment platform for artists, creators,
+      and visionaries who make from feeling — not formulas.
     </p>
     <p>This is not about trends. This is about resonance.</p>
 
@@ -128,13 +131,25 @@
     </ul>
 
     <h2>Align Your Sound</h2>
-    <p>Paste a Suno or SoundCloud link. SoulSound will translate it into resonance.</p>
+    <p>Paste a Suno or SoundCloud link. SoulSound translates it into resonance.</p>
 
-    <input id="linkInput" placeholder="Paste Suno or SoundCloud link here…" />
+    <input
+      id="linkInput"
+      placeholder="Paste Suno or SoundCloud link here"
+    />
 
     <button onclick="alignSound()">Align My Sound</button>
 
-    <div id="output" class="output" style="display:none;"></div>
+    <div id="output" class="output">
+      <h3>Soul Alignment</h3>
+      <p id="alignmentText"></p>
+
+      <h3>Caption</h3>
+      <p id="captionText"></p>
+
+      <h3>Hashtags</h3>
+      <p id="hashtagText"></p>
+    </div>
 
     <h2>Coming in Future Versions</h2>
     <ul>
@@ -147,38 +162,49 @@
     <p><strong>SoulSound v0</strong> is the foundation. Everything grows from here.</p>
   </div>
 
-  <footer>© SoulSound — Built from the soul</footer>
+  <footer>SoulSound — Built from the soul</footer>
 
   <script>
     function alignSound() {
       const link = document.getElementById("linkInput").value.trim();
       const output = document.getElementById("output");
+      const alignment = document.getElementById("alignmentText");
+      const captionEl = document.getElementById("captionText");
+      const hashtagEl = document.getElementById("hashtagText");
 
       if (!link) {
         alert("Paste a link first.");
         return;
       }
 
+      const alignments = [
+        "Your sound carries intention, not noise.",
+        "This track feels grounded, intentional, and emotionally present.",
+        "This sound moves from the soul — not the algorithm."
+      ];
+
       const captions = [
-        "This wasn’t made to trend.\nIt was made to survive something.\nIf it resonates, you already know why.",
-        "Not noise. Not content.\nThis is feeling encoded in sound.",
-        "Some sounds don’t ask for attention.\nThey recognize you."
+        "This wasn’t made to trend. It was made to survive something.",
+        "Not noise. Not content. This is feeling encoded in sound.",
+        "Some sounds don’t ask for attention. They recognize you."
       ];
 
       const hashtags = [
-        "#SoulSound #AlignYourSound #MusicFromTheSoul #CinematicMusic #DarkAesthetic",
-        "#AuthenticArt #ResonanceOverReach #SpiritualCreators #SoundThatSpeaks",
+        "#SoulSound #AlignYourSound #MusicFromTheSoul #AuthenticArt",
+        "#ResonanceOverReach #SpiritualCreators #SoundThatSpeaks",
         "#UndergroundArtists #EmotionFirst #NoAlgorithmOnlyTruth"
       ];
 
-      const caption = captions[Math.floor(Math.random() * captions.length)];
-      const tags = hashtags[Math.floor(Math.random() * hashtags.length)];
+      alignment.textContent =
+        alignments[Math.floor(Math.random() * alignments.length)];
+
+      captionEl.textContent =
+        captions[Math.floor(Math.random() * captions.length)];
+
+      hashtagEl.textContent =
+        hashtags[Math.floor(Math.random() * hashtags.length)];
 
       output.style.display = "block";
-      output.textContent =
-        "CAPTION:\n" + caption +
-        "\n\nHASHTAGS:\n" + tags +
-        "\n\nLINK:\n" + link;
     }
   </script>
 </body>
