@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SoulSound Generator</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial; margin:0; padding:20px; background:#0b0b12; color:#fff}
+    .card{max-width:860px;margin:0 auto;background:#141427;border:1px solid #2a2a55;border-radius:16px;padding:16px; box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    h1{margin:0 0 8px;font-size:22px}
+    label{display:block;margin:12px 0 6px; font-weight:600}
+    input,select,textarea{width:100%; padding:12px; border-radius:12px; border:1px solid #2a2a55; background:#0f0f1f; color:#fff}
+    textarea{min-height:120px}
+    button{margin-top:14px; width:100%; padding:12px; border-radius:12px; border:0; background:#7c5cff; color:#fff; font-weight:700; font-size:16px}
+    .out{margin-top:14px; padding:12px; border-radius:12px; border:1px dashed #3a3a70; background:#0f0f1f; white-space:pre-wrap}
+    .row{display:grid; gap:12px; grid-template-columns:1fr}
+    @media(min-width:780px){.row{grid-template-columns:1fr 1fr}}
+    .small{opacity:.85;font-size:13px;margin-top:6px}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>SoulSound Caption + Hashtag Generator</h1>
+    <div class="small">No API. Runs 100% free in your browser.</div>
+
+    <label>Link (Suno / PocketFM / YouTube / Store)</label>
+    <input id="link" placeholder="Paste link..." />
+
+    <div class="row">
+      <div>
+        <label>Platform</label>
+        <select id="platform">
+          <option>TikTok</option>
+          <option>Instagram</option>
+          <option>YouTube</option>
+          <option>PocketFM</option>
+          <option>X (Twitter)</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Vibe</label>
+        <select id="vibe">
+          <option>Emotional / Spiritual</option>
+          <option>Hype / Energy</option>
+          <option>Dark / Cinematic</option>
+          <option>Peaceful / Healing</option>
+          <option>Funny / Playful</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label>Project</label>
+        <select id="project">
+          <option>SoulSound (brand)</option>
+          <option>SoulSound Beats</option>
+          <option>SoulSound Kids</option>
+          <option>My Song Release</option>
+          <option>My PocketFM Series</option>
+        </select>
+      </div>
+      <div>
+        <label>Call-to-action</label>
+        <select id="cta">
+          <option>Listen now</option>
+          <option>Follow for more</option>
+          <option>Comment “LINK”</option>
+          <option>Save + share</option>
+          <option>Join the journey</option>
+        </select>
+      </div>
+    </div>
+
+    <label>Keywords (comma-separated)</label>
+    <input id="keywords" placeholder="example: sci-fi, romance, indie, cinematic, healing" />
+
+    <button onclick="generate()">Generate</button>
+
+    <div class="out" id="output"></div>
+    <button onclick="copyOut()">Copy to clipboard</button>
+  </div>
+
+<script>
+const hashtagSets = {
+  "TikTok": ["#tiktokmusic","#fyp","#newmusic","#indieartist","#artistsoftiktok","#musicproducer","#songwriter","#viral","#reels"],
+  "Instagram": ["#newmusic","#indieartist","#musicproducer","#songwriter","#reels","#explorepage","#musicislife","#independentartist"],
+  "YouTube": ["#newmusic","#music","#indieartist","#musicvideo","#originalmusic","#songwriter","#producer"],
+  "PocketFM": ["#pocketfm","#webnovel","#fiction","#scifi","#storytime","#audiostory","#writers","#reading"],
+  "X (Twitter)": ["#newmusic","#indieartist","#songwriter","#musicproducer","#nowplaying"]
+};
+
+function cleanKeywords(str){
+  return str.split(",").map(s=>s.trim()).filter(Boolean).slice(0,6);
+}
+
+function generate(){
+  const link = document.getElementById("link").value.trim();
+  const platform = document.getElementById("platform").value;
+  const vibe = document.getElementById("vibe").value;
+  const project = document.getElementById("project").value;
+  const cta = document.getElementById("cta").value;
+  const kw = cleanKeywords(document.getElementById("keywords").value);
+
+  const openerBank = {
+    "Emotional / Spiritual": [
+      "This one came from a real place.",
+      "If you’ve been carrying a lot, press play.",
+      "A song for the part of you that’s still becoming."
+    ],
+    "Hype / Energy": [
+      "Turn it up—this one’s a MOVIE.",
+      "Energy check ⚡️ let’s go.",
+      "If you needed motivation, this is it."
+    ],
+    "Dark / Cinematic": [
+      "Cinematic darkness… but with purpose.",
+      "A scene you can hear.",
+      "If you like grit + atmosphere, you’ll feel this."
+    ],
+    "Peaceful / Healing": [
+      "Soft, healing energy—take a breath.",
+      "Let this reset your nervous system.",
+      "Peace in sound form."
+    ],
+    "Funny / Playful": [
+      "This one is pure fun 😂",
+      "Don’t take it too serious—just vibe.",
+      "Okay but why is this stuck in my head?"
+    ]
+  };
+
+  const projectLine = {
+    "SoulSound (brand)": "SoulSound is my open-build universe: music + story + healing.",
+    "SoulSound Beats": "SoulSound Beats: original sounds for artists, creators, and dreamers.",
+    "SoulSound Kids": "SoulSound Kids: playful music for little hearts (and tired parents).",
+    "My Song Release": "New release—fresh energy, real emotion.",
+    "My PocketFM Series": "New chapter drop on PocketFM—sci-fi, power, and heart."
+  };
+
+  const opener = openerBank[vibe][Math.floor(Math.random()*openerBank[vibe].length)];
+  const tags = Array.from(new Set([...(hashtagSets[platform]||[]), ...kw.map(k=>"#"+k.replace(/\s+/g,""))])).slice(0,18);
+
+  let caption =
+`${opener}
+${projectLine[project]}
+${cta}.
+
+${link ? "🔗 " + link : ""}
+
+${tags.join(" ")}`;
+
+  document.getElementById("output").textContent = caption.trim();
+}
+
+async function copyOut(){
+  const text = document.getElementById("output").textContent.trim();
+  if(!text) return alert("Generate first.");
+  try{
+    await navigator.clipboard.writeText(text);
+    alert("Copied ✅");
+  }catch(e){
+    alert("Copy failed. Long-press to copy manually.");
+  }
+}
+</script>
+</body>
+</html>
