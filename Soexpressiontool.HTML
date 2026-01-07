@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SoulExpression — SoulSound</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0e0e12;
+      color: #f2f2f2;
+      padding: 20px;
+      max-width: 760px;
+      margin: auto;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.2em;
+    }
+    p {
+      color: #aaa;
+      margin-bottom: 1.5em;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border-radius: 8px;
+      border: none;
+      background: #1a1a22;
+      color: #f2f2f2;
+      font-size: 1rem;
+    }
+    textarea { min-height: 90px; }
+    .btns {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    button {
+      flex: 1;
+      padding: 12px;
+      background: #5f5cff;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    button.secondary {
+      background: #333;
+    }
+    .block {
+      margin-top: 20px;
+    }
+    .label {
+      font-size: 0.85rem;
+      color: #888;
+      margin-bottom: 4px;
+    }
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #222;
+      padding: 10px 20px;
+      border-radius: 20px;
+      color: #fff;
+      font-size: 0.9rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+  </style>
+</head>
+<body>
+
+<h1>SoulExpression</h1>
+<p>Translate your sound into words.</p>
+
+<input id="link" placeholder="Paste your Suno / SoundCloud / YouTube / Spotify link" />
+<input id="artist" placeholder="Artist name" />
+<input id="title" placeholder="Track title" />
+
+<select id="mood">
+  <option value="">Mood</option>
+  <option>gentle</option>
+  <option>melancholic</option>
+  <option>cinematic</option>
+  <option>dark</option>
+  <option>hopeful</option>
+  <option>intimate</option>
+</select>
+
+<div class="btns">
+  <button onclick="generateAll()">Generate</button>
+  <button class="secondary" onclick="copyAll()">Copy All</button>
+  <button class="secondary" onclick="clearAll()">Clear</button>
+</div>
+
+<div class="block">
+  <div class="label">Description</div>
+  <textarea id="desc"></textarea>
+</div>
+
+<div class="block">
+  <div class="label">Caption</div>
+  <textarea id="cap"></textarea>
+</div>
+
+<div class="block">
+  <div class="label">Hashtags</div>
+  <textarea id="tags"></textarea>
+</div>
+
+<div class="block">
+  <div class="label">One-liner</div>
+  <textarea id="one"></textarea>
+</div>
+
+<div class="toast" id="toast">Copied</div>
+
+<script>
+function generateAll(){
+  const title = document.getElementById("title").value || "this track";
+  const artist = document.getElementById("artist").value || "the artist";
+  const mood = document.getElementById("mood").value || "emotion";
+
+  document.getElementById("desc").value =
+    `"${title}" by ${artist} explores ${mood} space through sound — a moment, not a product.`;
+
+  document.getElementById("cap").value =
+    `A quiet release.\n"${title}" by ${artist}.\nLet it find you.`;
+
+  document.getElementById("tags").value =
+    `#SoulSound #${artist.replace(/\s+/g,'')} #${title.replace(/\s+/g,'')} #independentmusic #newmusic`;
+
+  document.getElementById("one").value =
+    `"${title}" is what ${mood} sounds like.`;
+}
+
+async function copyAll(){
+  const all =
+    "DESCRIPTION:\n" + desc.value + "\n\n" +
+    "CAPTION:\n" + cap.value + "\n\n" +
+    "HASHTAGS:\n" + tags.value + "\n\n" +
+    "ONE-LINER:\n" + one.value;
+
+  if(!all.trim()) return;
+
+  await navigator.clipboard.writeText(all);
+  toast("All copied");
+}
+
+function clearAll(){
+  ["link","artist","title","desc","cap","tags","one"].forEach(id => document.getElementById(id).value = "");
+}
+
+function toast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.style.opacity = 1;
+  setTimeout(() => t.style.opacity = 0, 1200);
+}
+
+window.onload = () => {
+  document.getElementById("artist").value = "SoulSound / Samzin Kreave";
+};
+</script>
+
+</body>
+</html>
