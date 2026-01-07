@@ -69,3 +69,10 @@ This experiment helped clarify the balance between:
 - Tools vs. vision
 
 The system remains creator-led.
+### 🔗 Live Sync Links
+
+- 🎧 **Dusty Star Particles (Soundtrack on Suno):** [link coming]
+- 📖 **Tomorrow’s Never Promised on Pocket FM:** [link coming]
+- 🧠 **SoulSound GitHub Repository:** https://github.com/YOUR-REPO-HERE
+
+These links represent the current narrative ↔ sound ↔ platform synchronization state.
