@@ -1,95 +1,381 @@
-<section id="world" style="padding: 28px 16px; max-width: 980px; margin: 0 auto;">
-  <h2 style="font-size: 1.8rem; margin: 0 0 10px 0;">SoulSound World</h2>
-  <p style="margin: 0 0 18px 0; line-height: 1.6; opacity: 0.92;">
-    Welcome to the hub — where my Pocket FM stories and my music releases live in the same universe.
-    If you’re here from TikTok, IG, or Pocket FM, this is the clean “one link” place to find everything.
-  </p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoulSound World</title>
+  <meta name="description" content="Stories, music, and frequencies from the SoulSound universe." />
 
-  <!-- STORIES -->
-  <div style="margin-top: 18px; padding: 18px; border: 1px solid rgba(255,255,255,0.12); border-radius: 14px;">
-    <h3 style="margin: 0 0 10px 0; font-size: 1.25rem;">🎧 Pocket FM Stories</h3>
-    <p style="margin: 0 0 12px 0; line-height: 1.6; opacity: 0.9;">
-      Listen to the shows here (free on Pocket FM):
-    </p>
+  <style>
+    :root{
+      --bg1:#070814;
+      --bg2:#0b1030;
+      --card: rgba(255,255,255,0.06);
+      --card2: rgba(255,255,255,0.08);
+      --stroke: rgba(255,255,255,0.14);
+      --text:#eaf0ff;
+      --muted: rgba(234,240,255,0.72);
+      --muted2: rgba(234,240,255,0.55);
+      --accent:#9bb7ff;
+      --accent2:#b89bff;
+      --glow: rgba(155,183,255,0.25);
+    }
 
-    <ul style="margin: 0; padding-left: 18px; line-height: 1.9;">
-      <li>
-        <strong>The Joker for the Queen</strong>
-        <br />
-        <a href="https://guvcj0-app.appsflyersdk.com/com.radio.pocketfm?af_dp=pocketfm%3A%2F%2Fopen&referrer_uid=83cbe723c0446e2dcc8783e56fb9b3b3131f767a&c=default&af_og_description=&af_og_image=&channel=WhatsApp&pid=app_share&entity_id=c7b35fb437302d85297bacf1b250226e98e2864b&af_siteid=com.radio.pocketfm&af_og_title=Pocket+FM&deep_link_value=pocketfm%3A%2F%2Fopen%3Fentity_type%3Dshow%26entity_id%3Dc7b35fb437302d85297bacf1b250226e98e2864b&af_sub1=share_top_right&entity_type=show&af_sub4=c7b35fb437302d85297bacf1b250226e98e2864b&af_sub3=29b1dbdc8deeb8a1&referrer_platform=android&af_sub2=show_detail_screen"
-           target="_blank" rel="noopener"
-           style="word-break: break-word;">
-          Open / Listen
-        </a>
-      </li>
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(900px 500px at 20% 10%, rgba(184,155,255,0.20), transparent 60%),
+        radial-gradient(800px 500px at 80% 30%, rgba(155,183,255,0.18), transparent 60%),
+        radial-gradient(900px 700px at 50% 110%, rgba(155,183,255,0.10), transparent 55%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+      min-height:100vh;
+      padding: 28px 16px 60px;
+    }
 
-      <li style="margin-top: 10px;">
-        <strong>Tomorrow’s Yesterday</strong>
-        <br />
-        <a href="https://guvcj0-app.appsflyersdk.com/com.radio.pocketfm?af_dp=pocketfm%3A%2F%2Fopen&referrer_uid=83cbe723c0446e2dcc8783e56fb9b3b3131f767a&c=default&af_og_description=&af_og_image=&channel=WhatsApp&pid=app_share&entity_id=c3e9fdae7cb7de7afcc0d163b9ce914e77eb32fe&af_siteid=com.radio.pocketfm&af_og_title=Pocket+FM&deep_link_value=pocketfm%3A%2F%2Fopen%3Fentity_type%3Dshow%26entity_id%3Dc3e9fdae7cb7de7afcc0d163b9ce914e77eb32fe&af_sub1=share_top_right&entity_type=show&af_sub5=cf659f0ba7c35eb8bfc42dd0c2809ddd&af_sub4=c3e9fdae7cb7de7afcc0d163b9ce914e77eb32fe&af_sub3=29b1dbdc8deeb8a1&referrer_platform=android&af_sub2=show_detail_screen"
-           target="_blank" rel="noopener"
-           style="word-break: break-word;">
-          Open / Listen
-        </a>
-      </li>
-    </ul>
-  </div>
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+    }
 
-  <!-- MUSIC -->
-  <div style="margin-top: 18px; padding: 18px; border: 1px solid rgba(255,255,255,0.12); border-radius: 14px;">
-    <h3 style="margin: 0 0 10px 0; font-size: 1.25rem;">🎵 Music (Suno)</h3>
-    <p style="margin: 0 0 12px 0; line-height: 1.6; opacity: 0.9;">
-      My official Suno profile (all releases in one place):
-    </p>
+    header{
+      text-align:center;
+      padding: 18px 10px 26px;
+    }
 
-    <a href="https://suno.com/@soulsoundsamzin"
-       target="_blank" rel="noopener"
-       style="display: inline-block; padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.18); text-decoration: none;">
-      🔗 suno.com/@soulsoundsamzin
-    </a>
+    .brand{
+      font-size: 38px;
+      letter-spacing: 0.5px;
+      margin: 6px 0 6px;
+      font-weight: 700;
+    }
 
-    <div style="margin-top: 14px;">
-      <p style="margin: 0 0 10px 0; opacity: 0.9;">
-        Latest release:
+    .tag{
+      margin: 0 auto;
+      max-width: 620px;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .pillrow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:center;
+      margin-top: 16px;
+    }
+
+    .pill{
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,0.04);
+      padding: 8px 12px;
+      border-radius: 999px;
+      backdrop-filter: blur(10px);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    @media (min-width: 860px){
+      .grid{
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 16px;
+      }
+    }
+
+    .panel{
+      border: 1px solid var(--stroke);
+      background: var(--card);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.35);
+      backdrop-filter: blur(12px);
+    }
+
+    .panel h2{
+      font-size: 22px;
+      margin: 0 0 6px;
+      letter-spacing: 0.2px;
+    }
+
+    .sub{
+      color: var(--muted);
+      margin: 0 0 14px;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .card{
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.20);
+      border-radius: 18px;
+      padding: 16px;
+      margin-top: 12px;
+    }
+
+    .card h3{
+      margin: 0 0 8px;
+      font-size: 18px;
+      letter-spacing: 0.2px;
+    }
+
+    .desc{
+      margin: 0 0 14px;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      text-decoration:none;
+      color: var(--text);
+      background: rgba(255,255,255,0.06);
+      transition: transform 0.12s ease, background 0.12s ease, border-color 0.12s ease;
+      user-select:none;
+      font-weight: 600;
+    }
+
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.10);
+      border-color: rgba(255,255,255,0.24);
+    }
+
+    .btn.primary{
+      background: linear-gradient(90deg, rgba(155,183,255,0.22), rgba(184,155,255,0.18));
+      border-color: rgba(155,183,255,0.35);
+      box-shadow: 0 10px 24px rgba(155,183,255,0.12);
+    }
+
+    .list{
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .item{
+      border: 1px solid rgba(255,255,255,0.12);
+      background: var(--card2);
+      border-radius: 18px;
+      padding: 14px 14px 16px;
+    }
+
+    .itemTop{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom: 8px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      font-size: 16px;
+    }
+
+    .small{
+      color: var(--muted);
+      line-height:1.55;
+      font-size: 14px;
+      margin: 0 0 12px;
+    }
+
+    .links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .mini{
+      font-size: 13px;
+      padding: 10px 14px;
+    }
+
+    .mutedBox{
+      border: 1px dashed rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.03);
+      border-radius: 18px;
+      padding: 14px;
+      margin-top: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 13px;
+    }
+
+    footer{
+      text-align:center;
+      margin-top: 26px;
+      color: var(--muted2);
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    .hr{
+      height:1px;
+      background: rgba(255,255,255,0.10);
+      margin: 14px 0;
+      border-radius: 1px;
+    }
+
+    code{
+      background: rgba(0,0,0,0.35);
+      padding: 3px 8px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.10);
+      color: var(--text);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">SoulSound</div>
+      <p class="tag">
+        Build from the soul. Not the algorithm. <br />
+        Stories, music, and frequencies from the SoulSound universe.
       </p>
+      <div class="pillrow">
+        <div class="pill">🎧 Pocket FM</div>
+        <div class="pill">🎵 Suno Releases</div>
+        <div class="pill">🌐 World Links</div>
+      </div>
+    </header>
 
-      <a href="https://suno.com/s/1aDetxU1eJemw5ss"
-         target="_blank" rel="noopener"
-         style="display: inline-block; padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.18); text-decoration: none;">
-        ✨ Something More Beautiful (Suno Link)
-      </a>
+    <div class="grid">
+      <!-- LEFT: STORIES + MUSIC -->
+      <section class="panel">
+        <h2>Enter the SoulSound World</h2>
+        <p class="sub">
+          Start with the stories. Then follow the music that lives inside the chapters.
+        </p>
+
+        <div class="card">
+          <h3>📚 Stories on Pocket FM</h3>
+          <p class="desc">Immersive audio fiction — listen free on Pocket FM.</p>
+
+          <div class="list">
+            <div class="item">
+              <div class="itemTop">🎭 The Joker for the Queen</div>
+              <p class="small">
+                A story of power, memory, rebellion, and the cost of truth in a city built on obedience.
+              </p>
+              <a class="btn primary" target="_blank" rel="noopener"
+                 href="https://guvcj0-app.appsflyersdk.com/com.radio.pocketfm?af_dp=pocketfm%3A%2F%2Fopen&deep_link_value=pocketfm%3A%2F%2Fopen%3Fentity_type%3Dshow%26entity_id%3Dc7b35fb437302d85297bacf1b250226e98e2864b&entity_type=show&entity_id=c7b35fb437302d85297bacf1b250226e98e2864b">
+                Listen on Pocket FM →
+              </a>
+            </div>
+
+            <div class="item">
+              <div class="itemTop">🌌 Tomorrow’s Yesterday</div>
+              <p class="small">
+                A slow-burn emotional sci-fi story about memory, connection, and the space between who we were and who we become.
+              </p>
+              <a class="btn primary" target="_blank" rel="noopener"
+                 href="https://guvcj0-app.appsflyersdk.com/com.radio.pocketfm?af_dp=pocketfm%3A%2F%2Fopen&deep_link_value=pocketfm%3A%2F%2Fopen%3Fentity_type%3Dshow%26entity_id%3Dc3e9fdae7cb7de7afcc0d163b9ce914e77eb32fe&entity_type=show&entity_id=c3e9fdae7cb7de7afcc0d163b9ce914e77eb32fe">
+                Listen on Pocket FM →
+              </a>
+            </div>
+          </div>
+
+          <div class="mutedBox">
+            Note: Pocket FM may lock some episodes temporarily (like until Friday). When it unlocks,
+            this page stays the same — your world stays connected.
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>🎵 Music from the World</h3>
+          <p class="desc">
+            These tracks are the emotional frequencies of the universe — released as real music.
+          </p>
+
+          <div class="links">
+            <a class="btn primary" target="_blank" rel="noopener"
+               href="https://suno.com/@soulsoundsamzin">
+              Suno Profile →
+            </a>
+            <a class="btn" target="_blank" rel="noopener"
+               href="https://suno.com/s/1aDetxU1eJemw5ss">
+              “Something More Beautiful” →
+            </a>
+          </div>
+
+          <div class="mutedBox">
+            Official releases (Apple Music / iTunes / Spotify) can be added here as soon as you have the public links.
+            For now, Suno is your “one-and-done” hub.
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT: SOCIAL / HUB -->
+      <aside class="panel">
+        <h2>Follow the World</h2>
+        <p class="sub">
+          Build updates, releases, and world expansion across platforms.
+        </p>
+
+        <div class="card">
+          <h3>🌐 Main Links</h3>
+          <div class="links">
+            <a class="btn mini" target="_blank" rel="noopener"
+               href="https://github.com/sk88studiosinc-maker">
+              GitHub →
+            </a>
+            <a class="btn mini" target="_blank" rel="noopener"
+               href="https://www.tiktok.com/@soulsoundcreations">
+              TikTok →
+            </a>
+            <!-- Replace these two when you paste your real links -->
+            <a class="btn mini" target="_blank" rel="noopener"
+               href="https://instagram.com/">
+              Instagram →
+            </a>
+            <a class="btn mini" target="_blank" rel="noopener"
+               href="https://linkedin.com/">
+              LinkedIn →
+            </a>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="mutedBox">
+            Want everything to feel “connected” fast? Keep one hub (this site) + one music hub (Suno profile) +
+            Pocket FM. That’s enough to feel like a world, not a link dump.
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Quick Update Path</h3>
+          <p class="desc">
+            When you get Apple Music / iTunes links, drop them into this page under “Music from the World.”
+          </p>
+          <div class="mutedBox">
+            Tip: When a song is officially distributed, put: <br />
+            <code>Listen on Apple Music →</code> + <code>Listen on Spotify →</code>
+          </div>
+        </div>
+      </aside>
     </div>
 
-    <p style="margin: 14px 0 0 0; line-height: 1.6; opacity: 0.9;">
-      New drops are tied to story milestones (every 5–10 chapters).  
-      The music is the “echo” of the chapters — SoulSound style.
-    </p>
+    <footer>
+      © SoulSound — Built slowly. Built honestly. <br />
+      soulsoundworld.world
+    </footer>
   </div>
-
-  <!-- SOCIAL / PROFILES -->
-  <div style="margin-top: 18px; padding: 18px; border: 1px solid rgba(255,255,255,0.12); border-radius: 14px;">
-    <h3 style="margin: 0 0 10px 0; font-size: 1.25rem;">🌐 Connect</h3>
-    <p style="margin: 0 0 12px 0; line-height: 1.6; opacity: 0.9;">
-      Follow the build + the world across platforms:
-    </p>
-
-    <ul style="margin: 0; padding-left: 18px; line-height: 1.9;">
-      <li><strong>GitHub:</strong> <em>(paste your GitHub profile link here)</em></li>
-      <li><strong>LinkedIn:</strong> <em>(paste your LinkedIn link here)</em></li>
-      <li><strong>TikTok:</strong> <em>(paste your TikTok link here)</em></li>
-      <li><strong>Instagram:</strong> <em>(paste your Instagram link here)</em></li>
-    </ul>
-
-    <p style="margin: 14px 0 0 0; line-height: 1.6; opacity: 0.85;">
-      Tip: once you paste your social links, this section becomes your “one link” hub for bio links.
-    </p>
-  </div>
-
-  <!-- QUICK NOTE -->
-  <div style="margin-top: 18px; padding: 18px; border: 1px dashed rgba(255,255,255,0.2); border-radius: 14px;">
-    <h3 style="margin: 0 0 8px 0; font-size: 1.1rem;">✅ Quick Note</h3>
-    <p style="margin: 0; line-height: 1.6; opacity: 0.9;">
-      If Pocket FM content is temporarily locked, the link still works — it’ll open the show page and update when episodes unlock.
-    </p>
-  </div>
-</section>
+</body>
+</html>
