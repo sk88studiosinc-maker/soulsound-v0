@@ -1,553 +1,826 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SoulSound World — Samzin Kreave</title>
-  <meta name="description" content="SoulSound World by Samzin Kreave — stories on Pocket FM, music on Suno, and the connected ecosystem across socials." />
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoulSound World</title>
   <style>
     :root{
-      --bg: #07080c;
-      --panel: rgba(255,255,255,0.06);
-      --panel2: rgba(255,255,255,0.085);
-      --text: rgba(255,255,255,0.92);
-      --muted: rgba(255,255,255,0.68);
-      --dim: rgba(255,255,255,0.48);
-      --line: rgba(255,255,255,0.12);
-      --glowA: rgba(120,120,255,0.20);
-      --glowB: rgba(0,255,200,0.12);
-      --glowC: rgba(255,120,220,0.12);
-      --accent: #a8b3ff;
-      --accent2: #7fffd4;
-      --warn: #ffcc66;
-      --radius: 18px;
-      --shadow: 0 18px 60px rgba(0,0,0,0.55);
-      --shadow2: 0 10px 30px rgba(0,0,0,0.45);
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-    }
-    *{ box-sizing: border-box; }
-    html, body { height: 100%; }
-    body{
-      margin:0;
-      font-family: var(--sans);
-      color: var(--text);
-      background: radial-gradient(1200px 900px at 15% 10%, var(--glowA), transparent 55%),
-                  radial-gradient(900px 700px at 75% 15%, var(--glowC), transparent 55%),
-                  radial-gradient(900px 900px at 50% 80%, var(--glowB), transparent 55%),
-                  var(--bg);
-      overflow-x:hidden;
-    }
-    a{ color: inherit; text-decoration:none; }
-    .wrap{
-      max-width: 1060px;
-      margin: 0 auto;
-      padding: 22px 16px 70px;
-    }
-    .topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 12px;
-      padding: 12px 14px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-      box-shadow: var(--shadow2);
-      backdrop-filter: blur(8px);
-      position: sticky;
-      top: 12px;
-      z-index: 10;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap: 12px;
-      min-width: 0;
-    }
-    .sig{
-      width: 38px; height: 38px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background:
-        radial-gradient(16px 16px at 30% 30%, rgba(255,255,255,0.55), transparent 60%),
-        radial-gradient(22px 22px at 65% 60%, rgba(120,180,255,0.55), transparent 65%),
-        radial-gradient(30px 30px at 55% 35%, rgba(0,255,200,0.25), transparent 70%),
-        rgba(255,255,255,0.06);
-      box-shadow: 0 0 30px rgba(120,180,255,0.18);
-    }
-    .brand h1{
-      font-size: 16px;
-      margin: 0;
-      letter-spacing: 0.2px;
-      line-height: 1.1;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .brand p{
-      margin: 2px 0 0;
-      font-size: 12px;
-      color: var(--muted);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .nav{
-      display:flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content:flex-end;
-    }
-    .pill{
-      padding: 9px 12px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.05);
-      border-radius: 999px;
-      font-size: 12px;
-      color: var(--muted);
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-      cursor: pointer;
-      user-select:none;
-    }
-    .pill:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,0.08);
-      border-color: rgba(255,255,255,0.22);
-      color: var(--text);
+      --bg1:#070816;
+      --bg2:#0b1030;
+      --card: rgba(255,255,255,0.06);
+      --card2: rgba(255,255,255,0.08);
+      --stroke: rgba(255,255,255,0.12);
+      --text:#eaf0ff;
+      --muted: rgba(234,240,255,0.72);
+      --muted2: rgba(234,240,255,0.55);
+      --accent:#9fb7ff;
+      --good:#39d98a;
+      --warn:#ffd166;
+      --shadow: 0 24px 70px rgba(0,0,0,0.55);
+      --radius: 22px;
+      --radius2: 18px;
     }
 
-    header.hero{
-      margin-top: 18px;
-      border-radius: calc(var(--radius) + 6px);
-      border: 1px solid rgba(255,255,255,0.14);
-      background:
-        radial-gradient(900px 500px at 15% 20%, rgba(168,179,255,0.15), transparent 60%),
-        radial-gradient(700px 520px at 85% 25%, rgba(0,255,200,0.10), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
-      box-shadow: var(--shadow);
-      padding: 22px 16px;
-      position: relative;
-      overflow:hidden;
-    }
-    .texture{
-      position:absolute;
-      inset:-80px -80px;
-      pointer-events:none;
-      opacity:0.35;
-      background-image:
-        radial-gradient(2px 2px at 20% 25%, rgba(255,255,255,0.55), transparent 60%),
-        radial-gradient(1px 1px at 60% 50%, rgba(255,255,255,0.35), transparent 60%),
-        radial-gradient(2px 2px at 80% 40%, rgba(120,180,255,0.45), transparent 60%),
-        radial-gradient(1px 1px at 35% 75%, rgba(0,255,200,0.30), transparent 60%),
-        radial-gradient(1px 1px at 70% 85%, rgba(255,120,220,0.25), transparent 60%);
-      filter: blur(0.2px);
-      transform: rotate(-3deg);
-    }
-    .hero-grid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-      position:relative;
-      z-index:1;
-    }
-    .hero h2{
+    *{box-sizing:border-box}
+    body{
       margin:0;
-      font-size: 26px;
-      letter-spacing: 0.2px;
-      line-height: 1.12;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(900px 520px at 30% -10%, rgba(120,140,255,0.22), transparent 60%),
+        radial-gradient(900px 520px at 70% 110%, rgba(80,255,220,0.12), transparent 60%),
+        linear-gradient(180deg, var(--bg2), var(--bg1));
+      min-height:100vh;
     }
-    .hero .sub{
-      margin: 8px 0 0;
+
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 28px 16px 60px;
+    }
+
+    .hero{
+      padding: 22px 18px 16px;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background:
+        radial-gradient(500px 220px at 20% 20%, rgba(159,183,255,0.18), transparent 60%),
+        radial-gradient(480px 240px at 75% 10%, rgba(70,255,220,0.10), transparent 60%),
+        radial-gradient(380px 200px at 55% 75%, rgba(255,209,102,0.08), transparent 60%);
+      pointer-events:none;
+      filter: blur(2px);
+    }
+
+    .hero-inner{position:relative}
+
+    h1{
+      margin: 0;
+      font-size: 44px;
+      line-height: 1.05;
+      letter-spacing: -0.7px;
+      text-align:center;
+    }
+    .tagline{
+      margin-top: 10px;
+      text-align:center;
+      font-size: 17px;
       color: var(--muted);
-      line-height: 1.45;
-      font-size: 14px;
-      max-width: 70ch;
     }
-    .cta-row{
+    .subline{
+      margin-top: 8px;
+      text-align:center;
+      font-size: 15px;
+      color: var(--muted2);
+    }
+
+    .tabs{
       display:flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 14px;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
+      gap:10px;
       justify-content:center;
-      gap: 8px;
-      padding: 12px 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.07);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .tab{
+      border:1px solid var(--stroke);
+      background: rgba(0,0,0,0.12);
       color: var(--text);
-      font-weight: 600;
-      font-size: 13px;
+      padding: 10px 14px;
+      border-radius: 999px;
       cursor:pointer;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      font-weight: 600;
+      font-size: 14px;
+      transition: transform .12s ease, background .12s ease;
+      user-select:none;
     }
-    .btn:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,0.10);
-      border-color: rgba(255,255,255,0.26);
-    }
-    .btn.primary{
-      background: linear-gradient(180deg, rgba(168,179,255,0.22), rgba(255,255,255,0.07));
-      border-color: rgba(168,179,255,0.35);
-    }
+    .tab:hover{transform: translateY(-1px); background: rgba(255,255,255,0.08);}
+    .tab.active{background: rgba(159,183,255,0.18); border-color: rgba(159,183,255,0.35);}
 
     .grid{
       margin-top: 18px;
       display:grid;
       grid-template-columns: 1fr;
-      gap: 12px;
+      gap: 14px;
     }
+
     .card{
+      background: var(--card);
+      border: 1px solid var(--stroke);
       border-radius: var(--radius);
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.06);
-      box-shadow: var(--shadow2);
-      overflow:hidden;
-    }
-    .card .hd{
-      padding: 14px 14px 10px;
-      border-bottom: 1px solid rgba(255,255,255,0.10);
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap: 10px;
-    }
-    .card .hd h3{
-      margin:0;
-      font-size: 15px;
-      letter-spacing: 0.2px;
-    }
-    .card .hd p{
-      margin: 6px 0 0;
-      font-size: 13px;
-      line-height: 1.35;
-      color: var(--muted);
-    }
-    .card .bd{
-      padding: 12px 14px 14px;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+      padding: 18px;
     }
 
-    .list{
-      display:grid;
-      gap: 10px;
-    }
-    .item{
-      display:flex;
-      gap: 12px;
-      align-items:flex-start;
-      padding: 12px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(0,0,0,0.22);
-    }
-    .dot{
-      width: 10px; height: 10px;
-      border-radius: 999px;
-      margin-top: 6px;
-      background: rgba(168,179,255,0.9);
-      box-shadow: 0 0 16px rgba(168,179,255,0.22);
-      flex: 0 0 auto;
-    }
-    .item strong{ display:block; font-size: 13px; }
-    .item span{ display:block; font-size: 12px; color: var(--muted); margin-top: 4px; line-height: 1.35; }
-
-    .links{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-    }
-    .link{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 10px;
-      padding: 12px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.045);
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-    }
-    .link:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,0.08);
-      border-color: rgba(255,255,255,0.22);
-    }
-    .link .left{
-      min-width:0;
-    }
-    .link .name{
-      font-weight: 700;
-      font-size: 13px;
-    }
-    .link .desc{
-      font-size: 12px;
-      color: var(--muted);
-      margin-top: 3px;
-      line-height: 1.35;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      white-space: nowrap;
-      max-width: 64ch;
-    }
-    .link .go{
-      font-family: var(--mono);
-      font-size: 12px;
-      color: rgba(255,255,255,0.75);
-      border: 1px solid rgba(255,255,255,0.16);
-      background: rgba(0,0,0,0.25);
-      padding: 7px 10px;
-      border-radius: 999px;
-      flex: 0 0 auto;
+    .card h2{
+      margin:0 0 6px 0;
+      font-size: 26px;
+      letter-spacing: -0.3px;
     }
 
-    .note{
-      font-size: 12px;
+    .card p{
+      margin: 0;
       color: var(--muted);
       line-height: 1.55;
     }
-    .artifact{
-      border: 1px dashed rgba(255,255,255,0.22);
-      background: rgba(0,0,0,0.22);
-      border-radius: 16px;
-      padding: 12px;
-    }
-    .artifact b{ color: var(--text); }
-    footer{
-      margin-top: 18px;
-      text-align:center;
-      color: var(--dim);
-      font-size: 12px;
+
+    .pillrow{
+      display:flex;
+      gap:10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
     }
 
-    /* Responsive */
-    @media (min-width: 860px){
-      .hero-grid{ grid-template-columns: 1.2fr 0.8fr; align-items:center; }
-      .grid{ grid-template-columns: 1fr 1fr; }
-      .links{ grid-template-columns: 1fr 1fr; }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      text-decoration:none;
+      font-weight: 700;
+      transition: transform .12s ease, background .12s ease;
+      cursor:pointer;
+      user-select:none;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,0.10);}
+    .btn.primary{background: rgba(159,183,255,0.18); border-color: rgba(159,183,255,0.30);}
+    .btn.good{background: rgba(57,217,138,0.16); border-color: rgba(57,217,138,0.30);}
+    .btn.ghost{background: transparent;}
+
+    .section-title{
+      font-size: 18px;
+      margin: 0 0 10px 0;
+      color: var(--text);
+      letter-spacing: -0.2px;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+    }
+
+    .list{
+      display:flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .item{
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: var(--radius2);
+      padding: 14px;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .item .meta{
+      min-width: 0;
+    }
+    .item .title{
+      font-weight: 800;
+      letter-spacing: -0.2px;
+    }
+    .item .desc{
+      font-size: 13px;
+      color: var(--muted2);
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+
+    .note{
+      margin-top: 10px;
+      border: 1px dashed rgba(255,255,255,0.16);
+      background: rgba(0,0,0,0.18);
+      border-radius: var(--radius2);
+      padding: 12px 12px;
+      color: var(--muted2);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .tool{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    label{
+      display:block;
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: var(--text);
+      font-size: 13px;
+      opacity: 0.92;
+    }
+
+    input, select, textarea{
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.18);
+      color: var(--text);
+      outline: none;
+      font-size: 14px;
+    }
+    textarea{min-height: 96px; resize: vertical;}
+
+    .two{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    @media (max-width: 680px){
+      h1{font-size: 38px;}
+      .two{grid-template-columns: 1fr;}
+    }
+
+    .out{
+      margin-top: 10px;
+      display:flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .outbox{
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.11);
+      border-radius: var(--radius2);
+      padding: 14px;
+    }
+    .outbox .head{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .outbox .head strong{font-size: 14px;}
+    .mono{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      white-space: pre-wrap;
+      line-height: 1.55;
+      color: rgba(234,240,255,0.86);
+      font-size: 13px;
+    }
+
+    footer{
+      text-align:center;
+      margin-top: 18px;
+      color: rgba(234,240,255,0.45);
+      font-size: 12px;
     }
   </style>
 </head>
-
 <body>
   <div class="wrap">
-    <div class="topbar">
-      <div class="brand" aria-label="SoulSound brand">
-        <div class="sig" aria-hidden="true"></div>
-        <div style="min-width:0">
-          <h1>SoulSound World</h1>
-          <p>Stories + Music + Ecosystem • by <strong>Samzin Kreave</strong></p>
-        </div>
-      </div>
+    <div class="hero">
+      <div class="hero-inner">
+        <h1>SoulSound World</h1>
+        <div class="tagline">Build from the soul. Not the algorithm.</div>
+        <div class="subline">Stories, music, and frequencies from the SoulSound universe.</div>
 
-      <div class="nav" aria-label="Page navigation">
-        <div class="pill" onclick="scrollToId('stories')">Stories</div>
-        <div class="pill" onclick="scrollToId('music')">Music</div>
-        <div class="pill" onclick="scrollToId('social')">Social</div>
-        <div class="pill" onclick="scrollToId('updates')">Updates</div>
+        <div class="tabs" role="tablist" aria-label="SoulSound tabs">
+          <div class="tab active" data-tab="stories">Stories</div>
+          <div class="tab" data-tab="music">Music</div>
+          <div class="tab" data-tab="tool">SoulExpression Tool</div>
+          <div class="tab" data-tab="social">Social</div>
+          <div class="tab" data-tab="updates">Updates</div>
+        </div>
       </div>
     </div>
 
-    <header class="hero">
-      <div class="texture" aria-hidden="true"></div>
-      <div class="hero-grid">
-        <div>
-          <h2>A connected world you can actually enter.</h2>
-          <p class="sub">
-            SoulSound is the hub where my <b>Pocket FM stories</b> and <b>Suno music</b> meet — so each chapter can leave behind a real artifact:
-            a song, a mood, a frequency. This is the clean home base (TikTok link-in-bio ready).
-          </p>
+    <div class="grid">
 
-          <div class="cta-row">
-            <a class="btn primary" href="#stories">Start with the stories</a>
-            <a class="btn" href="https://suno.com/@soulsoundsamzin" target="_blank" rel="noopener">Open Suno profile</a>
-            <a class="btn" href="https://github.com/sk88studiosinc-maker" target="_blank" rel="noopener">Open GitHub</a>
-          </div>
+      <!-- STORIES -->
+      <section class="card" id="tab-stories">
+        <h2>📚 Pocket FM Stories</h2>
+        <p>Read/listen to the series here. These are the “world portals.”</p>
 
-          <p class="note" style="margin-top:12px;">
-            Tip: I’m releasing a song every 10 chapters (sometimes every 5) as a reward + anchor for the arc.
-          </p>
-        </div>
-
-        <div class="artifact">
-          <b>Now Live (Music Artifact):</b><br/>
-          <div style="margin-top:8px; display:grid; gap:8px;">
-            <div style="font-family:var(--mono); font-size:12px; color:rgba(255,255,255,0.86);">
-              “Something More Beautiful”
+        <div class="list">
+          <div class="item">
+            <div class="meta">
+              <div class="title">🎭 The Joker for the Queen</div>
+              <div class="desc">Pocket FM show link (official share)</div>
             </div>
-            <a class="btn" style="justify-content:flex-start;" href="https://suno.com/s/1aDetxU1eJemw5ss" target="_blank" rel="noopener">
-              ▶ Listen on Suno
+            <a class="btn" target="_blank" rel="noopener"
+               href="https://guvcj0-app.appsflyersdk.com/com.radio.pocketfm?af_dp=pocketfm%3A%2F%2Fopen&referrer_uid=83cbe723c0446e2dcc8783e56fb9b3b3131f767a&c=default&af_og_description=&af_og_image=&channel=WhatsApp&pid=app_share&entity_id=c7b35fb437302d85297bacf1b250226e98e2864b&af_siteid=com.radio.pocketfm&af_og_title=Pocket+FM&deep_link_value=pocketfm%3A%2F%2Fopen%3Fentity_type%3Dshow%26entity_id%3Dc7b35fb437302d85297bacf1b250226e98e2864b&af_sub1=share_top_right&entity_type=show&af_sub4=c7b35fb437302d85297bacf1b250226e98e2864b&af_sub3=29b1dbdc8deeb8a1&referrer_platform=android">
+              OPEN →
             </a>
-            <div class="note">
-              (More track links will be added here as we collect them.)
+          </div>
+
+          <div class="item">
+            <div class="meta">
+              <div class="title">🌌 Tomorrow’s Yesterday</div>
+              <div class="desc">Pocket FM show link (official share)</div>
             </div>
+            <a class="btn" target="_blank" rel="noopener"
+               href="https://guvcj0-app.appsflyersdk.com/com.radio.pocketfm?af_dp=pocketfm%3A%2F%2Fopen&referrer_uid=83cbe723c0446e2dcc8783e56fb9b3b3131f767a&c=default&af_og_description=&af_og_image=&channel=WhatsApp&pid=app_share&entity_id=c3e9fdae7cb7de7afcc0d163b9ce914e77eb32fe&af_siteid=com.radio.pocketfm&af_og_title=Pocket+FM&deep_link_value=pocketfm%3A%2F%2Fopen%3Fentity_type%3Dshow%26entity_id%3Dc3e9fdae7cb7de7afcc0d163b9ce914e77eb32fe&af_sub1=share_top_right&entity_type=show&af_sub4=c3e9fdae7cb7de7afcc0d163b9ce914e77eb32fe&af_sub3=29b1dbdc8deeb8a1&referrer_platform=android&af_sub2=show_detail_screen">
+              OPEN →
+            </a>
           </div>
         </div>
-      </div>
-    </header>
 
-    <section class="grid" id="stories" style="scroll-margin-top:90px;">
-      <div class="card">
-        <div class="hd">
+        <div class="note">
+          Note: Pocket FM sometimes locks content temporarily (like until Friday). If an episode is locked, check back — the link stays the same.
+        </div>
+      </section>
+
+      <!-- MUSIC -->
+      <section class="card" id="tab-music" style="display:none;">
+        <h2>🎵 Music Artifacts (Suno)</h2>
+        <p>These songs are part of the world — “rewards” you can listen to after major chapters.</p>
+
+        <div class="list">
+          <div class="item">
+            <div class="meta">
+              <div class="title">🟣 Suno Profile — SoulSound Samzin</div>
+              <div class="desc">All releases live here (best one-and-done hub link).</div>
+            </div>
+            <a class="btn primary" target="_blank" rel="noopener" href="https://suno.com/@soulsoundsamzin">OPEN →</a>
+          </div>
+
+          <div class="item">
+            <div class="meta">
+              <div class="title">🟢 “Something More Beautiful”</div>
+              <div class="desc">Official Suno link</div>
+            </div>
+            <a class="btn good" target="_blank" rel="noopener" href="https://suno.com/s/1aDetxU1eJemw5ss">LISTEN →</a>
+          </div>
+        </div>
+
+        <div class="note">
+          Official releases (Apple Music / iTunes / Spotify) can be added here once you have the public links.
+          For now, Suno is your “one-and-done” hub.
+        </div>
+
+        <div class="note">
+          <strong>Artifact Note Format (for your chapters):</strong><br><br>
+          — End of Chapter X —<br>
+          Artifact Note:<br>
+          “SONG TITLE” exists as a song.<br>
+          You can find it on Suno as:<br>
+          SONG TITLE — SoulSound / Samzin Kreave
+        </div>
+      </section>
+
+      <!-- TOOL -->
+      <section class="card" id="tab-tool" style="display:none;">
+        <h2>💡 SoulExpression (Artist Tool)</h2>
+        <p>Paste any music link and generate a description + captions + hashtags (no login, works on GitHub Pages).</p>
+
+        <div class="tool">
           <div>
-            <h3>📚 Pocket FM Stories</h3>
-            <p>Read/listen to the series here. These are the “world portals.”</p>
-          </div>
-        </div>
-        <div class="bd">
-          <div class="links">
-            <a class="link" target="_blank" rel="noopener"
-               href="https://guvcj0-app.appsflyersdk.com/com.radio.pocketfm?af_dp=pocketfm%3A%2F%2Fopen&referrer_uid=83cbe723c0446e2dcc8783e56fb9b3b3131f767a&c=default&af_og_description=&af_og_image=&channel=WhatsApp&pid=app_share&entity_id=c7b35fb437302d85297bacf1b250226e98e2864b&af_siteid=com.radio.pocketfm&af_og_title=Pocket+FM&deep_link_value=pocketfm%3A%2F%2Fopen%3Fentity_type%3Dshow%26entity_id%3Dc7b35fb437302d85297bacf1b250226e98e2864b&af_sub1=share_top_right&entity_type=show&af_sub5=&af_sub4=c7b35fb437302d85297bacf1b250226e98e2864b&af_sub3=29b1dbdc8deeb8a1&referrer_platform=android&af_sub2">
-              <div class="left">
-                <div class="name">The Joker for the Queen</div>
-                <div class="desc">Pocket FM show link (official share)</div>
-              </div>
-              <div class="go">OPEN</div>
-            </a>
-
-            <a class="link" target="_blank" rel="noopener"
-               href="https://guvcj0-app.appsflyersdk.com/com.radio.pocketfm?af_dp=pocketfm%3A%2F%2Fopen&referrer_uid=83cbe723c0446e2dcc8783e56fb9b3b3131f767a&c=default&af_og_description=&af_og_image=&channel=WhatsApp&pid=app_share&entity_id=c3e9fdae7cb7de7afcc0d163b9ce914e77eb32fe&af_siteid=com.radio.pocketfm&af_og_title=Pocket+FM&deep_link_value=pocketfm%3A%2F%2Fopen%3Fentity_type%3Dshow%26entity_id%3Dc3e9fdae7cb7de7afcc0d163b9ce914e77eb32fe&af_sub1=share_top_right&entity_type=show&af_sub5=cf659f0ba7c34eb8bfc42dd0c2809ddd&af_sub4=c3e9fdae7cb7de7afcc0d163b9ce914e77eb32fe&af_sub3=29b1dbdc8deeb8a1&referrer_platform=android&af_sub2=show_detail_screen&af_referrer_uid=1764029433571-2044186600426491000=show_detail_screen&af_referrer_uid=1764029433571-2044186600426491000">
-              <div class="left">
-                <div class="name">Tomorrow’s Yesterday</div>
-                <div class="desc">Pocket FM show link (official share)</div>
-              </div>
-              <div class="go">OPEN</div>
-            </a>
+            <label for="musicLink">Music Link (Suno / SoundCloud / YouTube / anything)</label>
+            <input id="musicLink" placeholder="Paste your link here…" />
           </div>
 
-          <div class="note" style="margin-top:10px;">
-            Pocket FM sometimes locks content temporarily. If an episode is locked, check back — the link stays the same.
-          </div>
-        </div>
-      </div>
-
-      <div class="card" id="music" style="scroll-margin-top:90px;">
-        <div class="hd">
-          <div>
-            <h3>🎧 Music Artifacts (Suno)</h3>
-            <p>These songs are part of the world — “rewards” you can listen to after major chapters.</p>
-          </div>
-        </div>
-        <div class="bd">
-          <div class="list">
-            <div class="item">
-              <div class="dot" aria-hidden="true"></div>
-              <div>
-                <strong>Suno Profile — SoulSound Samzin</strong>
-                <span>All releases live here (best one-and-done link for the hub).</span>
-                <div class="cta-row" style="margin-top:10px;">
-                  <a class="btn primary" href="https://suno.com/@soulsoundsamzin" target="_blank" rel="noopener">Open Suno Profile</a>
-                </div>
-              </div>
+          <div class="two">
+            <div>
+              <label for="platform">Target Platform</label>
+              <select id="platform">
+                <option value="TikTok">TikTok</option>
+                <option value="Instagram">Instagram</option>
+                <option value="YouTube Shorts">YouTube Shorts</option>
+                <option value="Reddit">Reddit</option>
+                <option value="X">X</option>
+                <option value="Threads">Threads</option>
+              </select>
             </div>
 
-            <div class="item">
-              <div class="dot" aria-hidden="true" style="background: rgba(0,255,200,0.9); box-shadow: 0 0 16px rgba(0,255,200,0.18);"></div>
-              <div>
-                <strong>Direct Track Link (Known)</strong>
-                <span>“Something More Beautiful” — official Suno link.</span>
-                <div class="cta-row" style="margin-top:10px;">
-                  <a class="btn" href="https://suno.com/s/1aDetxU1eJemw5ss" target="_blank" rel="noopener">Listen: Something More Beautiful</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="artifact">
-              <b>Artifact Note Format (for your chapters):</b><br/>
-              <div style="margin-top:8px; font-family:var(--mono); font-size:12px; color:rgba(255,255,255,0.78); line-height:1.45;">
-                — End of Chapter X —<br/>
-                Artifact Note:<br/>
-                “SONG TITLE” exists as a song.<br/>
-                You can find it on Suno as:<br/>
-                SONG TITLE — SoulSound / Samzin Kreave
-              </div>
-              <div class="note" style="margin-top:8px;">
-                This is optimized for Pocket FM voiceover endings (clean, clear, and repeatable).
-              </div>
+            <div>
+              <label for="tone">Tone</label>
+              <select id="tone">
+                <option value="Soulful / poetic">Soulful / poetic</option>
+                <option value="Clean / simple">Clean / simple</option>
+                <option value="Bold / cinematic">Bold / cinematic</option>
+                <option value="Funny / playful">Funny / playful</option>
+                <option value="Build in public">Build in public</option>
+              </select>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <section class="grid" id="social" style="scroll-margin-top:90px;">
-      <div class="card">
-        <div class="hd">
+          <div class="two">
+            <div>
+              <label for="mood">Mood</label>
+              <input id="mood" placeholder="healing, nostalgic, intense, romantic…" />
+            </div>
+            <div>
+              <label for="genre">Genre</label>
+              <input id="genre" placeholder="indie, ambient, hip-hop, cinematic…" />
+            </div>
+          </div>
+
+          <div class="two">
+            <div>
+              <label for="energy">Energy</label>
+              <select id="energy">
+                <option value="Low / calm">Low / calm</option>
+                <option value="Mid / steady">Mid / steady</option>
+                <option value="High / hype">High / hype</option>
+              </select>
+            </div>
+            <div>
+              <label for="cta">Call to action</label>
+              <select id="cta">
+                <option value="Listen now (link in bio)">Listen now (link in bio)</option>
+                <option value="Headphones on 🎧">Headphones on 🎧</option>
+                <option value="Save + share if it hits">Save + share if it hits</option>
+                <option value="Comment what you felt">Comment what you felt</option>
+                <option value="Follow for the next artifact">Follow for the next artifact</option>
+              </select>
+            </div>
+          </div>
+
           <div>
-            <h3>🌐 Social + Community</h3>
-            <p>Follow the build + the world across platforms.</p>
+            <label for="extra">Optional notes (what is this song about?)</label>
+            <textarea id="extra" placeholder="Example: This is the healing frequency for a character arc…"></textarea>
+          </div>
+
+          <div class="pillrow">
+            <button class="btn primary" id="generateBtn">Generate</button>
+            <button class="btn ghost" id="clearBtn">Clear</button>
+          </div>
+
+          <div class="out" id="output" style="display:none;">
+            <div class="outbox">
+              <div class="head">
+                <strong>Description</strong>
+                <button class="btn" data-copy="desc">Copy</button>
+              </div>
+              <div class="mono" id="desc"></div>
+            </div>
+
+            <div class="outbox">
+              <div class="head">
+                <strong>Captions (5)</strong>
+                <button class="btn" data-copy="caps">Copy</button>
+              </div>
+              <div class="mono" id="caps"></div>
+            </div>
+
+            <div class="outbox">
+              <div class="head">
+                <strong>Hashtags (3 sets)</strong>
+                <button class="btn" data-copy="tags">Copy</button>
+              </div>
+              <div class="mono" id="tags"></div>
+            </div>
+
+            <div class="note" id="detected"></div>
           </div>
         </div>
-        <div class="bd">
-          <div class="links">
-            <a class="link" href="https://www.tiktok.com/@soulsoundcreations?_r=1&_t=ZT-92sJ8IU0wD9" target="_blank" rel="noopener">
-              <div class="left">
-                <div class="name">TikTok</div>
-                <div class="desc">@soulsoundcreations</div>
-              </div>
-              <div class="go">OPEN</div>
-            </a>
+      </section>
 
-            <a class="link" href="https://www.instagram.com/soulsound_creations?igsh=MXJoazJiaGhxNzh4bw==" target="_blank" rel="noopener">
-              <div class="left">
-                <div class="name">Instagram</div>
-                <div class="desc">@soulsound_creations</div>
-              </div>
-              <div class="go">OPEN</div>
-            </a>
+      <!-- SOCIAL -->
+      <section class="card" id="tab-social" style="display:none;">
+        <h2>🌐 Social + Community</h2>
+        <p>Follow the build + the world across platforms.</p>
 
-            <a class="link" href="https://www.reddit.com/u/Samzinkreave/s/CKH3V83Jrp" target="_blank" rel="noopener">
-              <div class="left">
-                <div class="name">Reddit</div>
-                <div class="desc">u/Samzinkreave</div>
-              </div>
-              <div class="go">OPEN</div>
-            </a>
-
-            <a class="link" href="https://www.linkedin.com/in/sam-mejias-315848374?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener">
-              <div class="left">
-                <div class="name">LinkedIn</div>
-                <div class="desc">Sam Mejias (Samzin Kreave)</div>
-              </div>
-              <div class="go">OPEN</div>
-            </a>
-
-            <a class="link" href="https://github.com/sk88studiosinc-maker" target="_blank" rel="noopener">
-              <div class="left">
-                <div class="name">GitHub</div>
-                <div class="desc">sk88studiosinc-maker (SoulSound builds)</div>
-              </div>
-              <div class="go">OPEN</div>
-            </a>
+        <div class="list">
+          <div class="item">
+            <div class="meta">
+              <div class="title">TikTok</div>
+              <div class="desc">@soulsoundcreations</div>
+            </div>
+            <a class="btn" target="_blank" rel="noopener"
+               href="https://www.tiktok.com/@soulsoundcreations?_r=1&_t=ZT-92sJ8IU0wD9">OPEN →</a>
           </div>
 
-          <div class="note" style="margin-top:10px;">
-            Next upgrade: add Apple Music / iTunes / Spotify links once you paste them here.
+          <div class="item">
+            <div class="meta">
+              <div class="title">Instagram</div>
+              <div class="desc">@soulsound_creations</div>
+            </div>
+            <a class="btn" target="_blank" rel="noopener"
+               href="https://www.instagram.com/soulsound_creations?igsh=MXJoazJiaGhxNzh4bw==">OPEN →</a>
           </div>
-        </div>
-      </div>
 
-      <div class="card" id="updates" style="scroll-margin-top:90px;">
-        <div class="hd">
-          <div>
-            <h3>🧱 Open Build Updates</h3>
-            <p>What SoulSound is becoming (short + honest).</p>
+          <div class="item">
+            <div class="meta">
+              <div class="title">Reddit</div>
+              <div class="desc">u/Samzinkreave</div>
+            </div>
+            <a class="btn" target="_blank" rel="noopener"
+               href="https://www.reddit.com/u/Samzinkreave/s/CKH3V83Jrp">OPEN →</a>
+          </div>
+
+          <div class="item">
+            <div class="meta">
+              <div class="title">LinkedIn</div>
+              <div class="desc">Sam Mejias (Samzin Kreave)</div>
+            </div>
+            <a class="btn" target="_blank" rel="noopener"
+               href="https://www.linkedin.com/in/sam-mejias-315848374?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">OPEN →</a>
+          </div>
+
+          <div class="item">
+            <div class="meta">
+              <div class="title">GitHub</div>
+              <div class="desc">sk88studiosinc-maker (SoulSound builds)</div>
+            </div>
+            <a class="btn" target="_blank" rel="noopener"
+               href="https://github.com/sk88studiosinc-maker">OPEN →</a>
           </div>
         </div>
-        <div class="bd">
-          <div class="list">
-            <div class="item">
-              <div class="dot" aria-hidden="true" style="background: rgba(255,120,220,0.85); box-shadow: 0 0 16px rgba(255,120,220,0.16);"></div>
-              <div>
-                <strong>What SoulSound is</strong>
-                <span>
-                  A storytelling + music ecosystem: Pocket FM chapters + Suno songs that match arc milestones.
-                  The website is the hub that keeps the world connected across platforms (and gives readers a real “artifact” to find after key chapters).
-                </span>
-              </div>
-            </div
+
+        <div class="note">
+          Next upgrade: add Apple Music / iTunes / Spotify links once you paste them here.
+        </div>
+      </section>
+
+      <!-- UPDATES -->
+      <section class="card" id="tab-updates" style="display:none;">
+        <h2>🧱 Open Build Updates</h2>
+        <p>What SoulSound is becoming (short + honest).</p>
+
+        <div class="note">
+          <strong>What SoulSound is</strong><br>
+          A storytelling + music ecosystem: Pocket FM chapters + Suno songs that match arc milestones.
+          This website is the hub that keeps the world connected across platforms (and gives listeners a real “artifact” to find after key chapters).
+        </div>
+
+        <div class="note">
+          <strong>Right now</strong><br>
+          • Pocket FM has some content locked temporarily (until Friday).<br>
+          • Tomorrow’s Yesterday is written through January 31st.<br>
+          • New releases will be linked here as they go live.
+        </div>
+
+        <div class="note">
+          <strong>Next</strong><br>
+          Add official platform links (Apple/Spotify), then post a “Build in Public” update pointing people to this hub.
+        </div>
+      </section>
+
+    </div>
+
+    <footer>© SoulSound — Built slowly. Built honestly. • soulsoundworld.world</footer>
+  </div>
+
+  <script>
+    // ---------- Tabs ----------
+    const tabs = document.querySelectorAll(".tab");
+    const sections = {
+      stories: document.getElementById("tab-stories"),
+      music: document.getElementById("tab-music"),
+      tool: document.getElementById("tab-tool"),
+      social: document.getElementById("tab-social"),
+      updates: document.getElementById("tab-updates"),
+    };
+
+    function showTab(name){
+      Object.keys(sections).forEach(k => sections[k].style.display = (k === name ? "" : "none"));
+      tabs.forEach(t => t.classList.toggle("active", t.dataset.tab === name));
+      // keep URL clean but remember tab for refresh
+      try { localStorage.setItem("ss_tab", name); } catch(e){}
+    }
+
+    tabs.forEach(t => t.addEventListener("click", () => showTab(t.dataset.tab)));
+    try {
+      const saved = localStorage.getItem("ss_tab");
+      if (saved && sections[saved]) showTab(saved);
+    } catch(e){}
+
+    // ---------- SoulExpression Tool ----------
+    const el = (id) => document.getElementById(id);
+
+    const musicLink = el("musicLink");
+    const platform = el("platform");
+    const tone = el("tone");
+    const mood = el("mood");
+    const genre = el("genre");
+    const energy = el("energy");
+    const cta = el("cta");
+    const extra = el("extra");
+
+    const output = el("output");
+    const descOut = el("desc");
+    const capsOut = el("caps");
+    const tagsOut = el("tags");
+    const detected = el("detected");
+
+    function detectPlatformFromLink(url){
+      const u = (url || "").toLowerCase();
+      if (u.includes("suno.com")) return "Suno";
+      if (u.includes("soundcloud.com")) return "SoundCloud";
+      if (u.includes("youtube.com") || u.includes("youtu.be")) return "YouTube";
+      if (u.includes("spotify.com")) return "Spotify";
+      if (u.includes("music.apple.com") || u.includes("itunes.apple.com")) return "Apple Music / iTunes";
+      return "Unknown";
+    }
+
+    function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+    function cleanWords(s){ return (s || "").trim(); }
+
+    function makeHashtags({targetPlatform, moodTxt, genreTxt, energyTxt}){
+      const base = [
+        "#SoulSound", "#SamzinKreave", "#OriginalMusic", "#IndieArtist", "#NewMusic",
+        "#MusicThatHits", "#ListenNow", "#MusicCommunity", "#SingerSongwriter", "#Producer"
+      ];
+
+      const moodMap = {
+        healing: ["#HealingMusic","#LetItHeal","#BreatheAgain","#SoftStrength"],
+        nostalgic: ["#Nostalgia","#BackToThen","#MemoryLane","#Bittersweet"],
+        intense: ["#Intense","#FeelEverything","#RawEmotion","#Catharsis"],
+        romantic: ["#LoveSong","#HeartOnSleeve","#SlowBurn","#SafePlace"],
+        cinematic: ["#Cinematic","#SoundtrackVibes","#MovieScene","#EpicMood"],
+      };
+
+      const genreMap = {
+        ambient: ["#Ambient","#Atmospheric","#SoundBath","#Dreamscape"],
+        indie: ["#Indie","#IndieMusic","#IndieVibes","#IndiePop"],
+        "hip-hop": ["#HipHop","#Rap","#Bars","#UndergroundHipHop"],
+        electronic: ["#Electronic","#Synth","#FutureVibes","#Chillstep"],
+        cinematic: ["#CinematicMusic","#Score","#TrailerMusic","#FilmScore"],
+        rnb: ["#RnB","#Soul","#LateNightVibes","#Smooth"],
+      };
+
+      const platMap = {
+        "TikTok": ["#TikTokMusic","#ForYou","#FYP","#ViralSounds"],
+        "Instagram": ["#Reels","#InstagramReels","#ReelsMusic","#IGMusic"],
+        "YouTube Shorts": ["#Shorts","#YouTubeShorts","#ShortsMusic","#NewOnYouTube"],
+        "Reddit": ["#IndieArtists","#NowListening","#NewRelease","#MusicDiscovery"],
+        "X": ["#NowPlaying","#Music","#Indie","#NewMusicFriday"],
+        "Threads": ["#MusicThread","#NowPlaying","#Indie","#NewMusic"],
+      };
+
+      const eMap = {
+        "Low / calm": ["#Chill","#Calm","#NightDrive","#SoftVibes"],
+        "Mid / steady": ["#Steady","#Vibes","#Drive","#Mood"],
+        "High / hype": ["#Hype","#Energy","#TurnItUp","#LetItGo"],
+      };
+
+      const moodKey = moodTxt.toLowerCase().includes("heal") ? "healing"
+        : moodTxt.toLowerCase().includes("nostal") ? "nostalgic"
+        : moodTxt.toLowerCase().includes("inten") ? "intense"
+        : moodTxt.toLowerCase().includes("roman") ? "romantic"
+        : moodTxt.toLowerCase().includes("cin") ? "cinematic"
+        : null;
+
+      const genreKey = genreTxt.toLowerCase().includes("ambient") ? "ambient"
+        : genreTxt.toLowerCase().includes("indie") ? "indie"
+        : genreTxt.toLowerCase().includes("hip") ? "hip-hop"
+        : genreTxt.toLowerCase().includes("elect") ? "electronic"
+        : genreTxt.toLowerCase().includes("cin") ? "cinematic"
+        : genreTxt.toLowerCase().includes("r&b") || genreTxt.toLowerCase().includes("rnb") ? "rnb"
+        : null;
+
+      const set1 = [
+        ...base.slice(0,6),
+        ...(platMap[targetPlatform] || []),
+        ...(moodKey ? moodMap[moodKey] : []),
+      ];
+
+      const set2 = [
+        ...base.slice(2,8),
+        ...(eMap[energyTxt] || []),
+        ...(genreKey ? genreMap[genreKey] : []),
+      ];
+
+      const set3 = [
+        ...base.slice(1,7),
+        ...(platMap[targetPlatform] || []),
+        "#Suno", "#SoundCloud", "#MusicVideo", "#Storytelling"
+      ];
+
+      // Keep sets readable + not too long
+      function trimSet(set){
+        const uniq = Array.from(new Set(set));
+        return uniq.slice(0, 14).join(" ");
+      }
+
+      return [
+        trimSet(set1),
+        trimSet(set2),
+        trimSet(set3),
+      ];
+    }
+
+    function generate(){
+      const link = cleanWords(musicLink.value);
+      if (!link){
+        alert("Paste a music link first.");
+        return;
+      }
+
+      const detectedPlatform = detectPlatformFromLink(link);
+
+      const moodTxt = cleanWords(mood.value) || "soulful";
+      const genreTxt = cleanWords(genre.value) || "indie / cinematic";
+      const energyTxt = energy.value;
+      const toneTxt = tone.value;
+      const targetPlatform = platform.value;
+      const ctaTxt = cta.value;
+      const extraTxt = cleanWords(extra.value);
+
+      const openers = {
+        "Soulful / poetic": [
+          "This one is a frequency you feel before you understand.",
+          "Some songs don’t play — they reveal.",
+          "If you’ve been carrying weight in silence… press play."
+        ],
+        "Clean / simple": [
+          "New track. Real feeling. Hit play.",
+          "If this matches your mood, you’ll know in the first 10 seconds.",
+          "This is one of my most honest releases."
+        ],
+        "Bold / cinematic": [
+          "A door opens. A memory steps through.",
+          "This is the soundtrack to a turning point.",
+          "If your life had a trailer… this would be the music."
+        ],
+        "Funny / playful": [
+          "Warning: may cause unexpected feelings.",
+          "If you listen and don’t feel anything… you might be a robot 😭",
+          "I made this instead of texting back."
+        ],
+        "Build in public": [
+          "Build log: turning story-world music into real releases.",
+          "I’m building SoulSound in public — this is today’s artifact.",
+          "Progress update: shipping songs + chapters like one connected universe."
+        ]
+      };
+
+      const descTemplates = [
+        `A ${moodTxt} ${genreTxt} track with ${energyTxt.toLowerCase()} energy — made as a “music artifact” inside the SoulSound world. ${ctaTxt}.`,
+        `This is ${moodTxt} on purpose — ${genreTxt} textures, ${energyTxt.toLowerCase()} pacing, and a chorus meant to land like truth. ${ctaTxt}.`,
+        `A SoulSound frequency: ${moodTxt}, ${genreTxt}, ${energyTxt.toLowerCase()} — built for headphones and quiet rooms. ${ctaTxt}.`
+      ];
+
+      const captionEnds = [
+        "If it hits, save it.",
+        "Headphones recommended 🎧",
+        "Comment what you felt.",
+        "If you needed this… it’s yours.",
+        "More artifacts coming soon."
+      ];
+
+      const c1 = `${pick(openers[toneTxt])}\n${ctaTxt}.`;
+      const c2 = `Mood: ${moodTxt} • Genre: ${genreTxt} • Energy: ${energyTxt}\n${ctaTxt}.`;
+      const c3 = `This is for the people who feel too much and keep going anyway.\n${pick(captionEnds)}`;
+      const c4 = `A real song from my story world (SoulSound).\nListen, then tell me what scene it plays in your head.`;
+      const c5 = extraTxt
+        ? `${extraTxt}\n${ctaTxt}.`
+        : `Built from the soul. Not the algorithm.\n${ctaTxt}.`;
+
+      const tags = makeHashtags({targetPlatform, moodTxt, genreTxt, energyTxt});
+
+      descOut.textContent = pick(descTemplates);
+      capsOut.textContent = `1) ${c1}\n\n2) ${c2}\n\n3) ${c3}\n\n4) ${c4}\n\n5) ${c5}`;
+      tagsOut.textContent = `Set A:\n${tags[0]}\n\nSet B:\n${tags[1]}\n\nSet C:\n${tags[2]}`;
+
+      detected.textContent =
+        `Detected link type: ${detectedPlatform}. Target: ${targetPlatform}. (This tool runs 100% on the website — no login required.)\nLink:\n${link}`;
+
+      output.style.display = "";
+    }
+
+    document.getElementById("generateBtn").addEventListener("click", generate);
+    document.getElementById("clearBtn").addEventListener("click", () => {
+      musicLink.value = "";
+      mood.value = "";
+      genre.value = "";
+      extra.value = "";
+      output.style.display = "none";
+    });
+
+    // Copy buttons
+    document.querySelectorAll("[data-copy]").forEach(btn => {
+      btn.addEventListener("click", async () => {
+        const key = btn.getAttribute("data-copy");
+        const text = key === "desc" ? descOut.textContent
+          : key === "caps" ? capsOut.textContent
+          : tagsOut.textContent;
+
+        try{
+          await navigator.clipboard.writeText(text);
+          const old = btn.textContent;
+          btn.textContent = "Copied ✓";
+          setTimeout(() => btn.textContent = old, 900);
+        }catch(e){
+          alert("Copy failed — tap and hold to select text instead.");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
