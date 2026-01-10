@@ -162,16 +162,6 @@
     .btn.good{background: rgba(57,217,138,0.16); border-color: rgba(57,217,138,0.30);}
     .btn.ghost{background: transparent;}
 
-    .section-title{
-      font-size: 18px;
-      margin: 0 0 10px 0;
-      color: var(--text);
-      letter-spacing: -0.2px;
-      display:flex;
-      align-items:center;
-      gap: 10px;
-    }
-
     .list{
       display:flex;
       flex-direction: column;
@@ -189,13 +179,8 @@
       justify-content: space-between;
       gap: 12px;
     }
-    .item .meta{
-      min-width: 0;
-    }
-    .item .title{
-      font-weight: 800;
-      letter-spacing: -0.2px;
-    }
+    .item .meta{ min-width:0; }
+    .item .title{ font-weight: 800; letter-spacing: -0.2px; }
     .item .desc{
       font-size: 13px;
       color: var(--muted2);
@@ -345,7 +330,7 @@
 
       <!-- MUSIC -->
       <section class="card" id="tab-music" style="display:none;">
-        <h2>🎵 Music Artifacts (Suno)</h2>
+        <h2>🎵 Music Artifacts</h2>
         <p>These songs are part of the world — “rewards” you can listen to after major chapters.</p>
 
         <div class="list">
@@ -359,6 +344,14 @@
 
           <div class="item">
             <div class="meta">
+              <div class="title">🜂 The Signal Archive (SoundCloud)</div>
+              <div class="desc">Artifacts that can’t live as text — only as frequency (sound-residue).</div>
+            </div>
+            <a class="btn primary" target="_blank" rel="noopener" href="https://on.soundcloud.com/AxKQxuE10vZmFfTYTw">ENTER →</a>
+          </div>
+
+          <div class="item">
+            <div class="meta">
               <div class="title">🟢 “Something More Beautiful”</div>
               <div class="desc">Official Suno link</div>
             </div>
@@ -367,22 +360,14 @@
         </div>
 
         <div class="note">
-          Official releases (Apple Music / iTunes / Spotify) can be added here once you have the public links.
-          For now, Suno is your “one-and-done” hub.
-        </div>
-
-        <div class="note">
-          <strong>Artifact Note Format (for your chapters):</strong><br><br>
-          — End of Chapter X —<br>
-          Artifact Note:<br>
-          “SONG TITLE” exists as a song.<br>
-          You can find it on Suno as:<br>
-          SONG TITLE — SoulSound / Samzin Kreave
+          <strong>Why the Signal Archive exists (canon):</strong><br>
+          Some artifacts become <em>residue</em> after a truth lands — they can’t stay safely inside text.
+          When that happens, the artifact moves into sound: the Signal Archive.
         </div>
       </section>
 
       <!-- TOOL -->
-      <section class="card" id="tab-tool">
+      <section class="card" id="tab-tool" style="display:none;">
         <h2>💡 SoulExpression (Artist Tool)</h2>
         <p>Paste any music link and generate a description + captions + hashtags (no login, works on GitHub Pages).</p>
 
@@ -455,15 +440,15 @@
           </div>
 
           <div class="pillrow">
-            <button class="btn primary" id="generateBtn">Generate</button>
-            <button class="btn ghost" id="clearBtn">Clear</button>
+            <button class="btn primary" id="generateBtn" type="button">Generate</button>
+            <button class="btn ghost" id="clearBtn" type="button">Clear</button>
           </div>
 
           <div class="out" id="output" style="display:none;">
             <div class="outbox">
               <div class="head">
                 <strong>Description</strong>
-                <button class="btn" data-copy="desc">Copy</button>
+                <button class="btn" data-copy="desc" type="button">Copy</button>
               </div>
               <div class="mono" id="desc"></div>
             </div>
@@ -471,7 +456,7 @@
             <div class="outbox">
               <div class="head">
                 <strong>Captions (5)</strong>
-                <button class="btn" data-copy="caps">Copy</button>
+                <button class="btn" data-copy="caps" type="button">Copy</button>
               </div>
               <div class="mono" id="caps"></div>
             </div>
@@ -479,7 +464,7 @@
             <div class="outbox">
               <div class="head">
                 <strong>Hashtags (3 sets)</strong>
-                <button class="btn" data-copy="tags">Copy</button>
+                <button class="btn" data-copy="tags" type="button">Copy</button>
               </div>
               <div class="mono" id="tags"></div>
             </div>
@@ -495,6 +480,16 @@
         <p>Follow the build + the world across platforms.</p>
 
         <div class="list">
+          <!-- ✅ ADDED: Signal Archive in Social -->
+          <div class="item">
+            <div class="meta">
+              <div class="title">🜂 Signal Archive (SoundCloud)</div>
+              <div class="desc">Follow the artifacts — sound-residue from Tomorrow’s Yesterday.</div>
+            </div>
+            <a class="btn primary" target="_blank" rel="noopener"
+               href="https://on.soundcloud.com/AxKQxuE10vZmFfTYTw">OPEN →</a>
+          </div>
+
           <div class="item">
             <div class="meta">
               <div class="title">TikTok</div>
@@ -580,247 +575,4 @@
     const tabs = document.querySelectorAll(".tab");
     const sections = {
       stories: document.getElementById("tab-stories"),
-      music: document.getElementById("tab-music"),
-      tool: document.getElementById("tab-tool"),
-      social: document.getElementById("tab-social"),
-      updates: document.getElementById("tab-updates"),
-    };
-
-    function showTab(name){
-      Object.keys(sections).forEach(k => sections[k].style.display = (k === name ? "" : "none"));
-      tabs.forEach(t => t.classList.toggle("active", t.dataset.tab === name));
-      // keep URL clean but remember tab for refresh
-      try { localStorage.setItem("ss_tab", name); } catch(e){}
-    }
-
-    tabs.forEach(t => t.addEventListener("click", () => showTab(t.dataset.tab)));
-    try {
-      const saved = localStorage.getItem("ss_tab");
-      if (saved && sections[saved]) showTab(saved);
-    } catch(e){}
-
-    // ---------- SoulExpression Tool ----------
-    const el = (id) => document.getElementById(id);
-
-    const musicLink = el("musicLink");
-    const platform = el("platform");
-    const tone = el("tone");
-    const mood = el("mood");
-    const genre = el("genre");
-    const energy = el("energy");
-    const cta = el("cta");
-    const extra = el("extra");
-
-    const output = el("output");
-    const descOut = el("desc");
-    const capsOut = el("caps");
-    const tagsOut = el("tags");
-    const detected = el("detected");
-
-    function detectPlatformFromLink(url){
-      const u = (url || "").toLowerCase();
-      if (u.includes("suno.com")) return "Suno";
-      if (u.includes("soundcloud.com")) return "SoundCloud";
-      if (u.includes("youtube.com") || u.includes("youtu.be")) return "YouTube";
-      if (u.includes("spotify.com")) return "Spotify";
-      if (u.includes("music.apple.com") || u.includes("itunes.apple.com")) return "Apple Music / iTunes";
-      return "Unknown";
-    }
-
-    function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
-
-    function cleanWords(s){ return (s || "").trim(); }
-
-    function makeHashtags({targetPlatform, moodTxt, genreTxt, energyTxt}){
-      const base = [
-        "#SoulSound", "#SamzinKreave", "#OriginalMusic", "#IndieArtist", "#NewMusic",
-        "#MusicThatHits", "#ListenNow", "#MusicCommunity", "#SingerSongwriter", "#Producer"
-      ];
-
-      const moodMap = {
-        healing: ["#HealingMusic","#LetItHeal","#BreatheAgain","#SoftStrength"],
-        nostalgic: ["#Nostalgia","#BackToThen","#MemoryLane","#Bittersweet"],
-        intense: ["#Intense","#FeelEverything","#RawEmotion","#Catharsis"],
-        romantic: ["#LoveSong","#HeartOnSleeve","#SlowBurn","#SafePlace"],
-        cinematic: ["#Cinematic","#SoundtrackVibes","#MovieScene","#EpicMood"],
-      };
-
-      const genreMap = {
-        ambient: ["#Ambient","#Atmospheric","#SoundBath","#Dreamscape"],
-        indie: ["#Indie","#IndieMusic","#IndieVibes","#IndiePop"],
-        "hip-hop": ["#HipHop","#Rap","#Bars","#UndergroundHipHop"],
-        electronic: ["#Electronic","#Synth","#FutureVibes","#Chillstep"],
-        cinematic: ["#CinematicMusic","#Score","#TrailerMusic","#FilmScore"],
-        rnb: ["#RnB","#Soul","#LateNightVibes","#Smooth"],
-      };
-
-      const platMap = {
-        "TikTok": ["#TikTokMusic","#ForYou","#FYP","#ViralSounds"],
-        "Instagram": ["#Reels","#InstagramReels","#ReelsMusic","#IGMusic"],
-        "YouTube Shorts": ["#Shorts","#YouTubeShorts","#ShortsMusic","#NewOnYouTube"],
-        "Reddit": ["#IndieArtists","#NowListening","#NewRelease","#MusicDiscovery"],
-        "X": ["#NowPlaying","#Music","#Indie","#NewMusicFriday"],
-        "Threads": ["#MusicThread","#NowPlaying","#Indie","#NewMusic"],
-      };
-
-      const eMap = {
-        "Low / calm": ["#Chill","#Calm","#NightDrive","#SoftVibes"],
-        "Mid / steady": ["#Steady","#Vibes","#Drive","#Mood"],
-        "High / hype": ["#Hype","#Energy","#TurnItUp","#LetItGo"],
-      };
-
-      const moodKey = moodTxt.toLowerCase().includes("heal") ? "healing"
-        : moodTxt.toLowerCase().includes("nostal") ? "nostalgic"
-        : moodTxt.toLowerCase().includes("inten") ? "intense"
-        : moodTxt.toLowerCase().includes("roman") ? "romantic"
-        : moodTxt.toLowerCase().includes("cin") ? "cinematic"
-        : null;
-
-      const genreKey = genreTxt.toLowerCase().includes("ambient") ? "ambient"
-        : genreTxt.toLowerCase().includes("indie") ? "indie"
-        : genreTxt.toLowerCase().includes("hip") ? "hip-hop"
-        : genreTxt.toLowerCase().includes("elect") ? "electronic"
-        : genreTxt.toLowerCase().includes("cin") ? "cinematic"
-        : genreTxt.toLowerCase().includes("r&b") || genreTxt.toLowerCase().includes("rnb") ? "rnb"
-        : null;
-
-      const set1 = [
-        ...base.slice(0,6),
-        ...(platMap[targetPlatform] || []),
-        ...(moodKey ? moodMap[moodKey] : []),
-      ];
-
-      const set2 = [
-        ...base.slice(2,8),
-        ...(eMap[energyTxt] || []),
-        ...(genreKey ? genreMap[genreKey] : []),
-      ];
-
-      const set3 = [
-        ...base.slice(1,7),
-        ...(platMap[targetPlatform] || []),
-        "#Suno", "#SoundCloud", "#MusicVideo", "#Storytelling"
-      ];
-
-      // Keep sets readable + not too long
-      function trimSet(set){
-        const uniq = Array.from(new Set(set));
-        return uniq.slice(0, 14).join(" ");
-      }
-
-      return [
-        trimSet(set1),
-        trimSet(set2),
-        trimSet(set3),
-      ];
-    }
-
-    function generate(){
-      const link = cleanWords(musicLink.value);
-      if (!link){
-        alert("Paste a music link first.");
-        return;
-      }
-
-      const detectedPlatform = detectPlatformFromLink(link);
-
-      const moodTxt = cleanWords(mood.value) || "soulful";
-      const genreTxt = cleanWords(genre.value) || "indie / cinematic";
-      const energyTxt = energy.value;
-      const toneTxt = tone.value;
-      const targetPlatform = platform.value;
-      const ctaTxt = cta.value;
-      const extraTxt = cleanWords(extra.value);
-
-      const openers = {
-        "Soulful / poetic": [
-          "This one is a frequency you feel before you understand.",
-          "Some songs don’t play — they reveal.",
-          "If you’ve been carrying weight in silence… press play."
-        ],
-        "Clean / simple": [
-          "New track. Real feeling. Hit play.",
-          "If this matches your mood, you’ll know in the first 10 seconds.",
-          "This is one of my most honest releases."
-        ],
-        "Bold / cinematic": [
-          "A door opens. A memory steps through.",
-          "This is the soundtrack to a turning point.",
-          "If your life had a trailer… this would be the music."
-        ],
-        "Funny / playful": [
-          "Warning: may cause unexpected feelings.",
-          "If you listen and don’t feel anything… you might be a robot 😭",
-          "I made this instead of texting back."
-        ],
-        "Build in public": [
-          "Build log: turning story-world music into real releases.",
-          "I’m building SoulSound in public — this is today’s artifact.",
-          "Progress update: shipping songs + chapters like one connected universe."
-        ]
-      };
-
-      const descTemplates = [
-        `A ${moodTxt} ${genreTxt} track with ${energyTxt.toLowerCase()} energy — made as a “music artifact” inside the SoulSound world. ${ctaTxt}.`,
-        `This is ${moodTxt} on purpose — ${genreTxt} textures, ${energyTxt.toLowerCase()} pacing, and a chorus meant to land like truth. ${ctaTxt}.`,
-        `A SoulSound frequency: ${moodTxt}, ${genreTxt}, ${energyTxt.toLowerCase()} — built for headphones and quiet rooms. ${ctaTxt}.`
-      ];
-
-      const captionEnds = [
-        "If it hits, save it.",
-        "Headphones recommended 🎧",
-        "Comment what you felt.",
-        "If you needed this… it’s yours.",
-        "More artifacts coming soon."
-      ];
-
-      const c1 = `${pick(openers[toneTxt])}\n${ctaTxt}.`;
-      const c2 = `Mood: ${moodTxt} • Genre: ${genreTxt} • Energy: ${energyTxt}\n${ctaTxt}.`;
-      const c3 = `This is for the people who feel too much and keep going anyway.\n${pick(captionEnds)}`;
-      const c4 = `A real song from my story world (SoulSound).\nListen, then tell me what scene it plays in your head.`;
-      const c5 = extraTxt
-        ? `${extraTxt}\n${ctaTxt}.`
-        : `Built from the soul. Not the algorithm.\n${ctaTxt}.`;
-
-      const tags = makeHashtags({targetPlatform, moodTxt, genreTxt, energyTxt});
-
-      descOut.textContent = pick(descTemplates);
-      capsOut.textContent = `1) ${c1}\n\n2) ${c2}\n\n3) ${c3}\n\n4) ${c4}\n\n5) ${c5}`;
-      tagsOut.textContent = `Set A:\n${tags[0]}\n\nSet B:\n${tags[1]}\n\nSet C:\n${tags[2]}`;
-
-      detected.textContent =
-        `Detected link type: ${detectedPlatform}. Target: ${targetPlatform}. (This tool runs 100% on the website — no login required.)\nLink:\n${link}`;
-
-      output.style.display = "";
-    }
-
-    document.getElementById("generateBtn").addEventListener("click", generate);
-    document.getElementById("clearBtn").addEventListener("click", () => {
-      musicLink.value = "";
-      mood.value = "";
-      genre.value = "";
-      extra.value = "";
-      output.style.display = "none";
-    });
-
-    // Copy buttons
-    document.querySelectorAll("[data-copy]").forEach(btn => {
-      btn.addEventListener("click", async () => {
-        const key = btn.getAttribute("data-copy");
-        const text = key === "desc" ? descOut.textContent
-          : key === "caps" ? capsOut.textContent
-          : tagsOut.textContent;
-
-        try{
-          await navigator.clipboard.writeText(text);
-          const old = btn.textContent;
-          btn.textContent = "Copied ✓";
-          setTimeout(() => btn.textContent = old, 900);
-        }catch(e){
-          alert("Copy failed — tap and hold to select text instead.");
-        }
-      });
-    });
-  </script>
-</body>
-</html>
+      music: document.getElementById("tab
