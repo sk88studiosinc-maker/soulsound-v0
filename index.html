@@ -1,578 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SoulSound World</title>
-  <style>
-    :root{
-      --bg1:#070816;
-      --bg2:#0b1030;
-      --card: rgba(255,255,255,0.06);
-      --card2: rgba(255,255,255,0.08);
-      --stroke: rgba(255,255,255,0.12);
-      --text:#eaf0ff;
-      --muted: rgba(234,240,255,0.72);
-      --muted2: rgba(234,240,255,0.55);
-      --accent:#9fb7ff;
-      --good:#39d98a;
-      --warn:#ffd166;
-      --shadow: 0 24px 70px rgba(0,0,0,0.55);
-      --radius: 22px;
-      --radius2: 18px;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SoulSound World</title>
 
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color:var(--text);
-      background:
-        radial-gradient(900px 520px at 30% -10%, rgba(120,140,255,0.22), transparent 60%),
-        radial-gradient(900px 520px at 70% 110%, rgba(80,255,220,0.12), transparent 60%),
-        linear-gradient(180deg, var(--bg2), var(--bg1));
-      min-height:100vh;
-    }
-
-    .wrap{
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 28px 16px 60px;
-    }
-
-    .hero{
-      padding: 22px 18px 16px;
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
-      border: 1px solid var(--stroke);
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before{
-      content:"";
-      position:absolute;
-      inset:-1px;
-      background:
-        radial-gradient(500px 220px at 20% 20%, rgba(159,183,255,0.18), transparent 60%),
-        radial-gradient(480px 240px at 75% 10%, rgba(70,255,220,0.10), transparent 60%),
-        radial-gradient(380px 200px at 55% 75%, rgba(255,209,102,0.08), transparent 60%);
-      pointer-events:none;
-      filter: blur(2px);
-    }
-
-    .hero-inner{position:relative}
-
-    h1{
-      margin: 0;
-      font-size: 44px;
-      line-height: 1.05;
-      letter-spacing: -0.7px;
-      text-align:center;
-    }
-    .tagline{
-      margin-top: 10px;
-      text-align:center;
-      font-size: 17px;
-      color: var(--muted);
-    }
-    .subline{
-      margin-top: 8px;
-      text-align:center;
-      font-size: 15px;
-      color: var(--muted2);
-    }
-
-    .tabs{
-      display:flex;
-      gap:10px;
-      justify-content:center;
-      margin-top: 16px;
-      flex-wrap: wrap;
-    }
-
-    .tab{
-      border:1px solid var(--stroke);
-      background: rgba(0,0,0,0.12);
-      color: var(--text);
-      padding: 10px 14px;
-      border-radius: 999px;
-      cursor:pointer;
-      font-weight: 600;
-      font-size: 14px;
-      transition: transform .12s ease, background .12s ease;
-      user-select:none;
-    }
-    .tab:hover{transform: translateY(-1px); background: rgba(255,255,255,0.08);}
-    .tab.active{background: rgba(159,183,255,0.18); border-color: rgba(159,183,255,0.35);}
-
-    .grid{
-      margin-top: 18px;
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-    }
-
-    .card{
-      background: var(--card);
-      border: 1px solid var(--stroke);
-      border-radius: var(--radius);
-      box-shadow: 0 18px 50px rgba(0,0,0,0.35);
-      padding: 18px;
-    }
-
-    .card h2{
-      margin:0 0 6px 0;
-      font-size: 26px;
-      letter-spacing: -0.3px;
-    }
-
-    .card p{
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.55;
-    }
-
-    .pillrow{
-      display:flex;
-      gap:10px;
-      flex-wrap: wrap;
-      margin-top: 14px;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding: 12px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.16);
-      background: rgba(255,255,255,0.06);
-      color: var(--text);
-      text-decoration:none;
-      font-weight: 700;
-      transition: transform .12s ease, background .12s ease;
-      cursor:pointer;
-      user-select:none;
-    }
-    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,0.10);}
-    .btn.primary{background: rgba(159,183,255,0.18); border-color: rgba(159,183,255,0.30);}
-    .btn.good{background: rgba(57,217,138,0.16); border-color: rgba(57,217,138,0.30);}
-    .btn.ghost{background: transparent;}
-
-    .list{
-      display:flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .item{
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.10);
-      border-radius: var(--radius2);
-      padding: 14px;
-      display:flex;
-      align-items:center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-    .item .meta{ min-width:0; }
-    .item .title{ font-weight: 800; letter-spacing: -0.2px; }
-    .item .desc{
-      font-size: 13px;
-      color: var(--muted2);
-      margin-top: 4px;
-      line-height: 1.4;
-    }
-
-    .note{
-      margin-top: 10px;
-      border: 1px dashed rgba(255,255,255,0.16);
-      background: rgba(0,0,0,0.18);
-      border-radius: var(--radius2);
-      padding: 12px 12px;
-      color: var(--muted2);
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .tool{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-      margin-top: 12px;
-    }
-
-    label{
-      display:block;
-      font-weight: 800;
-      margin-bottom: 6px;
-      color: var(--text);
-      font-size: 13px;
-      opacity: 0.92;
-    }
-
-    input, select, textarea{
-      width: 100%;
-      padding: 12px 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(0,0,0,0.18);
-      color: var(--text);
-      outline: none;
-      font-size: 14px;
-    }
-    textarea{min-height: 96px; resize: vertical;}
-
-    .two{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    @media (max-width: 680px){
-      h1{font-size: 38px;}
-      .two{grid-template-columns: 1fr;}
-    }
-
-    .out{
-      margin-top: 10px;
-      display:flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .outbox{
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.11);
-      border-radius: var(--radius2);
-      padding: 14px;
-    }
-    .outbox .head{
-      display:flex;
-      align-items:center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 8px;
-    }
-    .outbox .head strong{font-size: 14px;}
-    .mono{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      white-space: pre-wrap;
-      line-height: 1.55;
-      color: rgba(234,240,255,0.86);
-      font-size: 13px;
-    }
-
-    footer{
-      text-align:center;
-      margin-top: 18px;
-      color: rgba(234,240,255,0.45);
-      font-size: 12px;
-    }
-  </style>
+<style>
+:root{
+  --bg1:#070816;--bg2:#0b1030;--card:rgba(255,255,255,0.06);--stroke:rgba(255,255,255,0.12);
+  --text:#eaf0ff;--muted:rgba(234,240,255,0.7);--radius:22px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;font-family:system-ui,Segoe UI,Roboto;color:var(--text);
+  background:linear-gradient(180deg,var(--bg2),var(--bg1));
+}
+.wrap{max-width:960px;margin:0 auto;padding:28px 16px 60px;}
+.hero{text-align:center;padding:22px;border-radius:var(--radius);border:1px solid var(--stroke);background:var(--card);}
+.tabs{display:flex;gap:10px;justify-content:center;margin-top:14px;flex-wrap:wrap;}
+.tab{padding:10px 14px;border-radius:999px;border:1px solid var(--stroke);cursor:pointer;}
+.tab.active{background:rgba(159,183,255,0.18);}
+.card{margin-top:14px;padding:18px;border-radius:var(--radius);border:1px solid var(--stroke);background:var(--card);}
+.list{display:flex;flex-direction:column;gap:10px;margin-top:12px;}
+.item{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px;border-radius:18px;border:1px solid var(--stroke);}
+.meta{max-width:70%;}
+.title{font-weight:800;}
+.desc{font-size:13px;color:var(--muted);line-height:1.4;}
+.btn{padding:10px 14px;border-radius:999px;border:1px solid var(--stroke);text-decoration:none;color:var(--text);}
+.note{margin-top:10px;font-size:13px;color:var(--muted);line-height:1.5;}
+footer{text-align:center;margin-top:20px;font-size:12px;color:var(--muted);}
+</style>
 </head>
-<body>
-  <div class="wrap">
-    <div class="hero">
-      <div class="hero-inner">
-        <h1>SoulSound World</h1>
-        <div class="tagline">Build from the soul. Not the algorithm.</div>
-        <div class="subline">Stories, music, and frequencies from the SoulSound universe.</div>
 
-        <div class="tabs" role="tablist" aria-label="SoulSound tabs">
-          <div class="tab active" data-tab="stories">Stories</div>
-          <div class="tab" data-tab="music">Music</div>
-          <div class="tab" data-tab="tool">SoulExpression Tool</div>
-          <div class="tab" data-tab="social">Social</div>
-          <div class="tab" data-tab="updates">Updates</div>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <h1>SoulSound World</h1>
+    <div class="note">Stories, music, and frequencies from the SoulSound universe.</div>
+
+    <div class="tabs">
+      <div class="tab active" data-tab="stories">Stories</div>
+      <div class="tab" data-tab="music">Music</div>
+      <div class="tab" data-tab="social">Social</div>
+    </div>
+  </div>
+
+  <!-- STORIES -->
+  <section class="card" id="tab-stories">
+    <h2>📚 Pocket FM Stories</h2>
+    <div class="list">
+      <div class="item">
+        <div class="meta">
+          <div class="title">Tomorrow’s Yesterday</div>
+          <div class="desc">The core narrative of the SoulSound world.</div>
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="grid">
+  <!-- MUSIC -->
+  <section class="card" id="tab-music" style="display:none;">
+    <h2>🎵 Music Artifacts</h2>
 
-      <!-- STORIES -->
-      <section class="card" id="tab-stories">
-        <h2>📚 Pocket FM Stories</h2>
-        <p>Read/listen to the series here. These are the “world portals.”</p>
-
-        <div class="list">
-          <div class="item">
-            <div class="meta">
-              <div class="title">🎭 The Joker for the Queen</div>
-              <div class="desc">Pocket FM show link (official share)</div>
-            </div>
-            <a class="btn" target="_blank" rel="noopener"
-               href="https://guvcj0-app.appsflyersdk.com/com.radio.pocketfm?af_dp=pocketfm%3A%2F%2Fopen&referrer_uid=83cbe723c0446e2dcc8783e56fb9b3b3131f767a&c=default&af_og_description=&af_og_image=&channel=WhatsApp&pid=app_share&entity_id=c7b35fb437302d85297bacf1b250226e98e2864b&af_siteid=com.radio.pocketfm&af_og_title=Pocket+FM&deep_link_value=pocketfm%3A%2F%2Fopen%3Fentity_type%3Dshow%26entity_id%3Dc7b35fb437302d85297bacf1b250226e98e2864b&af_sub1=share_top_right&entity_type=show&af_sub4=c7b35fb437302d85297bacf1b250226e98e2864b&af_sub3=29b1dbdc8deeb8a1&referrer_platform=android">
-              OPEN →
-            </a>
-          </div>
-
-          <div class="item">
-            <div class="meta">
-              <div class="title">🌌 Tomorrow’s Yesterday</div>
-              <div class="desc">Pocket FM show link (official share)</div>
-            </div>
-            <a class="btn" target="_blank" rel="noopener"
-               href="https://guvcj0-app.appsflyersdk.com/com.radio.pocketfm?af_dp=pocketfm%3A%2F%2Fopen&referrer_uid=83cbe723c0446e2dcc8783e56fb9b3b3131f767a&c=default&af_og_description=&af_og_image=&channel=WhatsApp&pid=app_share&entity_id=c3e9fdae7cb7de7afcc0d163b9ce914e77eb32fe&af_siteid=com.radio.pocketfm&af_og_title=Pocket+FM&deep_link_value=pocketfm%3A%2F%2Fopen%3Fentity_type%3Dshow%26entity_id%3Dc3e9fdae7cb7de7afcc0d163b9ce914e77eb32fe&af_sub1=share_top_right&entity_type=show&af_sub4=c3e9fdae7cb7de7afcc0d163b9ce914e77eb32fe&af_sub3=29b1dbdc8deeb8a1&referrer_platform=android&af_sub2=show_detail_screen">
-              OPEN →
-            </a>
+    <div class="list">
+      <div class="item">
+        <div class="meta">
+          <div class="title">🜂 The Signal Archive (SoundCloud)</div>
+          <div class="desc">
+            Some truths leave residue when they land. Not everything can stay inside language.
+            The Signal Archive holds the sonic artifacts — emotional frequencies that escaped the story and became sound.
           </div>
         </div>
-
-        <div class="note">
-          Note: Pocket FM sometimes locks content temporarily (like until Friday). If an episode is locked, check back — the link stays the same.
-        </div>
-      </section>
-
-      <!-- MUSIC -->
-      <section class="card" id="tab-music" style="display:none;">
-        <h2>🎵 Music Artifacts</h2>
-        <p>These songs are part of the world — “rewards” you can listen to after major chapters.</p>
-
-        <div class="list">
-          <div class="item">
-            <div class="meta">
-              <div class="title">🟣 Suno Profile — SoulSound Samzin</div>
-              <div class="desc">All releases live here (best one-and-done hub link).</div>
-            </div>
-            <a class="btn primary" target="_blank" rel="noopener" href="https://suno.com/@soulsoundsamzin">OPEN →</a>
-          </div>
-
-          <div class="item">
-            <div class="meta">
-              <div class="title">🜂 The Signal Archive (SoundCloud)</div>
-              <div class="desc">Artifacts that can’t live as text — only as frequency (sound-residue).</div>
-            </div>
-            <a class="btn primary" target="_blank" rel="noopener" href="https://on.soundcloud.com/AxKQxuE10vZmFfTYTw">ENTER →</a>
-          </div>
-
-          <div class="item">
-            <div class="meta">
-              <div class="title">🟢 “Something More Beautiful”</div>
-              <div class="desc">Official Suno link</div>
-            </div>
-            <a class="btn good" target="_blank" rel="noopener" href="https://suno.com/s/1aDetxU1eJemw5ss">LISTEN →</a>
-          </div>
-        </div>
-
-        <div class="note">
-          <strong>Why the Signal Archive exists (canon):</strong><br>
-          Some artifacts become <em>residue</em> after a truth lands — they can’t stay safely inside text.
-          When that happens, the artifact moves into sound: the Signal Archive.
-        </div>
-      </section>
-
-      <!-- TOOL -->
-      <section class="card" id="tab-tool" style="display:none;">
-        <h2>💡 SoulExpression (Artist Tool)</h2>
-        <p>Paste any music link and generate a description + captions + hashtags (no login, works on GitHub Pages).</p>
-
-        <div class="tool">
-          <div>
-            <label for="musicLink">Music Link (Suno / SoundCloud / YouTube / anything)</label>
-            <input id="musicLink" placeholder="Paste your link here…" />
-          </div>
-
-          <div class="two">
-            <div>
-              <label for="platform">Target Platform</label>
-              <select id="platform">
-                <option value="TikTok">TikTok</option>
-                <option value="Instagram">Instagram</option>
-                <option value="YouTube Shorts">YouTube Shorts</option>
-                <option value="Reddit">Reddit</option>
-                <option value="X">X</option>
-                <option value="Threads">Threads</option>
-              </select>
-            </div>
-
-            <div>
-              <label for="tone">Tone</label>
-              <select id="tone">
-                <option value="Soulful / poetic">Soulful / poetic</option>
-                <option value="Clean / simple">Clean / simple</option>
-                <option value="Bold / cinematic">Bold / cinematic</option>
-                <option value="Funny / playful">Funny / playful</option>
-                <option value="Build in public">Build in public</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="two">
-            <div>
-              <label for="mood">Mood</label>
-              <input id="mood" placeholder="healing, nostalgic, intense, romantic…" />
-            </div>
-            <div>
-              <label for="genre">Genre</label>
-              <input id="genre" placeholder="indie, ambient, hip-hop, cinematic…" />
-            </div>
-          </div>
-
-          <div class="two">
-            <div>
-              <label for="energy">Energy</label>
-              <select id="energy">
-                <option value="Low / calm">Low / calm</option>
-                <option value="Mid / steady">Mid / steady</option>
-                <option value="High / hype">High / hype</option>
-              </select>
-            </div>
-            <div>
-              <label for="cta">Call to action</label>
-              <select id="cta">
-                <option value="Listen now (link in bio)">Listen now (link in bio)</option>
-                <option value="Headphones on 🎧">Headphones on 🎧</option>
-                <option value="Save + share if it hits">Save + share if it hits</option>
-                <option value="Comment what you felt">Comment what you felt</option>
-                <option value="Follow for the next artifact">Follow for the next artifact</option>
-              </select>
-            </div>
-          </div>
-
-          <div>
-            <label for="extra">Optional notes (what is this song about?)</label>
-            <textarea id="extra" placeholder="Example: This is the healing frequency for a character arc…"></textarea>
-          </div>
-
-          <div class="pillrow">
-            <button class="btn primary" id="generateBtn" type="button">Generate</button>
-            <button class="btn ghost" id="clearBtn" type="button">Clear</button>
-          </div>
-
-          <div class="out" id="output" style="display:none;">
-            <div class="outbox">
-              <div class="head">
-                <strong>Description</strong>
-                <button class="btn" data-copy="desc" type="button">Copy</button>
-              </div>
-              <div class="mono" id="desc"></div>
-            </div>
-
-            <div class="outbox">
-              <div class="head">
-                <strong>Captions (5)</strong>
-                <button class="btn" data-copy="caps" type="button">Copy</button>
-              </div>
-              <div class="mono" id="caps"></div>
-            </div>
-
-            <div class="outbox">
-              <div class="head">
-                <strong>Hashtags (3 sets)</strong>
-                <button class="btn" data-copy="tags" type="button">Copy</button>
-              </div>
-              <div class="mono" id="tags"></div>
-            </div>
-
-            <div class="note" id="detected"></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SOCIAL -->
-      <section class="card" id="tab-social" style="display:none;">
-        <h2>🌐 Social + Community</h2>
-        <p>Follow the build + the world across platforms.</p>
-
-        <div class="list">
-          <!-- ✅ ADDED: Signal Archive in Social -->
-          <div class="item">
-            <div class="meta">
-              <div class="title">🜂 Signal Archive (SoundCloud)</div>
-              <div class="desc">Follow the artifacts — sound-residue from Tomorrow’s Yesterday.</div>
-            </div>
-            <a class="btn primary" target="_blank" rel="noopener"
-               href="https://on.soundcloud.com/AxKQxuE10vZmFfTYTw">OPEN →</a>
-          </div>
-
-          <div class="item">
-            <div class="meta">
-              <div class="title">TikTok</div>
-              <div class="desc">@soulsoundcreations</div>
-            </div>
-            <a class="btn" target="_blank" rel="noopener"
-               href="https://www.tiktok.com/@soulsoundcreations?_r=1&_t=ZT-92sJ8IU0wD9">OPEN →</a>
-          </div>
-
-          <div class="item">
-            <div class="meta">
-              <div class="title">Instagram</div>
-              <div class="desc">@soulsound_creations</div>
-            </div>
-            <a class="btn" target="_blank" rel="noopener"
-               href="https://www.instagram.com/soulsound_creations?igsh=MXJoazJiaGhxNzh4bw==">OPEN →</a>
-          </div>
-
-          <div class="item">
-            <div class="meta">
-              <div class="title">Reddit</div>
-              <div class="desc">u/Samzinkreave</div>
-            </div>
-            <a class="btn" target="_blank" rel="noopener"
-               href="https://www.reddit.com/u/Samzinkreave/s/CKH3V83Jrp">OPEN →</a>
-          </div>
-
-          <div class="item">
-            <div class="meta">
-              <div class="title">LinkedIn</div>
-              <div class="desc">Sam Mejias (Samzin Kreave)</div>
-            </div>
-            <a class="btn" target="_blank" rel="noopener"
-               href="https://www.linkedin.com/in/sam-mejias-315848374?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">OPEN →</a>
-          </div>
-
-          <div class="item">
-            <div class="meta">
-              <div class="title">GitHub</div>
-              <div class="desc">sk88studiosinc-maker (SoulSound builds)</div>
-            </div>
-            <a class="btn" target="_blank" rel="noopener"
-               href="https://github.com/sk88studiosinc-maker">OPEN →</a>
-          </div>
-        </div>
-
-        <div class="note">
-          Next upgrade: add Apple Music / iTunes / Spotify links once you paste them here.
-        </div>
-      </section>
-
-      <!-- UPDATES -->
-      <section class="card" id="tab-updates" style="display:none;">
-        <h2>🧱 Open Build Updates</h2>
-        <p>What SoulSound is becoming (short + honest).</p>
-
-        <div class="note">
-          <strong>What SoulSound is</strong><br>
-          A storytelling + music ecosystem: Pocket FM chapters + Suno songs that match arc milestones.
-          This website is the hub that keeps the world connected across platforms (and gives listeners a real “artifact” to find after key chapters).
-        </div>
-
-        <div class="note">
-          <strong>Right now</strong><br>
-          • Pocket FM has some content locked temporarily (until Friday).<br>
-          • Tomorrow’s Yesterday is written through January 31st.<br>
-          • New releases will be linked here as they go live.
-        </div>
-
-        <div class="note">
-          <strong>Next</strong><br>
-          Add official platform links (Apple/Spotify), then post a “Build in Public” update pointing people to this hub.
-        </div>
-      </section>
-
+        <a class="btn" href="https://on.soundcloud.com/AxKQxuE10vZmFfTYTw" target="_blank">ENTER →</a>
+      </div>
     </div>
 
-    <footer>© SoulSound — Built slowly. Built honestly. • soulsoundworld.world</footer>
-  </div>
+    <div class="note">
+      <strong>Canon:</strong> When a chapter releases a truth too large to remain written, it condenses into sound.
+      Those condensations are stored here as artifacts — not songs, but signals.
+    </div>
+  </section>
 
-  <script>
-    // ---------- Tabs ----------
-    const tabs = document.querySelectorAll(".tab");
-    const sections = {
-      stories: document.getElementById("tab-stories"),
-      music: document.getElementById("tab
+  <!-- SOCIAL -->
+  <section class="card" id="tab-social" style="display:none;">
+    <h2>🌐 Social</h2>
+    <div class="list">
+      <div class="item">
+        <div class="meta">
+          <div class="title">SoundCloud</div>
+          <div class="desc">Signal Archive access point</div>
+        </div>
+        <a class="btn" href="https://on.soundcloud.com/AxKQxuE10vZmFfTYTw" target="_blank">OPEN →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>© SoulSound — Built slowly. Built honestly.</footer>
+</div>
+
+<script>
+const tabs = document.querySelectorAll(".tab");
+const sections = {
+  stories: document.getElementById("tab-stories"),
+  music: document.getElementById("tab-music"),
+  social: document.getElementById("tab-social"),
+};
+
+tabs.forEach(t=>{
+  t.onclick=()=> {
+    const name=t.dataset.tab;
+    Object.keys(sections).forEach(k=>sections[k].style.display = k===name ? "" : "none");
+    tabs.forEach(x=>x.classList.toggle("active",x===t));
+  };
+});
+</script>
+
+</body>
+</html>
