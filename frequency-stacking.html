@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Frequency Stacking — Seeded Concept</title>
+  <style>
+    body{font-family:sans-serif;background:#07060b;color:#eee;padding:40px}
+    .card{border:1px solid #444;border-radius:12px;padding:20px;margin-bottom:20px;background:#111}
+    button{padding:10px 16px;border-radius:999px;border:none;background:#8b5cf6;color:white;font-weight:bold;cursor:pointer}
+  </style>
+</head>
+<body>
+
+<h1>Frequency Stacking — Seeded Concept</h1>
+<p>This is a narrative prototype, not a finished game.</p>
+
+<div class="card">
+  <h2>Select Class</h2>
+  <button onclick="setClass('Stillpoint')">Stillpoint</button>
+  <button onclick="setClass('Listener')">Listener</button>
+  <button onclick="setClass('Guardian')">Guardian</button>
+  <p id="classDisplay"></p>
+</div>
+
+<div class="card">
+  <h2>Resonance Meter</h2>
+  <button onclick="stack()">Stack Frequency</button>
+  <p id="res">Resonance: 0</p>
+</div>
+
+<div class="card">
+  <h2>Rest Mod</h2>
+  <button onclick="rest()">Enter Rest Mod</button>
+  <p id="restState"></p>
+</div>
+
+<script>
+let resonance=0;
+let playerClass="";
+
+function setClass(c){
+  playerClass=c;
+  document.getElementById('classDisplay').textContent="Class: "+c;
+}
+
+function stack(){
+  resonance++;
+  document.getElementById('res').textContent="Resonance: "+resonance;
+}
+
+function rest(){
+  document.getElementById('restState').textContent="You have chosen Rest. This is a victory.";
+}
+</script>
+
+</body>
+</html>
