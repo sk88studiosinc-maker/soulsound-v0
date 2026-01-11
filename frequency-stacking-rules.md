@@ -24,13 +24,14 @@ Session Length: 60–180 minutes
 Goal: Maintain coherence long enough to transform the world without losing yourself.
 There is no victory. There are outcomes.
 2. Core Concepts
-Coherence (COH) — Your emotional and identity stability.
-Resonance (RES) — Your power to affect the world.
-Presence (PRE) — Your awareness of what matters.
-Integrity (INT) — Your resistance to corruption and extraction.
-Each starts at 5.
-Maximum is 10.
-Minimum is 0 (collapse threshold).
+Each player has four attributes:
+Coherence (COH) — Emotional and identity stability
+Resonance (RES) — Power to affect the world
+Presence (PRE) — Awareness of what matters
+Integrity (INT) — Resistance to corruption and extraction
+Each starts at 5
+Maximum is 10
+Minimum is 0 (collapse threshold)
 3. Collapse & Fracture
 If any attribute reaches 0, the player enters a Fracture State.
 Fractured players:
@@ -41,8 +42,7 @@ If two or more players fracture at once, the world destabilizes and the session 
 4. Turn Structure
 Each round has four phases:
 1. World Phase
-The Guide introduces a System Pressure:
-Examples:
+The Guide introduces a System Pressure, such as:
 Time acceleration
 Scarcity event
 Emotional extraction
@@ -59,14 +59,10 @@ Triggers cost events
 3. Player Phase
 Each player chooses one action:
 Act
-Rest
-Connect
-Resist
-Act
 Use Resonance to change the world.
 Roll: RES + PRE vs System Difficulty
-Success: Change happens
-Failure: Change happens with cost
+Success → Change happens
+Failure → Change happens with cost
 Rest
 Recover:
 Restore 1–3 COH or INT (choose one)
@@ -74,18 +70,18 @@ Connect
 Restore 1 PRE or COH to another player
 Builds narrative bonds
 Resist
-Roll INT + COH to negate a System effect
+Roll INT + COH to negate a System effect.
 4. Integration Phase
-Players describe what changed and what it cost.
+Players describe what changed — and what it cost.
 5. Cost System
 Every powerful action introduces a cost.
 Cost types include:
-Effect: A condition persists
-Memory: Lose or distort a backstory detail
-Time: Skip next turn
-Connection: Lose access to another player temporarily
-Artifact: Sacrifice or corrupt an artifact
-Identity: Lose 1 COH permanently unless healed
+Effect — A condition persists
+Memory — Lose or distort a backstory detail
+Time — Skip next turn
+Connection — Lose access to another player temporarily
+Artifact — Sacrifice or corrupt an artifact
+Identity — Lose 1 COH permanently unless healed
 Costs must be accepted — not avoided.
 6. Artifacts
 Artifacts stabilize meaning.
