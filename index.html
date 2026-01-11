@@ -17,9 +17,9 @@
       --muted2:rgba(255,255,255,0.55);
       --shadow:0 18px 60px rgba(0,0,0,0.55);
       --radius:18px;
-      --danger: rgba(255, 90, 90, 0.85);
-      --dangerBg: rgba(255, 90, 90, 0.10);
-      --warnBorder: rgba(255, 90, 90, 0.35);
+
+      --a: rgba(139,92,246,0.95);
+      --b: rgba(236,72,153,0.85);
     }
 
     *{box-sizing:border-box}
@@ -66,11 +66,18 @@
     .btn{
       display:inline-block;text-decoration:none;color:white;font-weight:750;
       padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,0.18);
-      background:linear-gradient(135deg, rgba(139,92,246,0.92), rgba(236,72,153,0.85));
+      background:linear-gradient(135deg, var(--a), var(--b));
       box-shadow:0 10px 25px rgba(0,0,0,0.35);
     }
     .btn.secondary{
       background:rgba(255,255,255,0.05);color:var(--text);font-weight:650;box-shadow:none
+    }
+    .btn.ghost{
+      background:transparent;
+      color:var(--text);
+      font-weight:650;
+      border:1px solid rgba(255,255,255,0.14);
+      box-shadow:none;
     }
 
     .tabs{
@@ -85,7 +92,8 @@
 
     .tabbtn{
       appearance:none;border:1px solid var(--border);background:rgba(255,255,255,0.03);
-      color:var(--muted);padding:10px 12px;border-radius:999px;font-weight:650;cursor:pointer;white-space:nowrap
+      color:var(--muted);padding:10px 12px;border-radius:999px;font-weight:700;cursor:pointer;white-space:nowrap;
+      display:flex;align-items:center;gap:8px;
     }
     .tabbtn[aria-selected="true"]{
       color:white;border-color:rgba(255,255,255,0.22);
@@ -97,6 +105,8 @@
 
     h2{margin:0 0 10px;font-size:1.35rem}
     .small{color:var(--muted2);font-size:.95rem}
+    .muted{color:var(--muted)}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
 
     .frame{
       width:100%;height:78vh;min-height:520px;border:1px solid rgba(255,255,255,0.14);
@@ -104,93 +114,77 @@
     }
 
     .player{
-      width:100%;
-      height:166px;
-      border:0;
-      border-radius:14px;
-      overflow:hidden;
-      background:rgba(0,0,0,0.20)
+      width:100%;height:166px;border:0;border-radius:14px;overflow:hidden;background:rgba(0,0,0,0.20)
     }
 
-    /* Tip the Build UI */
-    .tipList{margin-top:8px;display:flex;flex-direction:column;gap:10px}
-    .tipItem{
-      border:1px solid var(--border);
-      background:rgba(0,0,0,0.20);
-      border-radius:14px;
-      padding:12px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
       gap:12px;
-      flex-wrap:wrap;
-    }
-    .tipMeta{min-width:240px}
-    .tipLabel{font-weight:800}
-    .addr{
-      font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
-      font-size:.92rem;
-      color:rgba(255,255,255,0.82);
-      word-break:break-all;
-      margin-top:4px;
-    }
-    .copyBtn{
-      border:1px solid rgba(255,255,255,0.18);
-      background:rgba(255,255,255,0.06);
-      color:rgba(255,255,255,0.92);
-      padding:10px 12px;
-      border-radius:999px;
-      cursor:pointer;
-      font-weight:750;
-      white-space:nowrap;
-    }
-    .copyBtn:active{transform:translateY(1px)}
-    .toast{
       margin-top:10px;
-      display:none;
-      border:1px solid rgba(255,255,255,0.16);
-      background:rgba(0,0,0,0.28);
-      border-radius:12px;
-      padding:10px 12px;
-      color:rgba(255,255,255,0.86);
+    }
+    .col6{grid-column: span 6;}
+    .col12{grid-column: span 12;}
+    @media (max-width: 820px){
+      .col6{grid-column: span 12;}
     }
 
-    /* Main tip highlight + caution */
-    .mainTip{
-      border:1px solid rgba(255,255,255,0.16);
-      background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+    .platform{
+      border:1px solid rgba(255,255,255,0.12);
+      background:rgba(0,0,0,0.22);
       border-radius:16px;
       padding:14px;
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
     }
-    .pill{
-      display:inline-block;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,0.16);
-      background:rgba(255,255,255,0.05);
-      color:rgba(255,255,255,0.86);
-      font-weight:750;
-      font-size:.85rem;
-      margin-left:8px;
+    .picon{
+      width:44px;height:44px;border-radius:12px;
+      border:1px solid rgba(255,255,255,0.14);
+      background:rgba(255,255,255,0.04);
+      display:flex;align-items:center;justify-content:center;
+      flex:0 0 auto;
     }
-    .cautionBox{
-      margin-top:10px;
-      border:1px solid var(--warnBorder);
-      background:var(--dangerBg);
+    .picon img{
+      width:100%;height:100%;object-fit:cover;border-radius:12px;
+    }
+    .ptitle{margin:0;font-weight:850;letter-spacing:.01em}
+    .pmeta{margin:3px 0 10px;color:var(--muted2);font-size:.95rem}
+    .pactions{display:flex;gap:10px;flex-wrap:wrap}
+
+    .icon{
+      width:16px;height:16px;display:inline-block;vertical-align:middle;
+      fill: currentColor; opacity:.92;
+    }
+
+    .warn{
+      border:1px solid rgba(255,255,255,0.14);
+      background:rgba(255, 150, 0, 0.08);
       border-radius:14px;
       padding:12px;
-      color:rgba(255,255,255,0.90);
+      margin-top:10px;
     }
-    .cautionTitle{
-      font-weight:900;
-      color:var(--danger);
-      margin:0 0 6px;
-      letter-spacing:.02em;
+    .warn strong{color:rgba(255,255,255,0.92)}
+    .copyRow{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:10px;
     }
-    .cautionText{
-      margin:0;
-      color:rgba(255,255,255,0.88);
-      font-size:.98rem;
+    .copyBox{
+      flex: 1 1 320px;
+      border:1px solid rgba(255,255,255,0.14);
+      background:rgba(0,0,0,0.18);
+      border-radius:14px;
+      padding:10px 12px;
+    }
+    .copyBox code{word-break:break-all}
+    .copyBtn{
+      appearance:none;
+      border:1px solid rgba(255,255,255,0.18);
+      background:rgba(255,255,255,0.05);
+      color:var(--text);
+      font-weight:800;
+      padding:10px 14px;
+      border-radius:999px;
+      cursor:pointer;
     }
 
     footer{margin-top:18px;text-align:center;color:var(--muted2);font-size:.92rem}
@@ -219,9 +213,8 @@
         <p class="small" style="margin:0 0 10px;">SoulSound | Samzin Kreave — artifacts + music live here.</p>
 
         <div class="ctaRow">
-          <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank" rel="noopener">Open SoundCloud →</a>
-          <a class="btn secondary" href="#music" onclick="activate('music');return false;">Jump to Music tab ↓</a>
-          <a class="btn secondary" href="#tip" onclick="activate('tip');return false;">Tip the Build ↓</a>
+          <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank">Open SoundCloud →</a>
+          <a class="btn secondary" href="#music" onclick="location.hash='#music';return false;">Jump to Music tab ↓</a>
         </div>
 
         <p class="small" style="margin:12px 0 6px;"><strong>Tomorrow’s Yesterday (player)</strong></p>
@@ -229,232 +222,279 @@
         <iframe
           class="player"
           allow="autoplay"
-          loading="lazy"
-          src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fsamzin-kreave-411244422%2Ftomorrows-yesterday&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&visual=true">
+          src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fsamzin-kreave-411244422%2Ftomorrows-yesterday&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&visual=true">
         </iframe>
       </div>
     </div>
 
     <div class="tabs">
       <div class="tabbar">
-        <button class="tabbtn" aria-selected="true" data-tab="openbuild">Open Build</button>
-        <button class="tabbtn" data-tab="story">Story</button>
-        <button class="tabbtn" data-tab="signal">Signal Archive</button>
-        <button class="tabbtn" data-tab="tool">Expression Tool</button>
-        <button class="tabbtn" data-tab="music">Music</button>
-        <button class="tabbtn" data-tab="artifacts">Artifacts</button>
-        <button class="tabbtn" data-tab="tip">Tip the Build</button>
-        <button class="tabbtn" data-tab="social">Social</button>
+        <button class="tabbtn" aria-selected="true" data-tab="openbuild">
+          <span>🛠️</span> Open Build
+        </button>
+        <button class="tabbtn" data-tab="story">
+          <span>📖</span> Story
+        </button>
+        <button class="tabbtn" data-tab="signal">
+          <span>🎛️</span> Signal
+        </button>
+        <button class="tabbtn" data-tab="tool">
+          <span>✨</span> Tool
+        </button>
+        <button class="tabbtn" data-tab="music" id="music">
+          <span>🎵</span> Music
+        </button>
+        <button class="tabbtn" data-tab="social">
+          <span>🌐</span> Social
+        </button>
+        <button class="tabbtn" data-tab="zora">
+          <span>🟩</span> Zora
+        </button>
+        <button class="tabbtn" data-tab="tips">
+          <span>💜</span> Tip the Build
+        </button>
       </div>
 
+      <!-- OPEN BUILD -->
       <section class="panel active" id="panel-openbuild">
         <h2>Open Build</h2>
         <p class="small">
           SoulSound is being built in public — code, updates, and iteration history live on GitHub.
         </p>
 
-        <div class="card">
-          <div class="ctaRow">
-            <a class="btn" href="https://github.com/sk88studiosinc-maker/soulsound-v0" target="_blank" rel="noopener">
-              View the SoulSound repo →
-            </a>
-            <a class="btn secondary" href="https://github.com/sk88studiosinc-maker" target="_blank" rel="noopener">
-              My GitHub profile →
-            </a>
+        <div class="grid">
+          <div class="platform col12">
+            <div class="picon" aria-hidden="true">🐙</div>
+            <div>
+              <p class="ptitle">GitHub</p>
+              <p class="pmeta">Track commits, releases, and features as the SoulSound universe grows.</p>
+              <div class="pactions">
+                <a class="btn" href="https://github.com/sk88studiosinc-maker/soulsound-v0" target="_blank">SoulSound repo →</a>
+                <a class="btn ghost" href="https://github.com/sk88studiosinc-maker" target="_blank">My GitHub profile →</a>
+              </div>
+            </div>
           </div>
-          <p class="small" style="margin-top:10px;">
-            Follow commits to track new features, fixes, and releases.
-          </p>
         </div>
       </section>
 
+      <!-- STORY -->
       <section class="panel" id="panel-story">
         <h2>Tomorrow’s Yesterday</h2>
+        <p class="small">
+          The story lives on Pocket FM — listen free and follow the arc as it evolves.
+        </p>
 
-        <div class="card">
-          <p style="font-size:1.05rem;line-height:1.6;margin:0 0 12px;">
-            Tomorrow's Yesterday<br><br>
-            I'm loving this show. You should listen to it. And it's completely FREE!
-          </p>
-
-          <div class="ctaRow">
-            <a class="btn" href="https://pocketfm.onelink.me/2IE7/8ko9llk1" target="_blank" rel="noopener">
-              🎧 Listen on Pocket FM →
-            </a>
+        <div class="grid">
+          <div class="platform col12">
+            <div class="picon" aria-hidden="true">📻</div>
+            <div>
+              <p class="ptitle">Pocket FM</p>
+              <p class="pmeta">“Tomorrow’s Yesterday — I’m loving this show. You should listen to it. And it’s completely FREE!”</p>
+              <div class="pactions">
+                <a class="btn" href="https://pocketfm.onelink.me/2IE7/8ko9llk1" target="_blank">Listen on Pocket FM →</a>
+              </div>
+            </div>
           </div>
-
-          <p class="small" style="margin-top:12px;">
-            This series is part of the SoulSound universe — where story, sound, and signal evolve together.
-          </p>
         </div>
       </section>
 
+      <!-- SIGNAL -->
       <section class="panel" id="panel-signal">
         <h2>Signal Archive</h2>
-        <p class="small">
-          Narrative artifacts mirrored as resonance — fragments that used to live only inside the record now exist as sound.
-        </p>
-        <div class="ctaRow">
-          <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank" rel="noopener">Open Signal Archive →</a>
-          <a class="btn secondary" href="https://soundcloud.com/samzin-kreave-411244422" target="_blank" rel="noopener">SoundCloud (direct) →</a>
+        <p class="small">Narrative artifacts + audio drops (SoundCloud).</p>
+
+        <div class="grid">
+          <div class="platform col12">
+            <div class="picon" aria-hidden="true">🎧</div>
+            <div>
+              <p class="ptitle">SoundCloud — Signal Archive</p>
+              <p class="pmeta">SoulSound | Samzin Kreave</p>
+              <div class="pactions">
+                <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank">Open SoundCloud →</a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
+      <!-- TOOL -->
       <section class="panel" id="panel-tool">
         <h2>Expression Tool</h2>
-        <p class="small">
-          Translate a music link into SoulSound-style captions, tags, and structured outputs.
-        </p>
+        <p class="small">Translate sound into captions, tags, and signal language.</p>
 
-        <div class="ctaRow">
-          <a class="btn" href="./Soulexpression.html" target="_blank" rel="noopener">Open Tool →</a>
+        <div class="ctaRow" style="margin-bottom:10px;">
+          <a class="btn" href="./Soulexpression.html" target="_blank">Open Tool →</a>
         </div>
 
-        <div class="card">
-          <iframe class="frame" src="./Soulexpression.html" title="SoulSound Expression Tool"></iframe>
-        </div>
+        <iframe class="frame" src="./Soulexpression.html"></iframe>
       </section>
 
+      <!-- MUSIC -->
       <section class="panel" id="panel-music">
-        <h2>Music</h2>
-        <div class="card">
-          <p class="small" style="margin:0 0 10px;"><strong>Official Music Links</strong></p>
-          <div class="ctaRow">
-            <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank" rel="noopener">SoundCloud →</a>
-            <a class="btn" href="https://open.spotify.com/artist/3uugCAf5GNkNToPtdWGcQl" target="_blank" rel="noopener">Spotify →</a>
-            <a class="btn" href="https://www.youtube.com/channel/UCIWC60U8vfRqhti9XFKdgxA" target="_blank" rel="noopener">YouTube →</a>
-          </div>
-        </div>
+        <h2>Music Links</h2>
+        <p class="small">Find SoulSound across platforms (Signal Archive + streaming + video).</p>
 
-        <div class="card">
-          <p class="small" style="margin:0 0 8px;"><strong>Featured: Tomorrow’s Yesterday</strong></p>
-          <iframe
-            class="player"
-            allow="autoplay"
-            loading="lazy"
-            src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fsamzin-kreave-411244422%2Ftomorrows-yesterday&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&visual=true">
-          </iframe>
+        <div class="grid">
+          <div class="platform col12">
+            <div class="picon" aria-hidden="true">🎧</div>
+            <div>
+              <p class="ptitle">SoundCloud</p>
+              <p class="pmeta">SoulSound | Samzin Kreave</p>
+              <div class="pactions">
+                <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank">Follow on SoundCloud →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="platform col6">
+            <div class="picon" aria-hidden="true">🟢</div>
+            <div>
+              <p class="ptitle">Spotify</p>
+              <p class="pmeta">Official artist profile</p>
+              <div class="pactions">
+                <a class="btn" href="https://open.spotify.com/artist/3uugCAf5GNkNToPtdWGcQl?si=_Zd_ew41TomkaWDIQco9Iw" target="_blank">Open Spotify →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="platform col6">
+            <div class="picon" aria-hidden="true">▶️</div>
+            <div>
+              <p class="ptitle">YouTube</p>
+              <p class="pmeta">Channel hub</p>
+              <div class="pactions">
+                <a class="btn" href="https://youtube.com/channel/UCIWC60U8vfRqhti9XFKdgxA?si=-T1QpIl-UW-zIWDb" target="_blank">Open YouTube →</a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="panel" id="panel-artifacts">
-        <h2>Artifacts</h2>
-        <p class="small">
-          Rare visual artifacts and prototype pieces from the SoulSound universe.
-        </p>
-
-        <div class="card">
-          <p class="small" style="margin:0 0 10px;"><strong>Collections + Drops</strong></p>
-          <div class="ctaRow">
-            <a class="btn" href="https://zora.co/@soulsound_samzinkreave" target="_blank" rel="noopener">Zora Profile →</a>
-          </div>
-
-          <p class="small" style="margin-top:12px;">
-            Built with meaning, not hype.
-          </p>
-        </div>
-      </section>
-
-      <section class="panel" id="panel-tip">
-        <h2>Tip the Build</h2>
-        <p class="small">
-          Main tip option is on <strong>Base</strong>. Please read the network warning before sending.
-        </p>
-
-        <!-- MAIN TIP OPTION -->
-        <div class="card mainTip">
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
-            <h2 style="margin:0;font-size:1.15rem;">Main Tip Address <span class="pill">BASE ONLY</span></h2>
-            <button class="copyBtn" type="button" data-copy="0x1942866814727812830Ce352154aB73A999b4cf9">Copy Main Tip</button>
-          </div>
-
-          <div class="addr" style="margin-top:10px;font-size:1rem;">
-            0x1942866814727812830Ce352154aB73A999b4cf9
-          </div>
-
-          <div class="cautionBox" role="alert" aria-live="polite">
-            <p class="cautionTitle">⚠ IMPORTANT: BASE NETWORK ONLY</p>
-            <p class="cautionText">
-              This is a Base network address. <strong>Do not send USDC over any other network</strong> to this address or your funds may be lost.
-            </p>
-          </div>
-
-          <div class="ctaRow" style="margin-top:12px;">
-            <a class="btn" href="https://base.app/profile/soulsound" target="_blank" rel="noopener">Open Base Profile →</a>
-            <button class="copyBtn" type="button" data-copy="https://base.app/profile/soulsound">Copy Base link</button>
-          </div>
-        </div>
-
-        <!-- OPTIONAL: Coinbase referral -->
-        <div class="card">
-          <p class="small" style="margin:0 0 10px;"><strong>Coinbase</strong></p>
-          <div class="ctaRow">
-            <a class="btn" href="https://coinbase.com/join/NM4TFLJ?src=android-share" target="_blank" rel="noopener">
-              Coinbase (Get $30 BTC) →
-            </a>
-            <button class="copyBtn" type="button" data-copy="https://coinbase.com/join/NM4TFLJ?src=android-share">
-              Copy Coinbase link
-            </button>
-          </div>
-          <p class="small" style="margin-top:10px;">
-            Sign up using the Coinbase link to earn $30 in BTC.
-          </p>
-        </div>
-
-        <!-- OTHER ADDRESSES (kept) -->
-        <div class="card">
-          <p class="small" style="margin:0 0 10px;"><strong>Other Addresses</strong> (tap copy)</p>
-
-          <div class="tipList">
-            <div class="tipItem">
-              <div class="tipMeta">
-                <div class="tipLabel">Address 1</div>
-                <div class="addr">0xF9FE7d2DeB453813CF86bF4f883b5A12D1e01D78</div>
-              </div>
-              <button class="copyBtn" type="button" data-copy="0xF9FE7d2DeB453813CF86bF4f883b5A12D1e01D78">Copy</button>
-            </div>
-
-            <div class="tipItem">
-              <div class="tipMeta">
-                <div class="tipLabel">Address 2</div>
-                <div class="addr">0xE6F57563A3CE3A4a983f50c396d4D57B87A7A756</div>
-              </div>
-              <button class="copyBtn" type="button" data-copy="0xE6F57563A3CE3A4a983f50c396d4D57B87A7A756">Copy</button>
-            </div>
-
-            <div class="tipItem">
-              <div class="tipMeta">
-                <div class="tipLabel">Address 3</div>
-                <div class="addr">0x6322C8298A873c9D070909AE506119060bbA8C9b</div>
-              </div>
-              <button class="copyBtn" type="button" data-copy="0x6322C8298A873c9D070909AE506119060bbA8C9b">Copy</button>
-            </div>
-
-            <div class="tipItem">
-              <div class="tipMeta">
-                <div class="tipLabel">Address 4</div>
-                <div class="addr">0x34121716E58a27edbA12C0708d423b2691172065</div>
-              </div>
-              <button class="copyBtn" type="button" data-copy="0x34121716E58a27edbA12C0708d423b2691172065">Copy</button>
-            </div>
-          </div>
-
-          <div class="toast" id="toast">Copied.</div>
-          <p class="small" style="margin-top:12px;">
-            Tip responsibly — always double-check addresses and network before sending.
-          </p>
-        </div>
-      </section>
-
+      <!-- SOCIAL -->
       <section class="panel" id="panel-social">
-        <h2>Social</h2>
-        <p class="small">Follow the open build and the SoulSound universe across platforms.</p>
+        <h2>Social Links</h2>
+        <p class="small">Follow the build in public — story, music, updates.</p>
 
-        <div class="ctaRow">
-          <a class="btn" href="https://www.tiktok.com/@soulsoundcreations" target="_blank" rel="noopener">TikTok →</a>
-          <a class="btn" href="https://www.instagram.com/soulsound_creations" target="_blank" rel="noopener">Instagram →</a>
-          <a class="btn" href="https://www.linkedin.com/in/samzin-kreave-315848374" target="_blank" rel="noopener">LinkedIn →</a>
-          <a class="btn" href="https://www.reddit.com/u/Samzinkreave/s/H6R9DBVVgO" target="_blank" rel="noopener">Reddit →</a>
+        <div class="grid">
+          <div class="platform col6">
+            <div class="picon" aria-hidden="true">🎬</div>
+            <div>
+              <p class="ptitle">TikTok</p>
+              <p class="pmeta">@soulsoundcreations</p>
+              <div class="pactions">
+                <a class="btn" href="https://www.tiktok.com/@soulsoundcreations" target="_blank">Open TikTok →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="platform col6">
+            <div class="picon" aria-hidden="true">📸</div>
+            <div>
+              <p class="ptitle">Instagram</p>
+              <p class="pmeta">@soulsound_creations</p>
+              <div class="pactions">
+                <a class="btn" href="https://www.instagram.com/soulsound_creations" target="_blank">Open Instagram →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="platform col6">
+            <div class="picon" aria-hidden="true">💼</div>
+            <div>
+              <p class="ptitle">LinkedIn</p>
+              <p class="pmeta">Professional updates + project hub</p>
+              <div class="pactions">
+                <a class="btn" href="https://www.linkedin.com/in/samzin-kreave-315848374" target="_blank">Open LinkedIn →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="platform col6">
+            <div class="picon" aria-hidden="true">👽</div>
+            <div>
+              <p class="ptitle">Reddit</p>
+              <p class="pmeta">u/Samzinkreave</p>
+              <div class="pactions">
+                <a class="btn" href="https://www.reddit.com/u/Samzinkreave/s/H6R9DBVVgO" target="_blank">Open Reddit →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ZORA -->
+      <section class="panel" id="panel-zora">
+        <h2>Zora</h2>
+        <p class="small">Collectable artifacts + drops for the SoulSound universe.</p>
+
+        <div class="grid">
+          <div class="platform col12">
+            <div class="picon" style="padding:0;">
+              <!-- Put zora-soulsound.png in the repo root -->
+              <img src="./zora-soulsound.png" alt="SoulSound Zora logo" />
+            </div>
+            <div>
+              <p class="ptitle">SoulSound on Zora</p>
+              <p class="pmeta">Creator page + onchain artifacts</p>
+              <div class="pactions">
+                <a class="btn" href="https://zora.co/@soulsound_samzinkreave" target="_blank">Open Zora →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TIP THE BUILD -->
+      <section class="panel" id="panel-tips">
+        <h2>Tip the Build</h2>
+        <p class="small">Support the SoulSound open build directly (no hype, no promises — just gratitude).</p>
+
+        <div class="grid">
+          <div class="platform col12">
+            <div class="picon" aria-hidden="true">🟦</div>
+            <div>
+              <p class="ptitle">Base Profile</p>
+              <p class="pmeta">@soulsound</p>
+              <div class="pactions">
+                <a class="btn" href="https://base.app/profile/soulsound" target="_blank">Open Base →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="platform col12">
+            <div class="picon" aria-hidden="true">🪙</div>
+            <div>
+              <p class="ptitle">Coinbase Referral</p>
+              <p class="pmeta">Optional — earn $30 BTC (Coinbase terms apply)</p>
+              <div class="pactions">
+                <a class="btn" href="https://coinbase.com/join/NM4TFLJ?src=android-share" target="_blank">Open Coinbase referral →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="platform col12">
+            <div class="picon" aria-hidden="true">💜</div>
+            <div>
+              <p class="ptitle">Main Tip Address (Base network)</p>
+              <p class="pmeta">Copy/paste the address below.</p>
+
+              <div class="warn">
+                <strong>Important:</strong> This is a <strong>Base network</strong> address.  
+                <strong>Do not send USDC over any other network</strong> to this address or your funds may be lost.
+              </div>
+
+              <div class="copyRow">
+                <div class="copyBox">
+                  <code class="mono" id="baseTipAddr">0x1942866814727812830Ce352154aB73A999b4cf9</code>
+                </div>
+                <button class="copyBtn" onclick="copyText('baseTipAddr')">Copy address</button>
+              </div>
+
+              <p class="small" style="margin-top:10px;">
+                Thank you for supporting the SoulSound world — story, music, and artifacts built in public.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
     </div>
@@ -465,6 +505,7 @@
 
   <script>
     document.getElementById('yr').textContent=new Date().getFullYear();
+
     const buttons=[...document.querySelectorAll('.tabbtn')];
     const panels=[...document.querySelectorAll('.panel')];
 
@@ -473,39 +514,28 @@
       panels.forEach(p=>p.classList.toggle('active', p.id===`panel-${t}`));
       history.replaceState(null,'',`#${t}`);
     }
-    window.activate = activate;
 
     buttons.forEach(b=>b.onclick=()=>activate(b.dataset.tab));
-    const h=(location.hash||'').replace('#','').trim();
+
+    const h=(location.hash||'').replace('#','');
     if(h) activate(h);
 
-    // Copy-to-clipboard buttons (works on GitHub Pages / mobile)
-    const toast = document.getElementById('toast');
-    function showToast(msg){
-      if(!toast) return;
-      toast.textContent = msg;
-      toast.style.display = 'block';
-      clearTimeout(window.__toastTimer);
-      window.__toastTimer = setTimeout(()=>{ toast.style.display='none'; }, 1400);
-    }
-
-    document.addEventListener('click', async (e) => {
-      const btn = e.target.closest('[data-copy]');
-      if(!btn) return;
-      const text = btn.getAttribute('data-copy');
+    async function copyText(id){
+      const el = document.getElementById(id);
+      const txt = el ? el.textContent.trim() : '';
+      if(!txt) return;
       try{
-        await navigator.clipboard.writeText(text);
-        showToast('Copied to clipboard ✅');
-      }catch(err){
-        const ta = document.createElement('textarea');
-        ta.value = text;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
+        await navigator.clipboard.writeText(txt);
+        alert('Copied!');
+      }catch(e){
+        // fallback
+        const ta=document.createElement('textarea');
+        ta.value=txt; document.body.appendChild(ta);
+        ta.select(); document.execCommand('copy');
         document.body.removeChild(ta);
-        showToast('Copied ✅');
+        alert('Copied!');
       }
-    });
+    }
   </script>
 </body>
 </html>
