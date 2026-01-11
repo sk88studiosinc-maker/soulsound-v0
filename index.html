@@ -15,8 +15,8 @@
       --text: rgba(255,255,255,0.92);
       --muted: rgba(255,255,255,0.72);
       --muted2: rgba(255,255,255,0.55);
-      --accent1: #8b5cf6; /* purple */
-      --accent2: #ec4899; /* pink */
+      --accent1: #8b5cf6;
+      --accent2: #ec4899;
       --shadow: 0 18px 60px rgba(0,0,0,0.55);
       --radius: 18px;
     }
@@ -24,9 +24,10 @@
     *{ box-sizing: border-box; }
     body{
       margin:0;
-      background: radial-gradient(1100px 700px at 50% -120px, rgba(139,92,246,0.20), transparent 65%),
-                  radial-gradient(900px 600px at 20% 0, rgba(236,72,153,0.16), transparent 60%),
-                  var(--bg);
+      background:
+        radial-gradient(1100px 700px at 50% -120px, rgba(139,92,246,0.20), transparent 65%),
+        radial-gradient(900px 600px at 20% 0, rgba(236,72,153,0.16), transparent 60%),
+        var(--bg);
       color: var(--text);
       font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       line-height: 1.55;
@@ -44,14 +45,6 @@
       background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap: wrap;
     }
 
     .brand h1{
@@ -99,11 +92,9 @@
       border-bottom: 1px solid var(--border);
       background: rgba(0,0,0,0.22);
       overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
     }
 
     .tabbtn{
-      appearance:none;
       border: 1px solid var(--border);
       background: rgba(255,255,255,0.03);
       color: var(--muted);
@@ -112,13 +103,10 @@
       font-weight: 650;
       cursor: pointer;
       white-space: nowrap;
-      transition: transform .06s ease, background .15s ease, color .15s ease, border-color .15s ease;
     }
-    .tabbtn:active{ transform: scale(0.98); }
 
     .tabbtn[aria-selected="true"]{
       color: white;
-      border-color: rgba(255,255,255,0.22);
       background: linear-gradient(135deg, rgba(139,92,246,0.40), rgba(236,72,153,0.28));
     }
 
@@ -128,13 +116,7 @@
     }
     .panel.active{ display:block; }
 
-    h2{
-      margin: 0 0 10px;
-      font-size: 1.35rem;
-      letter-spacing: 0.01em;
-    }
-    p{ margin: 0 0 12px; color: var(--muted); }
-    .small{ color: var(--muted2); font-size: 0.95rem; }
+    h2{ margin: 0 0 10px; }
 
     .card{
       border: 1px solid var(--border);
@@ -144,13 +126,6 @@
       margin-top: 12px;
     }
 
-    .ctaRow{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 10px;
-    }
-
     .btn{
       display:inline-block;
       text-decoration:none;
@@ -158,23 +133,19 @@
       font-weight: 750;
       padding: 10px 14px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.18);
       background: linear-gradient(135deg, rgba(139,92,246,0.92), rgba(236,72,153,0.85));
-      box-shadow: 0 10px 25px rgba(0,0,0,0.35);
     }
 
     .btn.secondary{
       background: rgba(255,255,255,0.05);
       color: var(--text);
-      font-weight: 650;
     }
 
-    code.inline{
-      padding: 2px 6px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      background: rgba(0,0,0,0.25);
-      color: rgba(255,255,255,0.85);
+    .frame{
+      width: 100%;
+      height: 78vh;
+      min-height: 520px;
+      border-radius: 16px;
     }
 
     footer{
@@ -188,7 +159,6 @@
 
 <body>
   <div class="wrap">
-
     <div class="hero">
       <div class="brand">
         <h1>SoulSound World</h1>
@@ -203,134 +173,61 @@
       </div>
     </div>
 
-    <div class="tabs" id="tabs">
-      <div class="tabbar" role="tablist" aria-label="SoulSound tabs">
-        <button class="tabbtn" role="tab" aria-selected="true" aria-controls="panel-openbuild" id="tab-openbuild" data-tab="openbuild">Open Build</button>
-        <button class="tabbtn" role="tab" aria-selected="false" aria-controls="panel-story" id="tab-story" data-tab="story">Story</button>
-        <button class="tabbtn" role="tab" aria-selected="false" aria-controls="panel-signal" id="tab-signal" data-tab="signal">Signal Archive</button>
-        <button class="tabbtn" role="tab" aria-selected="false" aria-controls="panel-listen" id="tab-listen" data-tab="listen">Listen</button>
-        <button class="tabbtn" role="tab" aria-selected="false" aria-controls="panel-community" id="tab-community" data-tab="community">Community</button>
+    <div class="tabs">
+      <div class="tabbar">
+        <button class="tabbtn" aria-selected="true" data-tab="openbuild">Open Build</button>
+        <button class="tabbtn" aria-selected="false" data-tab="story">Story</button>
+        <button class="tabbtn" aria-selected="false" data-tab="signal">Signal Archive</button>
+        <button class="tabbtn" aria-selected="false" data-tab="tool">Expression Tool</button>
+        <button class="tabbtn" aria-selected="false" data-tab="listen">Listen</button>
       </div>
 
-      <!-- OPEN BUILD -->
-      <section class="panel active" role="tabpanel" id="panel-openbuild" aria-labelledby="tab-openbuild">
+      <section class="panel active" id="panel-openbuild">
         <h2>Open Build</h2>
-        <p>
-          This page is the living hub for SoulSound — updates, milestones, and the build process behind the world.
-        </p>
-        <div class="card">
-          <p><strong>Current focus:</strong> pushing past 150K+ words and expanding the Frequency Stacking arc with artifacts.</p>
-          <p class="small">Tip: Keep this section updated weekly. It’s proof of momentum for fans and partners.</p>
-        </div>
+        <p>Live progress, updates, and build notes.</p>
       </section>
 
-      <!-- STORY -->
-      <section class="panel" role="tabpanel" id="panel-story" aria-labelledby="tab-story">
+      <section class="panel" id="panel-story">
         <h2>Tomorrow’s Yesterday</h2>
-        <p>
-          A long-form sci-fi / emotional saga about systems, memory, identity, and love — and what it costs to stay human in optimized worlds.
-        </p>
+        <p>Long-form sci-fi emotional saga about systems, memory, and love.</p>
+      </section>
+
+      <section class="panel" id="panel-signal">
+        <h2>Signal Archive</h2>
+        <a class="btn" href="https://on.soundcloud.com/AxKQxuE10vZmFfTYTw" target="_blank">Open on SoundCloud →</a>
+      </section>
+
+      <section class="panel" id="panel-tool">
+        <h2>Expression Tool</h2>
         <div class="card">
-          <p><strong>World notes:</strong> The city becomes addicted to motion. Frequency Stacking becomes culture. Phoenix guides. Crow and Raven resist through presence.</p>
-          <p class="small">Want to add a synopsis? Paste it here and we’ll tune it for new readers.</p>
+          <a class="btn" href="./Soulexpression.html" target="_blank">Open Tool →</a>
+        </div>
+        <div class="card">
+          <iframe class="frame" src="./Soulexpression.html"></iframe>
         </div>
       </section>
 
-      <!-- SIGNAL ARCHIVE -->
-      <section class="panel" role="tabpanel" id="panel-signal" aria-labelledby="tab-signal">
-        <h2>🎧 The Signal Archive</h2>
-        <p>
-          Some artifacts from the SoulSound universe exist as sound rather than text — fragments, residues, and echoes from inside the world.
-        </p>
-        <div class="card">
-          <p>
-            <strong>SoundCloud profile:</strong> <span class="small">SoulSound | Samzin Kreave</span>
-          </p>
-          <div class="ctaRow">
-            <a class="btn" href="https://on.soundcloud.com/AxKQxuE10vZmFfTYTw" target="_blank" rel="noopener noreferrer">
-              Open the Signal Archive →
-            </a>
-            <a class="btn secondary" href="#"
-               onclick="navigator.clipboard.writeText('https://on.soundcloud.com/AxKQxuE10vZmFfTYTw'); alert('Copied SoundCloud link!'); return false;">
-              Copy link
-            </a>
-          </div>
-          <p class="small" style="margin-top:10px;">
-            New signals appear as the story evolves.
-          </p>
-        </div>
+      <section class="panel" id="panel-listen">
+        <h2>Listen on Pocket FM</h2>
+        <p>Search “Tomorrow’s Yesterday” in Pocket FM.</p>
       </section>
-
-      <!-- LISTEN -->
-      <section class="panel" role="tabpanel" id="panel-listen" aria-labelledby="tab-listen">
-        <h2>Listen</h2>
-        <p>
-          Find <strong>Tomorrow’s Yesterday</strong> on <strong>Pocket FM</strong>.
-          (If you have your direct Pocket FM link, paste it into the button below.)
-        </p>
-
-        <div class="card">
-          <p><strong>Pocket FM:</strong> Search <code class="inline">Tomorrow’s Yesterday</code></p>
-          <div class="ctaRow">
-            <!-- Replace the # with your Pocket FM direct link when you have it -->
-            <a class="btn" href="#" onclick="alert('Paste your Pocket FM link into this button later.'); return false;">
-              Listen on Pocket FM →
-            </a>
-          </div>
-          <p class="small" style="margin-top:10px;">
-            Pro tip: keep links in buttons for mobile conversion.
-          </p>
-        </div>
-      </section>
-
-      <!-- COMMUNITY -->
-      <section class="panel" role="tabpanel" id="panel-community" aria-labelledby="tab-community">
-        <h2>Community</h2>
-        <p>
-          A home for theories, reactions, art, and updates is forming. When your subreddit is live, link it here.
-        </p>
-        <div class="card">
-          <p><strong>Coming soon:</strong> r/TomorrowsYesterday (or r/SoulSoundWorld)</p>
-          <p class="small">When you create it, we’ll add a button here and a pinned welcome post.</p>
-        </div>
-      </section>
-
     </div>
 
-    <footer>
-      © <span id="yr"></span> SoulSound • Built in public • Created by Samzin Kreave
-    </footer>
-
+    <footer>© 2026 SoulSound — by Samzin Kreave</footer>
   </div>
 
   <script>
-    // year
-    document.getElementById('yr').textContent = new Date().getFullYear();
-
-    // tabs logic
-    const buttons = Array.from(document.querySelectorAll('.tabbtn'));
-    const panels = Array.from(document.querySelectorAll('.panel'));
-
-    function activate(tabName){
-      buttons.forEach(btn => {
-        const selected = btn.dataset.tab === tabName;
-        btn.setAttribute('aria-selected', selected ? 'true' : 'false');
-      });
-      panels.forEach(p => {
-        p.classList.toggle('active', p.id === `panel-${tabName}`);
-      });
-      // update hash for shareable tabs
-      history.replaceState(null, '', `#${tabName}`);
-    }
+    const buttons = document.querySelectorAll('.tabbtn');
+    const panels = document.querySelectorAll('.panel');
 
     buttons.forEach(btn => {
-      btn.addEventListener('click', () => activate(btn.dataset.tab));
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.setAttribute('aria-selected', 'false'));
+        panels.forEach(p => p.classList.remove('active'));
+        btn.setAttribute('aria-selected', 'true');
+        document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+      });
     });
-
-    // open tab from URL hash
-    const hash = (location.hash || '').replace('#','').trim();
-    const allowed = new Set(['openbuild','story','signal','listen','community']);
-    if (allowed.has(hash)) activate(hash);
   </script>
 </body>
 </html>
