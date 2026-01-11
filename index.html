@@ -101,7 +101,12 @@
     }
 
     .player{
-      width:100%;height:166px;border:0;border-radius:14px;overflow:hidden;background:rgba(0,0,0,0.20)
+      width:100%;
+      height:166px;
+      border:0;
+      border-radius:14px;
+      overflow:hidden;
+      background:rgba(0,0,0,0.20)
     }
 
     footer{margin-top:18px;text-align:center;color:var(--muted2);font-size:.92rem}
@@ -131,27 +136,17 @@
 
         <div class="ctaRow">
           <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank" rel="noopener">Open SoundCloud →</a>
-          <a class="btn secondary" href="#music" onclick="activate('music'); return false;">Jump to Music tab ↓</a>
+          <a class="btn secondary" href="#music" onclick="activate('music');return false;">Jump to Music tab ↓</a>
         </div>
 
         <p class="small" style="margin:12px 0 6px;"><strong>Tomorrow’s Yesterday (player)</strong></p>
 
-        <!-- IMPORTANT:
-             Use the canonical track permalink (soundcloud.com/.../track-name).
-             This avoids embed errors that can happen with m.soundcloud.com or shortened URLs. -->
         <iframe
           class="player"
           allow="autoplay"
           loading="lazy"
-          src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fsamzin-kreave-411244422%2Ftomorrows-yesterday&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&visual=true">
+          src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fsamzin-kreave-411244422%2Ftomorrows-yesterday&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&visual=true">
         </iframe>
-
-        <p class="small" style="margin:10px 0 0;">
-          If the player ever fails on mobile, open the track directly:
-          <a href="https://soundcloud.com/samzin-kreave-411244422/tomorrows-yesterday" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.85);">
-            soundcloud.com/…/tomorrows-yesterday
-          </a>
-        </p>
       </div>
     </div>
 
@@ -189,16 +184,13 @@
       <section class="panel" id="panel-story">
         <h2>Tomorrow’s Yesterday</h2>
         <p class="small">
-          A sci-fi / weird-lit romance thriller told through memory artifacts, system pressure, and the fight to stay human.
-          Crow and Raven move through a city that rewards speed, forgetfulness, and obedience — while the Signal Archive leaks truth as sound.
+          A human-written sci-fi / weird-lit romance thriller where sound becomes evidence, and the city rewards speed over truth.
+          Crow and Raven are learning what it costs to stay present inside a system that wants them optimized.
         </p>
         <div class="card">
-          <p class="small" style="margin:0 0 10px;">
-            Distribution: <strong>Pocket FM</strong> (series). Sound artifacts + music: <strong>SoundCloud</strong>.
-          </p>
           <div class="ctaRow">
             <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank" rel="noopener">Signal Archive →</a>
-            <a class="btn secondary" href="#social" onclick="activate('social'); return false;">Follow / share →</a>
+            <a class="btn secondary" href="#social" onclick="activate('social');return false;">Follow / share →</a>
           </div>
         </div>
       </section>
@@ -206,11 +198,11 @@
       <section class="panel" id="panel-signal">
         <h2>Signal Archive</h2>
         <p class="small">
-          Narrative artifacts mirrored as resonance — listen to fragments that used to live only inside the record.
+          Narrative artifacts mirrored as resonance — fragments that used to live only inside the record now exist as sound.
         </p>
         <div class="ctaRow">
           <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank" rel="noopener">Open Signal Archive →</a>
-          <a class="btn secondary" href="https://soundcloud.com/samzin-kreave-411244422" target="_blank" rel="noopener">Open profile (direct) →</a>
+          <a class="btn secondary" href="https://soundcloud.com/samzin-kreave-411244422" target="_blank" rel="noopener">SoundCloud (direct) →</a>
         </div>
 
         <div class="card">
@@ -239,32 +231,43 @@
         </div>
       </section>
 
+      <!-- ✅ MUSIC TAB: NOW INCLUDES SOUNDCLOUD + SPOTIFY + YOUTUBE -->
       <section class="panel" id="panel-music">
         <h2>Music</h2>
         <p class="small">
-          Follow the SoundCloud Signal Archive and find the official profiles below.
+          Official SoulSound music + signal channels.
         </p>
 
         <div class="card">
-          <p class="small" style="margin:0 0 10px;"><strong>Featured Track: Tomorrow’s Yesterday</strong></p>
+          <p class="small" style="margin:0 0 10px;"><strong>Official Links</strong></p>
+
+          <div class="ctaRow">
+            <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank" rel="noopener">
+              SoundCloud (Signal Archive) →
+            </a>
+
+            <a class="btn" href="https://open.spotify.com/artist/3uugCAf5GNkNToPtdWGcQl" target="_blank" rel="noopener">
+              Spotify Artist →
+            </a>
+
+            <a class="btn" href="https://www.youtube.com/channel/UCIWC60U8vfRqhti9XFKdgxA" target="_blank" rel="noopener">
+              YouTube Channel →
+            </a>
+          </div>
+
+          <p class="small" style="margin-top:12px;">
+            Follow to support the open build and the SoulSound universe.
+          </p>
+        </div>
+
+        <div class="card">
+          <p class="small" style="margin:0 0 8px;"><strong>Featured Track: Tomorrow’s Yesterday</strong></p>
           <iframe
             class="player"
             allow="autoplay"
             loading="lazy"
             src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fsamzin-kreave-411244422%2Ftomorrows-yesterday&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&visual=true">
           </iframe>
-          <div class="ctaRow" style="margin-top:12px;">
-            <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank" rel="noopener">SoundCloud (Signal Archive) →</a>
-            <a class="btn secondary" href="https://soundcloud.com/samzin-kreave-411244422" target="_blank" rel="noopener">SoundCloud (direct profile) →</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <p class="small" style="margin:0 0 10px;"><strong>More official links</strong></p>
-          <div class="ctaRow">
-            <a class="btn" href="https://open.spotify.com/artist/3uugCAf5GNkNToPtdWGcQl" target="_blank" rel="noopener">Spotify Artist →</a>
-            <a class="btn" href="https://youtube.com/channel/UCIWC60U8vfRqhti9XFKdgxA" target="_blank" rel="noopener">YouTube Channel →</a>
-          </div>
         </div>
       </section>
 
@@ -295,7 +298,6 @@
       buttons.forEach(b => b.setAttribute('aria-selected', b.dataset.tab === t ? 'true' : 'false'));
       panels.forEach(p => p.classList.toggle('active', p.id === `panel-${t}`));
       history.replaceState(null,'',`#${t}`);
-      window.scrollTo({ top: document.querySelector('.tabs').offsetTop - 10, behavior: 'smooth' });
     }
     window.activate = activate;
 
