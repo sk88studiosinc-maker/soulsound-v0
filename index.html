@@ -154,7 +154,26 @@
         <button class="tabbtn" data-tab="social">Social</button>
       </div>
 
-      <section class="panel active" id="panel-openbuild"><h2>Open Build</h2></section>
+      <section class="panel active" id="panel-openbuild">
+        <h2>Open Build</h2>
+        <p class="small">
+          SoulSound is being built in public — code, updates, and iteration history live on GitHub.
+        </p>
+
+        <div class="card">
+          <div class="ctaRow">
+            <a class="btn" href="https://github.com/sk88studiosinc-maker/soulsound-v0" target="_blank">
+              View the SoulSound repo →
+            </a>
+            <a class="btn secondary" href="https://github.com/sk88studiosinc-maker" target="_blank">
+              My GitHub profile →
+            </a>
+          </div>
+          <p class="small" style="margin-top:10px;">
+            Follow commits to track new features, fixes, and releases.
+          </p>
+        </div>
+      </section>
 
       <section class="panel" id="panel-story"><h2>Tomorrow’s Yesterday</h2></section>
 
@@ -186,19 +205,15 @@
   </div>
 
   <script>
-    document.getElementById('yr').textContent = new Date().getFullYear();
-
+    document.getElementById('yr').textContent=new Date().getFullYear();
     const buttons=[...document.querySelectorAll('.tabbtn')];
     const panels=[...document.querySelectorAll('.panel')];
-
     function activate(t){
       buttons.forEach(b=>b.setAttribute('aria-selected', b.dataset.tab===t?'true':'false'));
       panels.forEach(p=>p.classList.toggle('active', p.id===`panel-${t}`));
       history.replaceState(null,'',`#${t}`);
     }
-
     buttons.forEach(b=>b.onclick=()=>activate(b.dataset.tab));
-
     const h=(location.hash||'').replace('#','');
     if(h) activate(h);
   </script>
