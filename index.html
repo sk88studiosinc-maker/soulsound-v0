@@ -1,314 +1,336 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>SoulExpression — SoulSound</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoulSound World</title>
+  <meta name="description" content="SoulSound World — open build hub for Tomorrow’s Yesterday and the Signal Archive." />
+
   <style>
-    :root { color-scheme: dark; }
+    :root{
+      --bg: #07060b;
+      --panel: rgba(255,255,255,0.04);
+      --panel2: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.10);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.72);
+      --muted2: rgba(255,255,255,0.55);
+      --accent1: #8b5cf6; /* purple */
+      --accent2: #ec4899; /* pink */
+      --shadow: 0 18px 60px rgba(0,0,0,0.55);
+      --radius: 18px;
+    }
+
+    *{ box-sizing: border-box; }
     body{
-      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:#07070a; color:#eaeaf0;
+      margin:0;
+      background: radial-gradient(1100px 700px at 50% -120px, rgba(139,92,246,0.20), transparent 65%),
+                  radial-gradient(900px 600px at 20% 0, rgba(236,72,153,0.16), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      line-height: 1.55;
     }
-    .wrap{ max-width:980px; margin:0 auto; padding:24px 16px 64px; }
-    .brand{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
-    .brand h1{ margin:0; font-size:1.4rem; letter-spacing:.3px; }
-    .brand small{ color:#a7a7b6; }
+
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 28px 16px 70px;
+    }
+
+    .hero{
+      padding: 22px 18px 16px;
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap: wrap;
+    }
+
+    .brand h1{
+      margin:0;
+      font-size: clamp(26px, 4vw, 42px);
+      letter-spacing: 0.02em;
+    }
+
+    .tagline{
+      margin:10px 0 0;
+      color: var(--muted);
+      max-width: 70ch;
+      font-size: 1.02rem;
+    }
+
+    .badges{
+      display:flex;
+      gap:10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .badge{
+      font-size: 0.92rem;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      color: var(--muted);
+    }
+
+    .tabs{
+      margin-top: 18px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--panel);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .tabbar{
+      display:flex;
+      gap: 8px;
+      padding: 10px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(0,0,0,0.22);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .tabbtn{
+      appearance:none;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      color: var(--muted);
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-weight: 650;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: transform .06s ease, background .15s ease, color .15s ease, border-color .15s ease;
+    }
+    .tabbtn:active{ transform: scale(0.98); }
+
+    .tabbtn[aria-selected="true"]{
+      color: white;
+      border-color: rgba(255,255,255,0.22);
+      background: linear-gradient(135deg, rgba(139,92,246,0.40), rgba(236,72,153,0.28));
+    }
+
+    .panel{
+      padding: 18px 18px 22px;
+      display:none;
+    }
+    .panel.active{ display:block; }
+
+    h2{
+      margin: 0 0 10px;
+      font-size: 1.35rem;
+      letter-spacing: 0.01em;
+    }
+    p{ margin: 0 0 12px; color: var(--muted); }
+    .small{ color: var(--muted2); font-size: 0.95rem; }
+
     .card{
-      margin-top:16px; padding:16px; border-radius:16px;
-      background:linear-gradient(180deg,#0f0f16,#09090e);
-      border:1px solid rgba(255,255,255,.08);
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      border: 1px solid var(--border);
+      background: var(--panel2);
+      border-radius: 16px;
+      padding: 14px;
+      margin-top: 12px;
     }
-    label{ display:block; font-size:.95rem; color:#cfcfe0; margin-bottom:8px; }
-    input, textarea, select{
-      width:100%; box-sizing:border-box;
-      background:#0b0b11; color:#f4f4ff;
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:12px; padding:12px;
-      outline:none;
+
+    .ctaRow{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
     }
-    textarea{ min-height:92px; resize:vertical; }
-    .row{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
-    @media (max-width:760px){ .row{ grid-template-columns:1fr; } }
-    .btns{ display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
-    button{
-      border:0; border-radius:12px; padding:12px 14px;
-      background:#1e1ee8; color:white; font-weight:600;
+
+    .btn{
+      display:inline-block;
+      text-decoration:none;
+      color: white;
+      font-weight: 750;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: linear-gradient(135deg, rgba(139,92,246,0.92), rgba(236,72,153,0.85));
+      box-shadow: 0 10px 25px rgba(0,0,0,0.35);
     }
-    button.secondary{ background:#171724; border:1px solid rgba(255,255,255,.12); color:#eaeaf0; }
-    button:active{ transform: translateY(1px); }
-    .muted{ color:#a7a7b6; font-size:.9rem; margin-top:10px; line-height:1.35; }
-    .outgrid{ display:grid; grid-template-columns:1fr; gap:12px; margin-top:14px; }
-    .out{
-      background:#0b0b11; border:1px solid rgba(255,255,255,.10);
-      border-radius:14px; padding:12px;
+
+    .btn.secondary{
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      font-weight: 650;
     }
-    .outhead{
-      display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px;
+
+    code.inline{
+      padding: 2px 6px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.25);
+      color: rgba(255,255,255,0.85);
     }
-    .outhead strong{ font-size:.95rem; }
-    .copy{
-      background:#171724; border:1px solid rgba(255,255,255,.12);
-      color:#eaeaf0; padding:8px 10px; border-radius:10px; font-weight:600;
+
+    footer{
+      margin-top: 18px;
+      text-align:center;
+      color: var(--muted2);
+      font-size: 0.92rem;
     }
-    .pill{
-      display:inline-block; padding:6px 10px; border-radius:999px;
-      background:rgba(30,30,232,.14); border:1px solid rgba(30,30,232,.35);
-      color:#cfd0ff; font-size:.8rem;
-    }
-    .toplinks a{ color:#cfd0ff; text-decoration:none; }
-    .toplinks a:hover{ text-decoration:underline; }
-    .toast{
-      position:fixed; left:50%; bottom:18px; transform:translateX(-50%);
-      background:#11111a; border:1px solid rgba(255,255,255,.12);
-      padding:10px 12px; border-radius:12px; color:#eaeaf0;
-      box-shadow:0 10px 25px rgba(0,0,0,.45);
-      opacity:0; pointer-events:none; transition:opacity .18s ease;
-      font-size:.9rem;
-    }
-    .toast.show{ opacity:1; }
   </style>
 </head>
+
 <body>
   <div class="wrap">
-    <div class="brand">
-      <div>
-        <h1>💡 SoulExpression</h1>
-        <small>Paste any music link → get captions, description, hashtags. Built for SoulSound.</small>
+
+    <div class="hero">
+      <div class="brand">
+        <h1>SoulSound World</h1>
       </div>
-      <div class="toplinks">
-        <span class="pill">Tool</span>
-        <span style="margin-left:10px;"><a href="./index.html">← Back to Home</a></span>
+      <p class="tagline">
+        Open build hub for the SoulSound platform — where <strong>Tomorrow’s Yesterday</strong> evolves across story, sound, and artifacts.
+      </p>
+      <div class="badges">
+        <div class="badge">Creator: <strong>Samzin Kreave</strong></div>
+        <div class="badge">Distribution: <strong>Pocket FM</strong></div>
+        <div class="badge">Signal Archive: <strong>SoundCloud</strong></div>
       </div>
     </div>
 
-    <div class="card">
-      <label for="musicLink">Music Link (YouTube / Suno / SoundCloud / any)</label>
-      <input id="musicLink" placeholder="Paste link here (ex: https://suno.com/..., https://youtu.be/..., https://soundcloud.com/...)" />
-
-      <div class="row" style="margin-top:12px;">
-        <div>
-          <label for="platform">Platform</label>
-          <select id="platform">
-            <option value="Auto">Auto-detect</option>
-            <option value="Suno">Suno</option>
-            <option value="YouTube">YouTube</option>
-            <option value="SoundCloud">SoundCloud</option>
-            <option value="Spotify">Spotify</option>
-            <option value="Apple Music">Apple Music</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-        <div>
-          <label for="tone">Tone</label>
-          <select id="tone">
-            <option value="Emotional">Emotional / soulful</option>
-            <option value="Cinematic">Cinematic / mysterious</option>
-            <option value="Intimate">Intimate / vulnerable</option>
-            <option value="Hype">Hype (light)</option>
-          </select>
-        </div>
+    <div class="tabs" id="tabs">
+      <div class="tabbar" role="tablist" aria-label="SoulSound tabs">
+        <button class="tabbtn" role="tab" aria-selected="true" aria-controls="panel-openbuild" id="tab-openbuild" data-tab="openbuild">Open Build</button>
+        <button class="tabbtn" role="tab" aria-selected="false" aria-controls="panel-story" id="tab-story" data-tab="story">Story</button>
+        <button class="tabbtn" role="tab" aria-selected="false" aria-controls="panel-signal" id="tab-signal" data-tab="signal">Signal Archive</button>
+        <button class="tabbtn" role="tab" aria-selected="false" aria-controls="panel-listen" id="tab-listen" data-tab="listen">Listen</button>
+        <button class="tabbtn" role="tab" aria-selected="false" aria-controls="panel-community" id="tab-community" data-tab="community">Community</button>
       </div>
 
-      <div class="row" style="margin-top:12px;">
-        <div>
-          <label for="title">Song Title (optional)</label>
-          <input id="title" placeholder="Example: Dusty Star Particles" />
+      <!-- OPEN BUILD -->
+      <section class="panel active" role="tabpanel" id="panel-openbuild" aria-labelledby="tab-openbuild">
+        <h2>Open Build</h2>
+        <p>
+          This page is the living hub for SoulSound — updates, milestones, and the build process behind the world.
+        </p>
+        <div class="card">
+          <p><strong>Current focus:</strong> pushing past 150K+ words and expanding the Frequency Stacking arc with artifacts.</p>
+          <p class="small">Tip: Keep this section updated weekly. It’s proof of momentum for fans and partners.</p>
         </div>
-        <div>
-          <label for="artist">Artist (optional)</label>
-          <input id="artist" placeholder="Example: SoulSound / Samzin Kreave" />
-        </div>
-      </div>
+      </section>
 
-      <div class="row" style="margin-top:12px;">
-        <div>
-          <label for="mood">Mood keywords (optional)</label>
-          <input id="mood" placeholder="reflective, spiritual, timeless, calm..." />
+      <!-- STORY -->
+      <section class="panel" role="tabpanel" id="panel-story" aria-labelledby="tab-story">
+        <h2>Tomorrow’s Yesterday</h2>
+        <p>
+          A long-form sci-fi / emotional saga about systems, memory, identity, and love — and what it costs to stay human in optimized worlds.
+        </p>
+        <div class="card">
+          <p><strong>World notes:</strong> The city becomes addicted to motion. Frequency Stacking becomes culture. Phoenix guides. Crow and Raven resist through presence.</p>
+          <p class="small">Want to add a synopsis? Paste it here and we’ll tune it for new readers.</p>
         </div>
-        <div>
-          <label for="cta">CTA (optional)</label>
-          <input id="cta" placeholder="Example: Tap link, save it, tell me what you feel." />
+      </section>
+
+      <!-- SIGNAL ARCHIVE -->
+      <section class="panel" role="tabpanel" id="panel-signal" aria-labelledby="tab-signal">
+        <h2>🎧 The Signal Archive</h2>
+        <p>
+          Some artifacts from the SoulSound universe exist as sound rather than text — fragments, residues, and echoes from inside the world.
+        </p>
+        <div class="card">
+          <p>
+            <strong>SoundCloud profile:</strong> <span class="small">SoulSound | Samzin Kreave</span>
+          </p>
+          <div class="ctaRow">
+            <a class="btn" href="https://on.soundcloud.com/AxKQxuE10vZmFfTYTw" target="_blank" rel="noopener noreferrer">
+              Open the Signal Archive →
+            </a>
+            <a class="btn secondary" href="#"
+               onclick="navigator.clipboard.writeText('https://on.soundcloud.com/AxKQxuE10vZmFfTYTw'); alert('Copied SoundCloud link!'); return false;">
+              Copy link
+            </a>
+          </div>
+          <p class="small" style="margin-top:10px;">
+            New signals appear as the story evolves.
+          </p>
         </div>
-      </div>
+      </section>
 
-      <div class="btns">
-        <button onclick="generateAll()">Generate</button>
-        <button class="secondary" onclick="clearAll()">Clear</button>
-      </div>
+      <!-- LISTEN -->
+      <section class="panel" role="tabpanel" id="panel-listen" aria-labelledby="tab-listen">
+        <h2>Listen</h2>
+        <p>
+          Find <strong>Tomorrow’s Yesterday</strong> on <strong>Pocket FM</strong>.
+          (If you have your direct Pocket FM link, paste it into the button below.)
+        </p>
 
-      <div class="muted">
-        Tip: If you’re posting on Suno, keep it short. If you’re posting on TikTok/IG, use 10–18 hashtags max.
-      </div>
+        <div class="card">
+          <p><strong>Pocket FM:</strong> Search <code class="inline">Tomorrow’s Yesterday</code></p>
+          <div class="ctaRow">
+            <!-- Replace the # with your Pocket FM direct link when you have it -->
+            <a class="btn" href="#" onclick="alert('Paste your Pocket FM link into this button later.'); return false;">
+              Listen on Pocket FM →
+            </a>
+          </div>
+          <p class="small" style="margin-top:10px;">
+            Pro tip: keep links in buttons for mobile conversion.
+          </p>
+        </div>
+      </section>
+
+      <!-- COMMUNITY -->
+      <section class="panel" role="tabpanel" id="panel-community" aria-labelledby="tab-community">
+        <h2>Community</h2>
+        <p>
+          A home for theories, reactions, art, and updates is forming. When your subreddit is live, link it here.
+        </p>
+        <div class="card">
+          <p><strong>Coming soon:</strong> r/TomorrowsYesterday (or r/SoulSoundWorld)</p>
+          <p class="small">When you create it, we’ll add a button here and a pinned welcome post.</p>
+        </div>
+      </section>
+
     </div>
 
-    <div class="outgrid">
-      <div class="out">
-        <div class="outhead">
-          <strong>Description (long)</strong>
-          <button class="copy" onclick="copyText('desc')">Copy</button>
-        </div>
-        <textarea id="desc" readonly></textarea>
-      </div>
+    <footer>
+      © <span id="yr"></span> SoulSound • Built in public • Created by Samzin Kreave
+    </footer>
 
-      <div class="out">
-        <div class="outhead">
-          <strong>Caption (short)</strong>
-          <button class="copy" onclick="copyText('cap')">Copy</button>
-        </div>
-        <textarea id="cap" readonly></textarea>
-      </div>
-
-      <div class="out">
-        <div class="outhead">
-          <strong>Hashtags</strong>
-          <button class="copy" onclick="copyText('tags')">Copy</button>
-        </div>
-        <textarea id="tags" readonly></textarea>
-      </div>
-
-      <div class="out">
-        <div class="outhead">
-          <strong>One-liner (pinned comment style)</strong>
-          <button class="copy" onclick="copyText('one')">Copy</button>
-        </div>
-        <textarea id="one" readonly></textarea>
-      </div>
-    </div>
   </div>
 
-  <div id="toast" class="toast">Copied ✅</div>
-
   <script>
-    function detectPlatform(url){
-      const u = (url || "").toLowerCase();
-      if (u.includes("suno.com")) return "Suno";
-      if (u.includes("soundcloud.com")) return "SoundCloud";
-      if (u.includes("youtu.be") || u.includes("youtube.com")) return "YouTube";
-      if (u.includes("spotify.com")) return "Spotify";
-      if (u.includes("music.apple.com") || u.includes("itunes.apple.com")) return "Apple Music";
-      if (!u) return "Other";
-      return "Other";
+    // year
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // tabs logic
+    const buttons = Array.from(document.querySelectorAll('.tabbtn'));
+    const panels = Array.from(document.querySelectorAll('.panel'));
+
+    function activate(tabName){
+      buttons.forEach(btn => {
+        const selected = btn.dataset.tab === tabName;
+        btn.setAttribute('aria-selected', selected ? 'true' : 'false');
+      });
+      panels.forEach(p => {
+        p.classList.toggle('active', p.id === `panel-${tabName}`);
+      });
+      // update hash for shareable tabs
+      history.replaceState(null, '', `#${tabName}`);
     }
 
-    function safe(val){ return (val || "").trim(); }
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => activate(btn.dataset.tab));
+    });
 
-    function generateAll(){
-      const link = safe(document.getElementById("musicLink").value);
-      let platform = document.getElementById("platform").value;
-      const tone = document.getElementById("tone").value;
-      const title = safe(document.getElementById("title").value);
-      const artist = safe(document.getElementById("artist").value);
-      const mood = safe(document.getElementById("mood").value);
-      const cta = safe(document.getElementById("cta").value);
-
-      if(!link){
-        alert("Paste a link first.");
-        return;
-      }
-
-      if(platform === "Auto") platform = detectPlatform(link);
-
-      const songLabel = title ? `“${title}”` : "this track";
-      const artistLabel = artist ? ` by ${artist}` : "";
-      const moodLine = mood ? `Mood: ${mood}. ` : "";
-      const ctaLine = cta ? cta : "If it hits, save it and tell me what you feel.";
-
-      // Tone flavors
-      const toneA = {
-        Emotional: "A soft, honest frequency for the ones carrying quiet weight.",
-        Cinematic: "A cinematic signal—mysterious, reflective, and alive in the silence.",
-        Intimate: "Close-mic truth. Vulnerable. Human. No performance—just presence.",
-        Hype: "New drop—still soulful, still real, but with forward motion."
-      }[tone];
-
-      const desc =
-`${songLabel}${artistLabel} is live on ${platform}.
-${toneA}
-${moodLine}
-Link: ${link}
-
-${ctaLine}
-#SoulSound`;
-
-      const cap =
-`${songLabel} is live on ${platform}. ${toneA} 🔥
-${ctaLine}
-${link}`;
-
-      const baseTags = [
-        "SoulSound",
-        "SamzinKreave",
-        "IndieMusic",
-        "NewMusic",
-        "MusicDiscovery",
-        "EmotionalMusic",
-        "AltSoul",
-        "Cinematic",
-        "SunoAI",
-        "SoundCloud",
-        "YouTubeMusic"
-      ];
-
-      // tighten tag set + platform specific
-      let platformTags = [];
-      if(platform === "Suno") platformTags = ["Suno", "SunoMusic", "AIMusic"];
-      if(platform === "SoundCloud") platformTags = ["SoundCloudRap", "SoundCloudArtist"];
-      if(platform === "YouTube") platformTags = ["YouTube", "MusicVideo"];
-      if(platform === "Spotify") platformTags = ["Spotify", "ReleaseRadar"];
-      if(platform === "Apple Music") platformTags = ["AppleMusic", "iTunes"];
-
-      const moodTags = mood
-        ? mood.split(",").map(x => x.trim()).filter(Boolean).slice(0,6).map(x => x.replace(/\s+/g,""))
-        : [];
-
-      const tags = [...new Set([...baseTags, ...platformTags, ...moodTags])]
-        .slice(0,18)
-        .map(t => "#" + t.replace(/[^a-zA-Z0-9_]/g,""))
-        .join(" ");
-
-      const one =
-`🎧 ${songLabel}${artistLabel} — live on ${platform}.
-Tap: ${link}
-${ctaLine}`;
-
-      document.getElementById("desc").value = desc;
-      document.getElementById("cap").value = cap;
-      document.getElementById("tags").value = tags;
-      document.getElementById("one").value = one;
-    }
-
-    function clearAll(){
-      ["musicLink","title","artist","mood","cta"].forEach(id => document.getElementById(id).value = "");
-      ["desc","cap","tags","one"].forEach(id => document.getElementById(id).value = "");
-      document.getElementById("platform").value = "Auto";
-      document.getElementById("tone").value = "Emotional";
-    }
-
-    async function copyText(id){
-      const el = document.getElementById(id);
-      const txt = el.value || "";
-      if(!txt){ return; }
-      try{
-        await navigator.clipboard.writeText(txt);
-        toast("Copied ✅");
-      }catch(e){
-        // fallback
-        el.select();
-        document.execCommand("copy");
-        toast("Copied ✅");
-      }
-    }
-
-    let tHandle;
-    function toast(msg){
-      const t = document.getElementById("toast");
-      t.textContent = msg;
-      t.classList.add("show");
-      clearTimeout(tHandle);
-      tHandle = setTimeout(()=>t.classList.remove("show"), 1200);
-    }
+    // open tab from URL hash
+    const hash = (location.hash || '').replace('#','').trim();
+    const allowed = new Set(['openbuild','story','signal','listen','community']);
+    if (allowed.has(hash)) activate(hash);
   </script>
 </body>
 </html>
