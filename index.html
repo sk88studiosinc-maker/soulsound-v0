@@ -8,178 +8,103 @@
 
   <style>
     :root{
-      --bg: #07060b;
-      --panel: rgba(255,255,255,0.04);
-      --panel2: rgba(255,255,255,0.06);
-      --border: rgba(255,255,255,0.10);
-      --text: rgba(255,255,255,0.92);
-      --muted: rgba(255,255,255,0.72);
-      --muted2: rgba(255,255,255,0.55);
-      --shadow: 0 18px 60px rgba(0,0,0,0.55);
-      --radius: 18px;
+      --bg:#07060b;
+      --panel:rgba(255,255,255,0.04);
+      --panel2:rgba(255,255,255,0.06);
+      --border:rgba(255,255,255,0.10);
+      --text:rgba(255,255,255,0.92);
+      --muted:rgba(255,255,255,0.72);
+      --muted2:rgba(255,255,255,0.55);
+      --shadow:0 18px 60px rgba(0,0,0,0.55);
+      --radius:18px;
     }
 
-    *{ box-sizing: border-box; }
+    *{box-sizing:border-box}
     body{
       margin:0;
       background:
         radial-gradient(1100px 700px at 50% -120px, rgba(139,92,246,0.20), transparent 65%),
         radial-gradient(900px 600px at 20% 0, rgba(236,72,153,0.16), transparent 60%),
         var(--bg);
-      color: var(--text);
-      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      line-height: 1.55;
+      color:var(--text);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      line-height:1.55;
     }
 
-    .wrap{
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 28px 16px 70px;
-    }
+    .wrap{max-width:980px;margin:0 auto;padding:28px 16px 70px}
 
     .hero{
-      padding: 22px 18px 16px;
-      border: 1px solid var(--border);
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
+      padding:22px 18px 16px;
+      border:1px solid var(--border);
+      background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
     }
 
-    .brand h1{
-      margin:0;
-      font-size: clamp(26px, 4vw, 42px);
-      letter-spacing: 0.02em;
-    }
+    .brand h1{margin:0;font-size:clamp(26px,4vw,42px);letter-spacing:.02em}
+    .tagline{margin:10px 0 0;color:var(--muted);max-width:70ch;font-size:1.02rem}
 
-    .tagline{
-      margin:10px 0 0;
-      color: var(--muted);
-      max-width: 70ch;
-      font-size: 1.02rem;
-    }
-
-    .badges{
-      display:flex;
-      gap:10px;
-      flex-wrap: wrap;
-      margin-top: 14px;
-    }
-
+    .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
     .badge{
-      font-size: 0.92rem;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-      color: var(--muted);
+      font-size:.92rem;padding:8px 12px;border-radius:999px;
+      border:1px solid var(--border);background:rgba(255,255,255,0.03);color:var(--muted)
     }
 
     .card{
-      border: 1px solid var(--border);
-      background: var(--panel2);
-      border-radius: 16px;
-      padding: 14px;
-      margin-top: 12px;
+      border:1px solid var(--border);
+      background:var(--panel2);
+      border-radius:16px;
+      padding:14px;
+      margin-top:12px;
     }
 
-    .ctaRow{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 10px;
-      align-items:center;
-    }
+    .ctaRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;align-items:center}
 
     .btn{
-      display:inline-block;
-      text-decoration:none;
-      color: white;
-      font-weight: 750;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: linear-gradient(135deg, rgba(139,92,246,0.92), rgba(236,72,153,0.85));
-      box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+      display:inline-block;text-decoration:none;color:white;font-weight:750;
+      padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,0.18);
+      background:linear-gradient(135deg, rgba(139,92,246,0.92), rgba(236,72,153,0.85));
+      box-shadow:0 10px 25px rgba(0,0,0,0.35);
     }
-
     .btn.secondary{
-      background: rgba(255,255,255,0.05);
-      color: var(--text);
-      font-weight: 650;
-      box-shadow:none;
+      background:rgba(255,255,255,0.05);color:var(--text);font-weight:650;box-shadow:none
     }
 
     .tabs{
-      margin-top: 18px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: var(--panel);
-      overflow: hidden;
-      box-shadow: var(--shadow);
+      margin-top:18px;border:1px solid var(--border);border-radius:var(--radius);
+      background:var(--panel);overflow:hidden;box-shadow:var(--shadow)
     }
 
     .tabbar{
-      display:flex;
-      gap: 8px;
-      padding: 10px;
-      border-bottom: 1px solid var(--border);
-      background: rgba(0,0,0,0.22);
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
+      display:flex;gap:8px;padding:10px;border-bottom:1px solid var(--border);
+      background:rgba(0,0,0,0.22);overflow-x:auto;-webkit-overflow-scrolling:touch
     }
 
     .tabbtn{
-      appearance:none;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-      color: var(--muted);
-      padding: 10px 12px;
-      border-radius: 999px;
-      font-weight: 650;
-      cursor: pointer;
-      white-space: nowrap;
+      appearance:none;border:1px solid var(--border);background:rgba(255,255,255,0.03);
+      color:var(--muted);padding:10px 12px;border-radius:999px;font-weight:650;cursor:pointer;white-space:nowrap
     }
-
     .tabbtn[aria-selected="true"]{
-      color: white;
-      border-color: rgba(255,255,255,0.22);
-      background: linear-gradient(135deg, rgba(139,92,246,0.40), rgba(236,72,153,0.28));
+      color:white;border-color:rgba(255,255,255,0.22);
+      background:linear-gradient(135deg, rgba(139,92,246,0.40), rgba(236,72,153,0.28))
     }
 
-    .panel{
-      padding: 18px 18px 22px;
-      display:none;
-    }
-    .panel.active{ display:block; }
+    .panel{padding:18px 18px 22px;display:none}
+    .panel.active{display:block}
 
-    h2{ margin: 0 0 10px; font-size: 1.35rem; }
-
-    .small{ color: var(--muted2); font-size: 0.95rem; }
+    h2{margin:0 0 10px;font-size:1.35rem}
+    .small{color:var(--muted2);font-size:.95rem}
 
     .frame{
-      width: 100%;
-      height: 78vh;
-      min-height: 520px;
-      border: 1px solid rgba(255,255,255,0.14);
-      border-radius: 16px;
-      background: rgba(0,0,0,0.20);
+      width:100%;height:78vh;min-height:520px;border:1px solid rgba(255,255,255,0.14);
+      border-radius:16px;background:rgba(0,0,0,0.20)
     }
 
     .player{
-      width:100%;
-      height:166px;
-      border:0;
-      border-radius: 14px;
-      overflow:hidden;
-      background: rgba(0,0,0,0.20);
+      width:100%;height:166px;border:0;border-radius:14px;overflow:hidden;background:rgba(0,0,0,0.20)
     }
 
-    footer{
-      margin-top: 18px;
-      text-align:center;
-      color: var(--muted2);
-      font-size: 0.92rem;
-    }
+    footer{margin-top:18px;text-align:center;color:var(--muted2);font-size:.92rem}
   </style>
 </head>
 
@@ -200,151 +125,82 @@
         <div class="badge">Signal Archive: <strong>SoundCloud</strong></div>
       </div>
 
-      <!-- HOME: Signal Archive + Music -->
       <div class="card">
         <h2 style="margin:0 0 8px;">🎧 Signal Archive (SoundCloud)</h2>
-        <p class="small" style="margin:0 0 10px;">
-          SoulSound | Samzin Kreave — artifacts + music live here.
-        </p>
+        <p class="small" style="margin:0 0 10px;">SoulSound | Samzin Kreave — artifacts + music live here.</p>
 
         <div class="ctaRow">
-          <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank" rel="noopener noreferrer">
-            Open SoundCloud →
-          </a>
-          <a class="btn secondary" href="#music" onclick="location.hash='#music'; return false;">
-            Jump to Music tab ↓
-          </a>
+          <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank">Open SoundCloud →</a>
+          <a class="btn secondary" href="#music" onclick="location.hash='#music';return false;">Jump to Music tab ↓</a>
         </div>
 
-        <p class="small" style="margin:12px 0 6px;">
-          <strong>Tomorrow’s Yesterday (player)</strong> — paste your track link below once.
-        </p>
+        <p class="small" style="margin:12px 0 6px;"><strong>Tomorrow’s Yesterday (player)</strong></p>
 
-        <!-- ✅ IMPORTANT:
-             Replace YOUR_TOMORROWS_YESTERDAY_TRACK_LINK with the track share URL
-             Example: https://soundcloud.com/username/trackname (or any SoundCloud track URL)
-        -->
         <iframe
           class="player"
-          id="tomorrowsYesterdayPlayer"
           allow="autoplay"
-          src="https://w.soundcloud.com/player/?url=YOUR_TOMORROWS_YESTERDAY_TRACK_LINK&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&visual=true">
+          src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fsamzin-kreave-411244422%2Ftomorrows-yesterday&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&visual=true">
         </iframe>
-
-        <p class="small" style="margin:10px 0 0;">
-          If the player shows blank, it just means you haven’t replaced the placeholder URL yet.
-        </p>
       </div>
     </div>
 
-    <div class="tabs" id="tabs">
-      <div class="tabbar" role="tablist" aria-label="SoulSound tabs">
-        <button class="tabbtn" role="tab" aria-selected="true" data-tab="openbuild">Open Build</button>
-        <button class="tabbtn" role="tab" aria-selected="false" data-tab="story">Story</button>
-        <button class="tabbtn" role="tab" aria-selected="false" data-tab="signal">Signal Archive</button>
-        <button class="tabbtn" role="tab" aria-selected="false" data-tab="tool">Expression Tool</button>
-        <button class="tabbtn" role="tab" aria-selected="false" data-tab="music" id="music">Music</button>
-        <button class="tabbtn" role="tab" aria-selected="false" data-tab="social">Social</button>
+    <div class="tabs">
+      <div class="tabbar">
+        <button class="tabbtn" aria-selected="true" data-tab="openbuild">Open Build</button>
+        <button class="tabbtn" data-tab="story">Story</button>
+        <button class="tabbtn" data-tab="signal">Signal Archive</button>
+        <button class="tabbtn" data-tab="tool">Expression Tool</button>
+        <button class="tabbtn" data-tab="music" id="music">Music</button>
+        <button class="tabbtn" data-tab="social">Social</button>
       </div>
 
-      <section class="panel active" id="panel-openbuild">
-        <h2>Open Build</h2>
-        <p class="small">
-          Live progress, chapter milestones, artifacts, and updates — SoulSound built in public.
-        </p>
-      </section>
+      <section class="panel active" id="panel-openbuild"><h2>Open Build</h2></section>
 
-      <section class="panel" id="panel-story">
-        <h2>Tomorrow’s Yesterday</h2>
-        <p class="small">
-          A long-form sci-fi / emotional saga about systems, memory, identity, and love — and what it costs to stay human in optimized worlds.
-        </p>
-      </section>
+      <section class="panel" id="panel-story"><h2>Tomorrow’s Yesterday</h2></section>
 
       <section class="panel" id="panel-signal">
-        <h2>Signal Archive</h2>
-        <p class="small">Artifacts that become sound. Signals that show up as resonance.</p>
-        <div class="card">
-          <div class="ctaRow">
-            <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank" rel="noopener noreferrer">
-              Open Signal Archive on SoundCloud →
-            </a>
-          </div>
-          <p class="small" style="margin-top:10px;">
-            (Same SoundCloud hub used for music + signal artifacts.)
-          </p>
-        </div>
+        <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank">Open Signal Archive →</a>
       </section>
 
       <section class="panel" id="panel-tool">
-        <h2>Expression Tool</h2>
-        <p class="small">Generate captions, CTAs, and hashtags from any music link — ready to post.</p>
-        <div class="card">
-          <div class="ctaRow">
-            <a class="btn" href="./Soulexpression.html" target="_blank" rel="noopener noreferrer">Open Tool in New Tab →</a>
-            <a class="btn secondary" href="./Soulexpression.html">Open Tool (same tab)</a>
-          </div>
-        </div>
-        <div class="card" style="padding:12px;">
-          <iframe class="frame" src="./Soulexpression.html" title="SoulSound Expression Tool"></iframe>
-        </div>
+        <a class="btn" href="./Soulexpression.html" target="_blank">Open Tool →</a>
+        <iframe class="frame" src="./Soulexpression.html"></iframe>
       </section>
 
       <section class="panel" id="panel-music">
-        <h2>Music</h2>
-        <p class="small">Listen to SoulSound music, and follow the Signal Archive hub.</p>
-        <div class="card">
-          <div class="ctaRow">
-            <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank" rel="noopener noreferrer">
-              Follow on SoundCloud →
-            </a>
-          </div>
-          <p class="small" style="margin-top:10px;">
-            Want multiple embedded players here (Top 3 tracks)? Send the track links and I’ll wire them in.
-          </p>
-        </div>
+        <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank">Follow on SoundCloud →</a>
       </section>
 
       <section class="panel" id="panel-social">
-        <h2>Social</h2>
-        <div class="card">
-          <div class="ctaRow">
-            <a class="btn" href="https://www.tiktok.com/@soulsoundcreations" target="_blank" rel="noopener noreferrer">TikTok →</a>
-            <a class="btn" href="https://www.instagram.com/soulsound_creations" target="_blank" rel="noopener noreferrer">Instagram →</a>
-            <a class="btn" href="https://www.linkedin.com/in/samzin-kreave-315848374" target="_blank" rel="noopener noreferrer">LinkedIn →</a>
-            <a class="btn" href="https://www.reddit.com/u/Samzinkreave/s/H6R9DBVVgO" target="_blank" rel="noopener noreferrer">Reddit →</a>
-          </div>
-          <p class="small" style="margin-top:10px;">
-            SoulSound World is the hub. Everything points back here.
-          </p>
+        <div class="ctaRow">
+          <a class="btn" href="https://www.tiktok.com/@soulsoundcreations" target="_blank">TikTok →</a>
+          <a class="btn" href="https://www.instagram.com/soulsound_creations" target="_blank">Instagram →</a>
+          <a class="btn" href="https://www.linkedin.com/in/samzin-kreave-315848374" target="_blank">LinkedIn →</a>
+          <a class="btn" href="https://www.reddit.com/u/Samzinkreave/s/H6R9DBVVgO" target="_blank">Reddit →</a>
         </div>
       </section>
-
     </div>
 
-    <footer>
-      © <span id="yr"></span> SoulSound • Created by Samzin Kreave
-    </footer>
+    <footer>© <span id="yr"></span> SoulSound • Created by Samzin Kreave</footer>
 
   </div>
 
   <script>
     document.getElementById('yr').textContent = new Date().getFullYear();
 
-    const buttons = Array.from(document.querySelectorAll('.tabbtn'));
-    const panels = Array.from(document.querySelectorAll('.panel'));
+    const buttons=[...document.querySelectorAll('.tabbtn')];
+    const panels=[...document.querySelectorAll('.panel')];
 
-    function activate(tabName){
-      buttons.forEach(btn => btn.setAttribute('aria-selected', btn.dataset.tab === tabName ? 'true' : 'false'));
-      panels.forEach(p => p.classList.toggle('active', p.id === `panel-${tabName}`));
-      history.replaceState(null, '', `#${tabName}`);
+    function activate(t){
+      buttons.forEach(b=>b.setAttribute('aria-selected', b.dataset.tab===t?'true':'false'));
+      panels.forEach(p=>p.classList.toggle('active', p.id===`panel-${t}`));
+      history.replaceState(null,'',`#${t}`);
     }
 
-    buttons.forEach(btn => btn.addEventListener('click', () => activate(btn.dataset.tab)));
+    buttons.forEach(b=>b.onclick=()=>activate(b.dataset.tab));
 
-    const hash = (location.hash || '').replace('#','').trim();
-    const allowed = new Set(['openbuild','story','signal','tool','music','social']);
-    if (allowed.has(hash)) activate(hash);
+    const h=(location.hash||'').replace('#','');
+    if(h) activate(h);
   </script>
 </body>
 </html>
