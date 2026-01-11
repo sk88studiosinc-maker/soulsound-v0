@@ -130,17 +130,28 @@
         <p class="small" style="margin:0 0 10px;">SoulSound | Samzin Kreave — artifacts + music live here.</p>
 
         <div class="ctaRow">
-          <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank">Open SoundCloud →</a>
-          <a class="btn secondary" href="#music" onclick="location.hash='#music';return false;">Jump to Music tab ↓</a>
+          <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank" rel="noopener">Open SoundCloud →</a>
+          <a class="btn secondary" href="#music" onclick="activate('music'); return false;">Jump to Music tab ↓</a>
         </div>
 
         <p class="small" style="margin:12px 0 6px;"><strong>Tomorrow’s Yesterday (player)</strong></p>
 
+        <!-- IMPORTANT:
+             Use the canonical track permalink (soundcloud.com/.../track-name).
+             This avoids embed errors that can happen with m.soundcloud.com or shortened URLs. -->
         <iframe
           class="player"
           allow="autoplay"
-          src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fsamzin-kreave-411244422%2Ftomorrows-yesterday&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&visual=true">
+          loading="lazy"
+          src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fsamzin-kreave-411244422%2Ftomorrows-yesterday&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&visual=true">
         </iframe>
+
+        <p class="small" style="margin:10px 0 0;">
+          If the player ever fails on mobile, open the track directly:
+          <a href="https://soundcloud.com/samzin-kreave-411244422/tomorrows-yesterday" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.85);">
+            soundcloud.com/…/tomorrows-yesterday
+          </a>
+        </p>
       </div>
     </div>
 
@@ -150,7 +161,7 @@
         <button class="tabbtn" data-tab="story">Story</button>
         <button class="tabbtn" data-tab="signal">Signal Archive</button>
         <button class="tabbtn" data-tab="tool">Expression Tool</button>
-        <button class="tabbtn" data-tab="music" id="music">Music</button>
+        <button class="tabbtn" data-tab="music">Music</button>
         <button class="tabbtn" data-tab="social">Social</button>
       </div>
 
@@ -162,10 +173,10 @@
 
         <div class="card">
           <div class="ctaRow">
-            <a class="btn" href="https://github.com/sk88studiosinc-maker/soulsound-v0" target="_blank">
+            <a class="btn" href="https://github.com/sk88studiosinc-maker/soulsound-v0" target="_blank" rel="noopener">
               View the SoulSound repo →
             </a>
-            <a class="btn secondary" href="https://github.com/sk88studiosinc-maker" target="_blank">
+            <a class="btn secondary" href="https://github.com/sk88studiosinc-maker" target="_blank" rel="noopener">
               My GitHub profile →
             </a>
           </div>
@@ -175,27 +186,97 @@
         </div>
       </section>
 
-      <section class="panel" id="panel-story"><h2>Tomorrow’s Yesterday</h2></section>
+      <section class="panel" id="panel-story">
+        <h2>Tomorrow’s Yesterday</h2>
+        <p class="small">
+          A sci-fi / weird-lit romance thriller told through memory artifacts, system pressure, and the fight to stay human.
+          Crow and Raven move through a city that rewards speed, forgetfulness, and obedience — while the Signal Archive leaks truth as sound.
+        </p>
+        <div class="card">
+          <p class="small" style="margin:0 0 10px;">
+            Distribution: <strong>Pocket FM</strong> (series). Sound artifacts + music: <strong>SoundCloud</strong>.
+          </p>
+          <div class="ctaRow">
+            <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank" rel="noopener">Signal Archive →</a>
+            <a class="btn secondary" href="#social" onclick="activate('social'); return false;">Follow / share →</a>
+          </div>
+        </div>
+      </section>
 
       <section class="panel" id="panel-signal">
-        <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank">Open Signal Archive →</a>
+        <h2>Signal Archive</h2>
+        <p class="small">
+          Narrative artifacts mirrored as resonance — listen to fragments that used to live only inside the record.
+        </p>
+        <div class="ctaRow">
+          <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank" rel="noopener">Open Signal Archive →</a>
+          <a class="btn secondary" href="https://soundcloud.com/samzin-kreave-411244422" target="_blank" rel="noopener">Open profile (direct) →</a>
+        </div>
+
+        <div class="card">
+          <p class="small" style="margin:0 0 8px;"><strong>Featured: Tomorrow’s Yesterday</strong></p>
+          <iframe
+            class="player"
+            allow="autoplay"
+            loading="lazy"
+            src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fsamzin-kreave-411244422%2Ftomorrows-yesterday&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&visual=true">
+          </iframe>
+        </div>
       </section>
 
       <section class="panel" id="panel-tool">
-        <a class="btn" href="./Soulexpression.html" target="_blank">Open Tool →</a>
-        <iframe class="frame" src="./Soulexpression.html"></iframe>
+        <h2>Expression Tool</h2>
+        <p class="small">
+          Translate a music link into SoulSound-style captions, tags, and structured outputs.
+        </p>
+
+        <div class="ctaRow">
+          <a class="btn" href="./Soulexpression.html" target="_blank" rel="noopener">Open Tool →</a>
+        </div>
+
+        <div class="card">
+          <iframe class="frame" src="./Soulexpression.html" title="SoulSound Expression Tool"></iframe>
+        </div>
       </section>
 
       <section class="panel" id="panel-music">
-        <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank">Follow on SoundCloud →</a>
+        <h2>Music</h2>
+        <p class="small">
+          Follow the SoundCloud Signal Archive and find the official profiles below.
+        </p>
+
+        <div class="card">
+          <p class="small" style="margin:0 0 10px;"><strong>Featured Track: Tomorrow’s Yesterday</strong></p>
+          <iframe
+            class="player"
+            allow="autoplay"
+            loading="lazy"
+            src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fsamzin-kreave-411244422%2Ftomorrows-yesterday&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&visual=true">
+          </iframe>
+          <div class="ctaRow" style="margin-top:12px;">
+            <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank" rel="noopener">SoundCloud (Signal Archive) →</a>
+            <a class="btn secondary" href="https://soundcloud.com/samzin-kreave-411244422" target="_blank" rel="noopener">SoundCloud (direct profile) →</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <p class="small" style="margin:0 0 10px;"><strong>More official links</strong></p>
+          <div class="ctaRow">
+            <a class="btn" href="https://open.spotify.com/artist/3uugCAf5GNkNToPtdWGcQl" target="_blank" rel="noopener">Spotify Artist →</a>
+            <a class="btn" href="https://youtube.com/channel/UCIWC60U8vfRqhti9XFKdgxA" target="_blank" rel="noopener">YouTube Channel →</a>
+          </div>
+        </div>
       </section>
 
       <section class="panel" id="panel-social">
+        <h2>Social</h2>
+        <p class="small">Follow the open build and the SoulSound universe across platforms.</p>
+
         <div class="ctaRow">
-          <a class="btn" href="https://www.tiktok.com/@soulsoundcreations" target="_blank">TikTok →</a>
-          <a class="btn" href="https://www.instagram.com/soulsound_creations" target="_blank">Instagram →</a>
-          <a class="btn" href="https://www.linkedin.com/in/samzin-kreave-315848374" target="_blank">LinkedIn →</a>
-          <a class="btn" href="https://www.reddit.com/u/Samzinkreave/s/H6R9DBVVgO" target="_blank">Reddit →</a>
+          <a class="btn" href="https://www.tiktok.com/@soulsoundcreations" target="_blank" rel="noopener">TikTok →</a>
+          <a class="btn" href="https://www.instagram.com/soulsound_creations" target="_blank" rel="noopener">Instagram →</a>
+          <a class="btn" href="https://www.linkedin.com/in/samzin-kreave-315848374" target="_blank" rel="noopener">LinkedIn →</a>
+          <a class="btn" href="https://www.reddit.com/u/Samzinkreave/s/H6R9DBVVgO" target="_blank" rel="noopener">Reddit →</a>
         </div>
       </section>
     </div>
@@ -205,16 +286,22 @@
   </div>
 
   <script>
-    document.getElementById('yr').textContent=new Date().getFullYear();
-    const buttons=[...document.querySelectorAll('.tabbtn')];
-    const panels=[...document.querySelectorAll('.panel')];
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    const buttons = [...document.querySelectorAll('.tabbtn')];
+    const panels  = [...document.querySelectorAll('.panel')];
+
     function activate(t){
-      buttons.forEach(b=>b.setAttribute('aria-selected', b.dataset.tab===t?'true':'false'));
-      panels.forEach(p=>p.classList.toggle('active', p.id===`panel-${t}`));
+      buttons.forEach(b => b.setAttribute('aria-selected', b.dataset.tab === t ? 'true' : 'false'));
+      panels.forEach(p => p.classList.toggle('active', p.id === `panel-${t}`));
       history.replaceState(null,'',`#${t}`);
+      window.scrollTo({ top: document.querySelector('.tabs').offsetTop - 10, behavior: 'smooth' });
     }
-    buttons.forEach(b=>b.onclick=()=>activate(b.dataset.tab));
-    const h=(location.hash||'').replace('#','');
+    window.activate = activate;
+
+    buttons.forEach(b => b.onclick = () => activate(b.dataset.tab));
+
+    const h = (location.hash || '').replace('#','').trim();
     if(h) activate(h);
   </script>
 </body>
