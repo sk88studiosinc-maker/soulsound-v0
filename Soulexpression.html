@@ -1,314 +1,536 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>SoulExpression — SoulSound</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoulSound Expression Tool</title>
+  <meta name="description" content="Generate captions, CTAs, and hashtags from any music link." />
+
   <style>
-    :root { color-scheme: dark; }
+    :root{
+      --bg:#07060b;
+      --panel:rgba(255,255,255,0.05);
+      --panel2:rgba(255,255,255,0.07);
+      --border:rgba(255,255,255,0.12);
+      --text:rgba(255,255,255,0.92);
+      --muted:rgba(255,255,255,0.72);
+      --muted2:rgba(255,255,255,0.58);
+      --a1:#8b5cf6; /* purple */
+      --a2:#ec4899; /* pink */
+      --radius:18px;
+      --shadow:0 18px 60px rgba(0,0,0,0.55);
+    }
+
+    *{ box-sizing:border-box; }
     body{
-      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:#07070a; color:#eaeaf0;
+      margin:0;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(1100px 700px at 50% -120px, rgba(139,92,246,0.22), transparent 65%),
+        radial-gradient(900px 600px at 20% 0, rgba(236,72,153,0.18), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.55;
     }
-    .wrap{ max-width:980px; margin:0 auto; padding:24px 16px 64px; }
-    .brand{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
-    .brand h1{ margin:0; font-size:1.4rem; letter-spacing:.3px; }
-    .brand small{ color:#a7a7b6; }
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 26px 16px 70px;
+    }
+    .hero{
+      border:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px 18px 16px;
+    }
+    h1{
+      margin:0;
+      font-size: clamp(24px, 4vw, 38px);
+      letter-spacing: 0.02em;
+    }
+    .sub{
+      margin:8px 0 0;
+      color: var(--muted);
+      max-width: 75ch;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+    @media (max-width: 860px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
     .card{
-      margin-top:16px; padding:16px; border-radius:16px;
-      background:linear-gradient(180deg,#0f0f16,#09090e);
-      border:1px solid rgba(255,255,255,.08);
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      border:1px solid var(--border);
+      background: var(--panel);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 14px;
     }
-    label{ display:block; font-size:.95rem; color:#cfcfe0; margin-bottom:8px; }
+    label{
+      display:block;
+      color: var(--muted2);
+      font-size: 0.92rem;
+      margin: 10px 0 6px;
+    }
     input, textarea, select{
-      width:100%; box-sizing:border-box;
-      background:#0b0b11; color:#f4f4ff;
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:12px; padding:12px;
-      outline:none;
+      width:100%;
+      padding: 11px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.28);
+      color: var(--text);
+      outline: none;
+      font-size: 1rem;
     }
-    textarea{ min-height:92px; resize:vertical; }
-    .row{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
-    @media (max-width:760px){ .row{ grid-template-columns:1fr; } }
-    .btns{ display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
-    button{
-      border:0; border-radius:12px; padding:12px 14px;
-      background:#1e1ee8; color:white; font-weight:600;
+    textarea{ min-height: 92px; resize: vertical; }
+
+    .row{
+      display:flex;
+      gap:10px;
+      flex-wrap: wrap;
+      align-items:center;
+      margin-top: 12px;
     }
-    button.secondary{ background:#171724; border:1px solid rgba(255,255,255,.12); color:#eaeaf0; }
-    button:active{ transform: translateY(1px); }
-    .muted{ color:#a7a7b6; font-size:.9rem; margin-top:10px; line-height:1.35; }
-    .outgrid{ display:grid; grid-template-columns:1fr; gap:12px; margin-top:14px; }
-    .out{
-      background:#0b0b11; border:1px solid rgba(255,255,255,.10);
-      border-radius:14px; padding:12px;
+    .btn{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      user-select:none;
+      padding: 11px 14px;
+      border-radius: 999px;
+      font-weight: 800;
+      color:white;
+      background: linear-gradient(135deg, rgba(139,92,246,0.95), rgba(236,72,153,0.88));
+      box-shadow: 0 10px 25px rgba(0,0,0,0.35);
     }
-    .outhead{
-      display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px;
-    }
-    .outhead strong{ font-size:.95rem; }
-    .copy{
-      background:#171724; border:1px solid rgba(255,255,255,.12);
-      color:#eaeaf0; padding:8px 10px; border-radius:10px; font-weight:600;
+    .btn.secondary{
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      font-weight: 700;
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow:none;
     }
     .pill{
-      display:inline-block; padding:6px 10px; border-radius:999px;
-      background:rgba(30,30,232,.14); border:1px solid rgba(30,30,232,.35);
-      color:#cfd0ff; font-size:.8rem;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+      font-size: 0.92rem;
     }
-    .toplinks a{ color:#cfd0ff; text-decoration:none; }
-    .toplinks a:hover{ text-decoration:underline; }
-    .toast{
-      position:fixed; left:50%; bottom:18px; transform:translateX(-50%);
-      background:#11111a; border:1px solid rgba(255,255,255,.12);
-      padding:10px 12px; border-radius:12px; color:#eaeaf0;
-      box-shadow:0 10px 25px rgba(0,0,0,.45);
-      opacity:0; pointer-events:none; transition:opacity .18s ease;
-      font-size:.9rem;
+
+    .out{
+      white-space: pre-wrap;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      background: rgba(0,0,0,0.30);
+      padding: 14px;
+      min-height: 260px;
     }
-    .toast.show{ opacity:1; }
+    .hint{ color: var(--muted2); font-size: 0.92rem; margin-top: 10px; }
+    .tiny{ color: var(--muted2); font-size: 0.86rem; }
+
+    .loading{
+      display:none;
+      margin-top: 10px;
+      color: var(--muted);
+      font-weight: 650;
+    }
+    .loading.show{ display:block; }
+
+    a.link{
+      color: #d7c8ff;
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(215,200,255,0.45);
+    }
+    a.link:hover{ border-bottom-color: rgba(215,200,255,0.85); }
   </style>
 </head>
+
 <body>
   <div class="wrap">
-    <div class="brand">
-      <div>
-        <h1>💡 SoulExpression</h1>
-        <small>Paste any music link → get captions, description, hashtags. Built for SoulSound.</small>
-      </div>
-      <div class="toplinks">
-        <span class="pill">Tool</span>
-        <span style="margin-left:10px;"><a href="./index.html">← Back to Home</a></span>
-      </div>
-    </div>
+    <div class="hero">
+      <h1>SoulSound Expression Tool</h1>
+      <p class="sub">
+        Paste <strong>any</strong> music link. Get platform-aware captions, CTAs, and hashtags — ready to post.
+      </p>
 
-    <div class="card">
-      <label for="musicLink">Music Link (YouTube / Suno / SoundCloud / any)</label>
-      <input id="musicLink" placeholder="Paste link here (ex: https://suno.com/..., https://youtu.be/..., https://soundcloud.com/...)" />
+      <div class="grid">
+        <div class="card">
+          <label for="musicLink">Music link (any platform)</label>
+          <input id="musicLink" placeholder="Paste a link (YouTube, Spotify, Apple Music, SoundCloud, Suno, etc.)" />
 
-      <div class="row" style="margin-top:12px;">
-        <div>
-          <label for="platform">Platform</label>
-          <select id="platform">
-            <option value="Auto">Auto-detect</option>
-            <option value="Suno">Suno</option>
-            <option value="YouTube">YouTube</option>
-            <option value="SoundCloud">SoundCloud</option>
-            <option value="Spotify">Spotify</option>
-            <option value="Apple Music">Apple Music</option>
-            <option value="Other">Other</option>
+          <div class="row">
+            <span class="pill" id="platformPill">Detected platform: <strong style="color:#fff" id="platformText">—</strong></span>
+            <span class="pill">Mode: <strong style="color:#fff" id="modeText">Captions + Hashtags</strong></span>
+          </div>
+
+          <label for="vibe">Vibe / mood (optional)</label>
+          <select id="vibe">
+            <option value="mystic">Mystic / Ethereal</option>
+            <option value="dark">Dark / Intense</option>
+            <option value="romantic">Romantic / Steamy</option>
+            <option value="uplifting">Uplifting / Hope</option>
+            <option value="hype">Hype / High energy</option>
+            <option value="sad">Sad / Vulnerable</option>
+            <option value="cinematic">Cinematic / Epic</option>
+            <option value="chill">Chill / Late night</option>
           </select>
+
+          <label for="notes">Extra context (optional)</label>
+          <textarea id="notes" placeholder="Example: ‘This is from the Tomorrow’s Yesterday universe’ or ‘Techno / trans / disco arc’ or ‘New chapter artifact’"></textarea>
+
+          <div class="row">
+            <button class="btn" onclick="generate()">Generate</button>
+            <button class="btn secondary" onclick="clearAll()">Clear</button>
+            <button class="btn secondary" onclick="openLink()">Open Link</button>
+          </div>
+
+          <div class="loading" id="loading">Listening to the vibe… generating output…</div>
+
+          <div class="hint">
+            Tip: If you want the captions to include a song title, just add it in “Extra context.”
+          </div>
         </div>
-        <div>
-          <label for="tone">Tone</label>
-          <select id="tone">
-            <option value="Emotional">Emotional / soulful</option>
-            <option value="Cinematic">Cinematic / mysterious</option>
-            <option value="Intimate">Intimate / vulnerable</option>
-            <option value="Hype">Hype (light)</option>
-          </select>
+
+        <div class="card">
+          <h2 style="margin:0 0 10px; font-size:1.2rem;">Output</h2>
+          <div class="out" id="output">Paste a link, choose a vibe, and hit Generate.</div>
+
+          <div class="row" style="margin-top:12px;">
+            <button class="btn secondary" onclick="copyOutput()">Copy Output</button>
+            <button class="btn secondary" onclick="copyHashtagsOnly()">Copy Hashtags Only</button>
+          </div>
+
+          <p class="tiny" style="margin-top:10px;">
+            Built for SoulSound open build. Distribution-friendly language included.
+          </p>
         </div>
       </div>
 
-      <div class="row" style="margin-top:12px;">
-        <div>
-          <label for="title">Song Title (optional)</label>
-          <input id="title" placeholder="Example: Dusty Star Particles" />
-        </div>
-        <div>
-          <label for="artist">Artist (optional)</label>
-          <input id="artist" placeholder="Example: SoulSound / Samzin Kreave" />
-        </div>
-      </div>
-
-      <div class="row" style="margin-top:12px;">
-        <div>
-          <label for="mood">Mood keywords (optional)</label>
-          <input id="mood" placeholder="reflective, spiritual, timeless, calm..." />
-        </div>
-        <div>
-          <label for="cta">CTA (optional)</label>
-          <input id="cta" placeholder="Example: Tap link, save it, tell me what you feel." />
-        </div>
-      </div>
-
-      <div class="btns">
-        <button onclick="generateAll()">Generate</button>
-        <button class="secondary" onclick="clearAll()">Clear</button>
-      </div>
-
-      <div class="muted">
-        Tip: If you’re posting on Suno, keep it short. If you’re posting on TikTok/IG, use 10–18 hashtags max.
-      </div>
-    </div>
-
-    <div class="outgrid">
-      <div class="out">
-        <div class="outhead">
-          <strong>Description (long)</strong>
-          <button class="copy" onclick="copyText('desc')">Copy</button>
-        </div>
-        <textarea id="desc" readonly></textarea>
-      </div>
-
-      <div class="out">
-        <div class="outhead">
-          <strong>Caption (short)</strong>
-          <button class="copy" onclick="copyText('cap')">Copy</button>
-        </div>
-        <textarea id="cap" readonly></textarea>
-      </div>
-
-      <div class="out">
-        <div class="outhead">
-          <strong>Hashtags</strong>
-          <button class="copy" onclick="copyText('tags')">Copy</button>
-        </div>
-        <textarea id="tags" readonly></textarea>
-      </div>
-
-      <div class="out">
-        <div class="outhead">
-          <strong>One-liner (pinned comment style)</strong>
-          <button class="copy" onclick="copyText('one')">Copy</button>
-        </div>
-        <textarea id="one" readonly></textarea>
-      </div>
+      <footer style="text-align:center; margin-top:14px; color:rgba(255,255,255,0.55); font-size:0.9rem;">
+        SoulSound • by Samzin Kreave • <span style="opacity:0.85;">Keep it human.</span>
+      </footer>
     </div>
   </div>
 
-  <div id="toast" class="toast">Copied ✅</div>
-
   <script>
-    function detectPlatform(url){
-      const u = (url || "").toLowerCase();
+    // ---------- Platform Detection ----------
+    function detectPlatform(link) {
+      const u = (link || "").toLowerCase().trim();
+
+      if (!u) return "—";
+
+      // SoundCloud
+      if (u.includes("soundcloud.com") || u.includes("on.soundcloud.com")) return "SoundCloud";
+
+      // Suno
       if (u.includes("suno.com")) return "Suno";
-      if (u.includes("soundcloud.com")) return "SoundCloud";
-      if (u.includes("youtu.be") || u.includes("youtube.com")) return "YouTube";
-      if (u.includes("spotify.com")) return "Spotify";
-      if (u.includes("music.apple.com") || u.includes("itunes.apple.com")) return "Apple Music";
-      if (!u) return "Other";
+
+      // YouTube Music must be checked before YouTube sometimes
+      if (u.includes("music.youtube.com")) return "YouTube Music";
+      if (u.includes("youtube.com") || u.includes("youtu.be")) return "YouTube";
+
+      // Spotify
+      if (u.includes("spotify.com") || u.includes("open.spotify.com")) return "Spotify";
+
+      // Apple Music
+      if (u.includes("music.apple.com")) return "Apple Music";
+
+      // Amazon Music
+      if (u.includes("music.amazon.") || u.includes("amazon.com/music")) return "Amazon Music";
+
+      // Deezer
+      if (u.includes("deezer.com")) return "Deezer";
+
+      // Tidal
+      if (u.includes("tidal.com")) return "TIDAL";
+
+      // Bandcamp
+      if (u.includes("bandcamp.com")) return "Bandcamp";
+
+      // Audiomack
+      if (u.includes("audiomack.com")) return "Audiomack";
+
+      // Mixcloud
+      if (u.includes("mixcloud.com")) return "Mixcloud";
+
+      // Vimeo (music vids sometimes)
+      if (u.includes("vimeo.com")) return "Vimeo";
+
+      // Generic / other
       return "Other";
     }
 
-    function safe(val){ return (val || "").trim(); }
+    function platformVerb(platform) {
+      // what do people do there?
+      const map = {
+        "YouTube": "Watch",
+        "YouTube Music": "Listen",
+        "Spotify": "Stream",
+        "Apple Music": "Listen",
+        "Amazon Music": "Listen",
+        "SoundCloud": "Listen",
+        "Suno": "Listen",
+        "Bandcamp": "Support",
+        "Deezer": "Listen",
+        "TIDAL": "Listen",
+        "Audiomack": "Listen",
+        "Mixcloud": "Listen",
+        "Vimeo": "Watch",
+        "Other": "Listen"
+      };
+      return map[platform] || "Listen";
+    }
 
-    function generateAll(){
-      const link = safe(document.getElementById("musicLink").value);
-      let platform = document.getElementById("platform").value;
-      const tone = document.getElementById("tone").value;
-      const title = safe(document.getElementById("title").value);
-      const artist = safe(document.getElementById("artist").value);
-      const mood = safe(document.getElementById("mood").value);
-      const cta = safe(document.getElementById("cta").value);
+    function platformCTA(platform, link) {
+      const verb = platformVerb(platform);
+      const name = (platform === "Other") ? "this link" : platform;
 
-      if(!link){
-        alert("Paste a link first.");
+      // softer, less spammy CTAs
+      const templates = [
+        `${verb} on ${name} → ${link}`,
+        `Tap in here → ${link}`,
+        `Headphones recommended → ${link}`
+      ];
+
+      // platform tweaks
+      if (platform === "SoundCloud") {
+        return [
+          `Listen on SoundCloud → ${link}`,
+          `Drop a timestamp comment if it hits → ${link}`,
+          `Repost if you support indie sound → ${link}`
+        ];
+      }
+      if (platform === "YouTube" || platform === "Vimeo") {
+        return [
+          `Watch the full video → ${link}`,
+          `Run it in HD → ${link}`,
+          `If it hits, share it → ${link}`
+        ];
+      }
+      if (platform === "Spotify") {
+        return [
+          `Stream on Spotify → ${link}`,
+          `Add it to a playlist if it hits → ${link}`,
+          `Save it + run it back → ${link}`
+        ];
+      }
+      if (platform === "Apple Music") {
+        return [
+          `Listen on Apple Music → ${link}`,
+          `Save it if you feel it → ${link}`,
+          `Late-night rotation → ${link}`
+        ];
+      }
+      if (platform === "Bandcamp") {
+        return [
+          `Support on Bandcamp → ${link}`,
+          `Own it / download it here → ${link}`,
+          `Direct support keeps this alive → ${link}`
+        ];
+      }
+      if (platform === "Suno") {
+        return [
+          `Built with Suno — listen here → ${link}`,
+          `AI-assisted, human-driven → ${link}`,
+          `Artifact audio: tap in → ${link}`
+        ];
+      }
+
+      return templates;
+    }
+
+    // ---------- Caption Engine ----------
+    function vibeWords(vibe){
+      const map = {
+        mystic: ["mystic", "ethereal", "resonant", "luminous", "signal"],
+        dark: ["dark", "intense", "raw", "shadow", "pressure"],
+        romantic: ["romantic", "electric", "heat", "close", "pulse"],
+        uplifting: ["uplifting", "hope", "light", "rise", "breath"],
+        hype: ["hype", "fast", "energy", "stack", "rush"],
+        sad: ["vulnerable", "sad", "honest", "soft", "ache"],
+        cinematic: ["cinematic", "epic", "wide", "gravity", "storm"],
+        chill: ["chill", "late-night", "float", "calm", "drift"]
+      };
+      return map[vibe] || map.mystic;
+    }
+
+    function makeHashtags(platform, vibe) {
+      const v = vibeWords(vibe);
+      const base = [
+        "#SoulSound",
+        "#SamzinKreave",
+        "#OriginalMusic",
+        "#IndieArtist",
+        "#NewMusic",
+        "#Music"
+      ];
+
+      const plat = {
+        "YouTube": ["#YouTube", "#MusicVideo"],
+        "YouTube Music": ["#YouTubeMusic"],
+        "Spotify": ["#Spotify", "#NowPlaying"],
+        "Apple Music": ["#AppleMusic"],
+        "Amazon Music": ["#AmazonMusic"],
+        "SoundCloud": ["#SoundCloud"],
+        "Suno": ["#Suno", "#AIMusic"],
+        "Bandcamp": ["#Bandcamp"],
+        "Deezer": ["#Deezer"],
+        "TIDAL": ["#TIDAL"],
+        "Audiomack": ["#Audiomack"],
+        "Mixcloud": ["#Mixcloud"],
+        "Vimeo": ["#Vimeo"],
+        "Other": ["#MusicLink"]
+      };
+
+      const vibeTags = [
+        `#${capNoSpace(v[0])}`,
+        `#${capNoSpace(v[1])}`,
+        `#${capNoSpace(v[2])}`
+      ];
+
+      const storyTags = ["#TomorrowsYesterday", "#Worldbuilding", "#AudioStory"];
+
+      return [...base, ...(plat[platform] || plat.Other), ...vibeTags, ...storyTags]
+        .slice(0, 18)
+        .join(" ");
+    }
+
+    function capNoSpace(s){
+      return String(s || "")
+        .replace(/[^a-zA-Z0-9]+/g, " ")
+        .trim()
+        .split(" ")
+        .map(w => w ? (w[0].toUpperCase() + w.slice(1)) : "")
+        .join("");
+    }
+
+    function buildCaptions(platform, vibe, notes, link){
+      const v = vibeWords(vibe);
+      const distributionLine = "Available on Pocket FM (story) • Signal Archive on SoundCloud";
+      const storyHint = "Tomorrow’s Yesterday — inside the SoulSound world";
+
+      const seed = (notes || "").trim();
+      const seedLine = seed ? `\n\nContext: ${seed}` : "";
+
+      // 5 captions, varied, not spammy
+      const caps = [
+        `1) Not made for the algorithm — made for the soul.\n${v[0]} / ${v[1]} / ${v[2]}.\n${seed ? storyHint : ""}`.trim(),
+        `2) If you feel this one, don’t scroll past it.\nLet it sit for a second.\n${seed ? storyHint : ""}`.trim(),
+        `3) This is a signal, not a song.\nA fragment from inside the world.\n${seed ? storyHint : ""}`.trim(),
+        `4) The city keeps getting faster.\nSo I made something that slows time down.\n${seed ? storyHint : ""}`.trim(),
+        `5) For late nights, long drives, and the parts of you that still feel.\n${seed ? storyHint : ""}`.trim(),
+      ];
+
+      // 3 CTAs
+      const ctas = platformCTA(platform, link);
+
+      // output format
+      return [
+        `Detected platform: ${platform}`,
+        ``,
+        `CAPTIONS`,
+        `${caps.join("\n\n")}${seedLine}`,
+        ``,
+        `CTA OPTIONS`,
+        `${ctas.map((c,i)=>`${i+1}) ${c}`).join("\n")}`,
+        ``,
+        `HASHTAGS`,
+        `${makeHashtags(platform, vibe)}`,
+        ``,
+        `DISTRIBUTION NOTE (optional)`,
+        distributionLine
+      ].join("\n");
+    }
+
+    // ---------- UI ----------
+    const musicLinkEl = document.getElementById("musicLink");
+    const platformTextEl = document.getElementById("platformText");
+    const vibeEl = document.getElementById("vibe");
+    const notesEl = document.getElementById("notes");
+    const outputEl = document.getElementById("output");
+    const loadingEl = document.getElementById("loading");
+
+    function updatePlatform(){
+      const p = detectPlatform(musicLinkEl.value);
+      platformTextEl.textContent = p;
+    }
+    musicLinkEl.addEventListener("input", updatePlatform);
+
+    function generate(){
+      const link = (musicLinkEl.value || "").trim();
+      if (!link) {
+        alert("Paste a music link first.");
         return;
       }
 
-      if(platform === "Auto") platform = detectPlatform(link);
+      const platform = detectPlatform(link);
+      const vibe = vibeEl.value;
+      const notes = notesEl.value;
 
-      const songLabel = title ? `“${title}”` : "this track";
-      const artistLabel = artist ? ` by ${artist}` : "";
-      const moodLine = mood ? `Mood: ${mood}. ` : "";
-      const ctaLine = cta ? cta : "If it hits, save it and tell me what you feel.";
+      updatePlatform();
+      loadingEl.classList.add("show");
+      outputEl.textContent = "Generating…";
 
-      // Tone flavors
-      const toneA = {
-        Emotional: "A soft, honest frequency for the ones carrying quiet weight.",
-        Cinematic: "A cinematic signal—mysterious, reflective, and alive in the silence.",
-        Intimate: "Close-mic truth. Vulnerable. Human. No performance—just presence.",
-        Hype: "New drop—still soulful, still real, but with forward motion."
-      }[tone];
-
-      const desc =
-`${songLabel}${artistLabel} is live on ${platform}.
-${toneA}
-${moodLine}
-Link: ${link}
-
-${ctaLine}
-#SoulSound`;
-
-      const cap =
-`${songLabel} is live on ${platform}. ${toneA} 🔥
-${ctaLine}
-${link}`;
-
-      const baseTags = [
-        "SoulSound",
-        "SamzinKreave",
-        "IndieMusic",
-        "NewMusic",
-        "MusicDiscovery",
-        "EmotionalMusic",
-        "AltSoul",
-        "Cinematic",
-        "SunoAI",
-        "SoundCloud",
-        "YouTubeMusic"
-      ];
-
-      // tighten tag set + platform specific
-      let platformTags = [];
-      if(platform === "Suno") platformTags = ["Suno", "SunoMusic", "AIMusic"];
-      if(platform === "SoundCloud") platformTags = ["SoundCloudRap", "SoundCloudArtist"];
-      if(platform === "YouTube") platformTags = ["YouTube", "MusicVideo"];
-      if(platform === "Spotify") platformTags = ["Spotify", "ReleaseRadar"];
-      if(platform === "Apple Music") platformTags = ["AppleMusic", "iTunes"];
-
-      const moodTags = mood
-        ? mood.split(",").map(x => x.trim()).filter(Boolean).slice(0,6).map(x => x.replace(/\s+/g,""))
-        : [];
-
-      const tags = [...new Set([...baseTags, ...platformTags, ...moodTags])]
-        .slice(0,18)
-        .map(t => "#" + t.replace(/[^a-zA-Z0-9_]/g,""))
-        .join(" ");
-
-      const one =
-`🎧 ${songLabel}${artistLabel} — live on ${platform}.
-Tap: ${link}
-${ctaLine}`;
-
-      document.getElementById("desc").value = desc;
-      document.getElementById("cap").value = cap;
-      document.getElementById("tags").value = tags;
-      document.getElementById("one").value = one;
+      // simulate a tiny processing delay for UX
+      setTimeout(() => {
+        const text = buildCaptions(platform, vibe, notes, link);
+        outputEl.textContent = text;
+        loadingEl.classList.remove("show");
+      }, 500);
     }
 
     function clearAll(){
-      ["musicLink","title","artist","mood","cta"].forEach(id => document.getElementById(id).value = "");
-      ["desc","cap","tags","one"].forEach(id => document.getElementById(id).value = "");
-      document.getElementById("platform").value = "Auto";
-      document.getElementById("tone").value = "Emotional";
+      musicLinkEl.value = "";
+      notesEl.value = "";
+      vibeEl.value = "mystic";
+      platformTextEl.textContent = "—";
+      outputEl.textContent = "Paste a link, choose a vibe, and hit Generate.";
+      loadingEl.classList.remove("show");
     }
 
-    async function copyText(id){
-      const el = document.getElementById(id);
-      const txt = el.value || "";
-      if(!txt){ return; }
-      try{
-        await navigator.clipboard.writeText(txt);
-        toast("Copied ✅");
-      }catch(e){
-        // fallback
-        el.select();
-        document.execCommand("copy");
-        toast("Copied ✅");
-      }
+    function copyOutput(){
+      const text = outputEl.textContent || "";
+      if (!text.trim()) return;
+      navigator.clipboard.writeText(text).then(
+        () => alert("Copied full output!"),
+        () => alert("Copy failed. (Some browsers block clipboard on non-HTTPS pages.)")
+      );
     }
 
-    let tHandle;
-    function toast(msg){
-      const t = document.getElementById("toast");
-      t.textContent = msg;
-      t.classList.add("show");
-      clearTimeout(tHandle);
-      tHandle = setTimeout(()=>t.classList.remove("show"), 1200);
+    function copyHashtagsOnly(){
+      const text = outputEl.textContent || "";
+      const idx = text.indexOf("HASHTAGS");
+      if (idx === -1) { alert("Generate output first."); return; }
+      const part = text.slice(idx);
+      const lines = part.split("\n");
+      // next line after "HASHTAGS" is hashtags
+      const tagLine = (lines[1] || "").trim();
+      if (!tagLine) { alert("No hashtags found yet."); return; }
+
+      navigator.clipboard.writeText(tagLine).then(
+        () => alert("Copied hashtags!"),
+        () => alert("Copy failed.")
+      );
     }
+
+    function openLink(){
+      const link = (musicLinkEl.value || "").trim();
+      if (!link) { alert("Paste a link first."); return; }
+      window.open(link, "_blank", "noopener,noreferrer");
+    }
+
+    // init
+    updatePlatform();
   </script>
 </body>
 </html>
