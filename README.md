@@ -1,4 +1,124 @@
 # soulsound-v0
+Current update Spoiler Alert
+# Frequency Stacking — Player Handbook
+
+## Welcome
+This is not a game about winning.
+It is a game about staying.
+
+Staying human.
+Staying coherent.
+Staying present in a world that keeps trying to move you faster.
+
+You do not turn on a machine.
+You turn on yourself.
+
+You wrap sound around your nervous system.
+You ride resonance through collapsing corridors of reality.
+You glow.
+You move faster than time.
+
+And slowly, if no one is watching, you forget who you were before you glowed.
+
+This game is about what happens next.
+
+You are not here to dominate the world.
+You are here to move through it without losing yourself.
+
+There are no villains here.
+Only costs.
+
+Your job is not to avoid cost.
+Your job is to choose which cost you are willing to carry.
+
+That is what makes you a player.
+
+---
+
+## What Is Frequency Stacking
+
+Frequency Stacking is a mythic narrative game where movement is power, and power is dangerous.
+
+Players take the role of people who can:
+• Ride resonance
+• Phase through dimensions
+• Interface with the System
+• Resist forgetting who they are
+
+The world rewards speed.
+The game rewards coherence.
+
+---
+
+## How to Play
+
+You play in small groups (2–5 players + a Guide).
+
+Each player chooses a class.
+Each class interacts with the world differently.
+All classes are balanced.
+
+Your goal is not to survive.
+Your goal is to remain yourself.
+
+---
+
+## Classes
+
+Stillpoint — Can stabilize resonance and prevent collapse.
+Listener — Can hear hidden frequencies and emotional signals.
+Guardian — Can protect others from burn, phase damage, or system pressure.
+
+No class is stronger.
+Only different.
+
+---
+
+## Stats
+
+COH — Coherence (identity stability)
+RES — Resonance (movement potential)
+BRN — Burn (system overload)
+MEM — Memory (continuity and history)
+
+---
+
+## Winning
+
+You do not win by defeating others.
+
+You win by:
+• Completing arcs
+• Choosing Rest Mods
+• Ascending others through sacrifice
+• Leaving the world intact
+
+Rest is a victory.
+Passing your artifact forward is a victory.
+
+---
+
+## Safety
+
+This game deals with:
+• identity
+• loss
+• attachment
+• transformation
+
+Players must consent to tone.
+Players can pause or stop anytime.
+Aftercare is encouraged.
+
+---
+
+## How to Start
+
+Gather 2–5 players.
+Choose a city.
+Choose a system pressure.
+Begin in motion.
+End in rest.
 ![Status](https://img.shields.io/badge/Status-Chapter%2050%20Sync%20Complete-blueviolet)
 AI-powered music expression tool translating sound into captions and hashtags.
 ---
