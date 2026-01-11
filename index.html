@@ -109,6 +109,48 @@
       background:rgba(0,0,0,0.20)
     }
 
+    /* Tip table */
+    .tipList{margin-top:8px;display:flex;flex-direction:column;gap:10px}
+    .tipItem{
+      border:1px solid var(--border);
+      background:rgba(0,0,0,0.20);
+      border-radius:14px;
+      padding:12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .tipMeta{min-width:240px}
+    .tipLabel{font-weight:750}
+    .addr{
+      font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+      font-size:.92rem;
+      color:rgba(255,255,255,0.82);
+      word-break:break-all;
+    }
+    .copyBtn{
+      border:1px solid rgba(255,255,255,0.18);
+      background:rgba(255,255,255,0.06);
+      color:rgba(255,255,255,0.92);
+      padding:10px 12px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:700;
+      white-space:nowrap;
+    }
+    .copyBtn:active{transform:translateY(1px)}
+    .toast{
+      margin-top:10px;
+      display:none;
+      border:1px solid rgba(255,255,255,0.16);
+      background:rgba(0,0,0,0.28);
+      border-radius:12px;
+      padding:10px 12px;
+      color:rgba(255,255,255,0.86);
+    }
+
     footer{margin-top:18px;text-align:center;color:var(--muted2);font-size:.92rem}
   </style>
 </head>
@@ -137,6 +179,7 @@
         <div class="ctaRow">
           <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank" rel="noopener">Open SoundCloud →</a>
           <a class="btn secondary" href="#music" onclick="activate('music');return false;">Jump to Music tab ↓</a>
+          <a class="btn secondary" href="#tip" onclick="activate('tip');return false;">Tip the Build ↓</a>
         </div>
 
         <p class="small" style="margin:12px 0 6px;"><strong>Tomorrow’s Yesterday (player)</strong></p>
@@ -157,6 +200,8 @@
         <button class="tabbtn" data-tab="signal">Signal Archive</button>
         <button class="tabbtn" data-tab="tool">Expression Tool</button>
         <button class="tabbtn" data-tab="music">Music</button>
+        <button class="tabbtn" data-tab="artifacts">Artifacts</button>
+        <button class="tabbtn" data-tab="tip">Tip the Build</button>
         <button class="tabbtn" data-tab="social">Social</button>
       </div>
 
@@ -209,6 +254,7 @@
         </p>
         <div class="ctaRow">
           <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank" rel="noopener">Open Signal Archive →</a>
+          <a class="btn secondary" href="https://soundcloud.com/samzin-kreave-411244422" target="_blank" rel="noopener">SoundCloud (direct) →</a>
         </div>
       </section>
 
@@ -230,21 +276,113 @@
       <section class="panel" id="panel-music">
         <h2>Music</h2>
         <div class="card">
+          <p class="small" style="margin:0 0 10px;"><strong>Official Music Links</strong></p>
           <div class="ctaRow">
-            <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank">SoundCloud →</a>
-            <a class="btn" href="https://open.spotify.com/artist/3uugCAf5GNkNToPtdWGcQl" target="_blank">Spotify →</a>
-            <a class="btn" href="https://www.youtube.com/channel/UCIWC60U8vfRqhti9XFKdgxA" target="_blank">YouTube →</a>
+            <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank" rel="noopener">SoundCloud →</a>
+            <a class="btn" href="https://open.spotify.com/artist/3uugCAf5GNkNToPtdWGcQl" target="_blank" rel="noopener">Spotify →</a>
+            <a class="btn" href="https://www.youtube.com/channel/UCIWC60U8vfRqhti9XFKdgxA" target="_blank" rel="noopener">YouTube →</a>
           </div>
+        </div>
+
+        <div class="card">
+          <p class="small" style="margin:0 0 8px;"><strong>Featured: Tomorrow’s Yesterday</strong></p>
+          <iframe
+            class="player"
+            allow="autoplay"
+            loading="lazy"
+            src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fsamzin-kreave-411244422%2Ftomorrows-yesterday&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&visual=true">
+          </iframe>
+        </div>
+      </section>
+
+      <section class="panel" id="panel-artifacts">
+        <h2>Artifacts</h2>
+        <p class="small">
+          Rare visual artifacts and prototype pieces from the SoulSound universe.
+        </p>
+
+        <div class="card">
+          <p class="small" style="margin:0 0 10px;"><strong>Collections + Drops</strong></p>
+          <div class="ctaRow">
+            <a class="btn" href="https://zora.co/@soulsound_samzinkreave" target="_blank" rel="noopener">Zora Profile →</a>
+          </div>
+
+          <p class="small" style="margin-top:12px;">
+            Built with meaning, not hype.
+          </p>
+        </div>
+      </section>
+
+      <!-- ✅ NEW TAB: TIP THE BUILD -->
+      <section class="panel" id="panel-tip">
+        <h2>Tip the Build</h2>
+        <p class="small">
+          If you want to support the SoulSound open build directly, you can tip through Base / Coinbase-compatible addresses below.
+          Thank you for fueling the universe.
+        </p>
+
+        <div class="card">
+          <p class="small" style="margin:0 0 10px;"><strong>Base Profile</strong></p>
+          <div class="ctaRow">
+            <a class="btn" href="https://base.app/profile/soulsound" target="_blank" rel="noopener">Open Base Profile →</a>
+            <button class="copyBtn" type="button" data-copy="https://base.app/profile/soulsound">Copy Base link</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <p class="small" style="margin:0 0 10px;"><strong>Crypto Addresses</strong> (tap copy)</p>
+
+          <div class="tipList">
+            <div class="tipItem">
+              <div class="tipMeta">
+                <div class="tipLabel">Address 1</div>
+                <div class="addr">0xF9FE7d2DeB453813CF86bF4f883b5A12D1e01D78</div>
+              </div>
+              <button class="copyBtn" type="button" data-copy="0xF9FE7d2DeB453813CF86bF4f883b5A12D1e01D78">Copy</button>
+            </div>
+
+            <div class="tipItem">
+              <div class="tipMeta">
+                <div class="tipLabel">Address 2</div>
+                <div class="addr">0xE6F57563A3CE3A4a983f50c396d4D57B87A7A756</div>
+              </div>
+              <button class="copyBtn" type="button" data-copy="0xE6F57563A3CE3A4a983f50c396d4D57B87A7A756">Copy</button>
+            </div>
+
+            <div class="tipItem">
+              <div class="tipMeta">
+                <div class="tipLabel">Address 3</div>
+                <div class="addr">0x6322C8298A873c9D070909AE506119060bbA8C9b</div>
+              </div>
+              <button class="copyBtn" type="button" data-copy="0x6322C8298A873c9D070909AE506119060bbA8C9b">Copy</button>
+            </div>
+
+            <div class="tipItem">
+              <div class="tipMeta">
+                <div class="tipLabel">Address 4</div>
+                <div class="addr">0x34121716E58a27edbA12C0708d423b2691172065</div>
+              </div>
+              <button class="copyBtn" type="button" data-copy="0x34121716E58a27edbA12C0708d423b2691172065">Copy</button>
+            </div>
+          </div>
+
+          <div class="toast" id="toast">Copied.</div>
+
+          <p class="small" style="margin-top:12px;">
+            More links (Base / Coinbase) can be added here anytime — just drop them to me and I’ll update the buttons.
+          </p>
         </div>
       </section>
 
       <section class="panel" id="panel-social">
         <h2>Social</h2>
+        <p class="small">Follow the open build and the SoulSound universe across platforms.</p>
+
         <div class="ctaRow">
-          <a class="btn" href="https://www.tiktok.com/@soulsoundcreations" target="_blank">TikTok →</a>
-          <a class="btn" href="https://www.instagram.com/soulsound_creations" target="_blank">Instagram →</a>
-          <a class="btn" href="https://www.linkedin.com/in/samzin-kreave-315848374" target="_blank">LinkedIn →</a>
-          <a class="btn" href="https://www.reddit.com/u/Samzinkreave/s/H6R9DBVVgO" target="_blank">Reddit →</a>
+          <a class="btn" href="https://www.tiktok.com/@soulsoundcreations" target="_blank" rel="noopener">TikTok →</a>
+          <a class="btn" href="https://www.instagram.com/soulsound_creations" target="_blank" rel="noopener">Instagram →</a>
+          <a class="btn" href="https://www.linkedin.com/in/samzin-kreave-315848374" target="_blank" rel="noopener">LinkedIn →</a>
+          <a class="btn" href="https://www.reddit.com/u/Samzinkreave/s/H6R9DBVVgO" target="_blank" rel="noopener">Reddit →</a>
         </div>
       </section>
     </div>
@@ -257,14 +395,46 @@
     document.getElementById('yr').textContent=new Date().getFullYear();
     const buttons=[...document.querySelectorAll('.tabbtn')];
     const panels=[...document.querySelectorAll('.panel')];
+
     function activate(t){
       buttons.forEach(b=>b.setAttribute('aria-selected', b.dataset.tab===t?'true':'false'));
       panels.forEach(p=>p.classList.toggle('active', p.id===`panel-${t}`));
       history.replaceState(null,'',`#${t}`);
     }
+    window.activate = activate;
+
     buttons.forEach(b=>b.onclick=()=>activate(b.dataset.tab));
-    const h=(location.hash||'').replace('#','');
+    const h=(location.hash||'').replace('#','').trim();
     if(h) activate(h);
+
+    // Copy-to-clipboard buttons (works on GitHub Pages / mobile)
+    const toast = document.getElementById('toast');
+    function showToast(msg){
+      if(!toast) return;
+      toast.textContent = msg;
+      toast.style.display = 'block';
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(()=>{ toast.style.display='none'; }, 1400);
+    }
+
+    document.addEventListener('click', async (e) => {
+      const btn = e.target.closest('[data-copy]');
+      if(!btn) return;
+      const text = btn.getAttribute('data-copy');
+      try{
+        await navigator.clipboard.writeText(text);
+        showToast('Copied to clipboard ✅');
+      }catch(err){
+        // fallback
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast('Copied ✅');
+      }
+    });
   </script>
 </body>
 </html>
