@@ -109,7 +109,7 @@
       background:rgba(0,0,0,0.20)
     }
 
-    /* Tip table */
+    /* Tip the Build UI */
     .tipList{margin-top:8px;display:flex;flex-direction:column;gap:10px}
     .tipItem{
       border:1px solid var(--border);
@@ -313,20 +313,36 @@
         </div>
       </section>
 
-      <!-- ✅ NEW TAB: TIP THE BUILD -->
       <section class="panel" id="panel-tip">
         <h2>Tip the Build</h2>
         <p class="small">
-          If you want to support the SoulSound open build directly, you can tip through Base / Coinbase-compatible addresses below.
-          Thank you for fueling the universe.
+          Support the SoulSound open build directly through Base + Coinbase-compatible links and addresses.
         </p>
 
         <div class="card">
-          <p class="small" style="margin:0 0 10px;"><strong>Base Profile</strong></p>
+          <p class="small" style="margin:0 0 10px;"><strong>Support the Build</strong></p>
+
           <div class="ctaRow">
-            <a class="btn" href="https://base.app/profile/soulsound" target="_blank" rel="noopener">Open Base Profile →</a>
-            <button class="copyBtn" type="button" data-copy="https://base.app/profile/soulsound">Copy Base link</button>
+            <a class="btn" href="https://base.app/profile/soulsound" target="_blank" rel="noopener">
+              Open Base Profile →
+            </a>
+
+            <a class="btn" href="https://coinbase.com/join/NM4TFLJ?src=android-share" target="_blank" rel="noopener">
+              Coinbase (Get $30 BTC) →
+            </a>
+
+            <button class="copyBtn" type="button" data-copy="https://base.app/profile/soulsound">
+              Copy Base link
+            </button>
+
+            <button class="copyBtn" type="button" data-copy="https://coinbase.com/join/NM4TFLJ?src=android-share">
+              Copy Coinbase link
+            </button>
           </div>
+
+          <p class="small" style="margin-top:10px;">
+            Sign up using the Coinbase link to earn $30 in BTC, and your support helps fuel the SoulSound open build.
+          </p>
         </div>
 
         <div class="card">
@@ -369,7 +385,7 @@
           <div class="toast" id="toast">Copied.</div>
 
           <p class="small" style="margin-top:12px;">
-            More links (Base / Coinbase) can be added here anytime — just drop them to me and I’ll update the buttons.
+            Tip responsibly — always double-check addresses before sending.
           </p>
         </div>
       </section>
@@ -425,7 +441,6 @@
         await navigator.clipboard.writeText(text);
         showToast('Copied to clipboard ✅');
       }catch(err){
-        // fallback
         const ta = document.createElement('textarea');
         ta.value = text;
         document.body.appendChild(ta);
