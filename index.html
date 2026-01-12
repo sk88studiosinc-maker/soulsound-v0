@@ -237,6 +237,12 @@
         <button class="tabbtn" aria-selected="true" data-tab="openbuild">
           <span>🛠️</span> Open Build
         </button>
+
+        <!-- ADDED: LIVE BUILD TAB -->
+        <button class="tabbtn" data-tab="live">
+          <span>🔴</span> Live Build
+        </button>
+
         <button class="tabbtn" data-tab="story">
           <span>📖</span> Story
         </button>
@@ -276,6 +282,69 @@
               <div class="pactions">
                 <a class="btn" href="https://github.com/sk88studiosinc-maker/soulsound-v0" target="_blank" rel="noopener">SoulSound repo →</a>
                 <a class="btn ghost" href="https://github.com/sk88studiosinc-maker" target="_blank" rel="noopener">My GitHub profile →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ADDED: LIVE BUILD PANEL -->
+      <section class="panel" id="panel-live">
+        <h2>Live Build — Tools of SoulSound World</h2>
+        <p class="small">
+          SoulSound World is constructed in public. These are the instruments used to forge the artifacts — sound, story, and signal.
+          Suno and BandLab aren’t “platforms” here — they’re tools inside the build process.
+        </p>
+
+        <div class="grid">
+          <div class="platform col12">
+            <div class="picon" aria-hidden="true">🎶</div>
+            <div>
+              <p class="ptitle">Suno — Generation Forge (Tool)</p>
+              <p class="pmeta">
+                Used to generate raw musical artifacts (emotion-first composition + sound synthesis) that become part of SoulSound World.
+              </p>
+              <div class="pactions">
+                <a class="btn" href="https://suno.com/@soulsoundsamzin" target="_blank" rel="noopener">Open Suno profile →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="platform col12">
+            <div class="picon" aria-hidden="true">🎛️</div>
+            <div>
+              <p class="ptitle">BandLab — Refinement Studio (Tool)</p>
+              <p class="pmeta">
+                Used to refine artifacts: arrangement, structure, vocal layers, mixing, and final form — turning signals into finished releases.
+              </p>
+              <div class="pactions">
+                <a class="btn" href="https://www.bandlab.com/sk88studiozinc" target="_blank" rel="noopener">Open BandLab profile →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="platform col12">
+            <div class="picon" aria-hidden="true">📻</div>
+            <div>
+              <p class="ptitle">Pocket FM — Narrative Channel (Tool)</p>
+              <p class="pmeta">
+                Used to transmit the story layer of SoulSound World — <em>Tomorrow’s Yesterday</em> and related narrative artifacts.
+              </p>
+              <div class="pactions">
+                <a class="btn" href="https://pocketfm.onelink.me/2IE7/8ko9llk1" target="_blank" rel="noopener">Listen on Pocket FM →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="platform col12">
+            <div class="picon" aria-hidden="true">🔴</div>
+            <div>
+              <p class="ptitle">Watch the Build (optional)</p>
+              <p class="pmeta">
+                To let people watch you work inside Suno/BandLab, stream your screen on YouTube Live or Twitch — then we’ll embed the live player here.
+              </p>
+              <div class="pactions">
+                <a class="btn ghost" href="https://youtube.com/channel/UCIWC60U8vfRqhti9XFKdgxA?si=-T1QpIl-UW-zIWDb" target="_blank" rel="noopener">YouTube channel →</a>
               </div>
             </div>
           </div>
@@ -467,80 +536,4 @@
 
           <div class="platform col12">
             <div class="picon" aria-hidden="true">🪙</div>
-            <div>
-              <p class="ptitle">Coinbase Referral</p>
-              <p class="pmeta">Optional — earn $30 BTC (Coinbase terms apply)</p>
-              <div class="pactions">
-                <a class="btn" href="https://coinbase.com/join/NM4TFLJ?src=android-share" target="_blank" rel="noopener">Open Coinbase referral →</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="platform col12">
-            <div class="picon" aria-hidden="true">💜</div>
-            <div>
-              <p class="ptitle">Main Tip Address (Base network)</p>
-              <p class="pmeta">Copy/paste the address below.</p>
-
-              <div class="warn">
-                <strong>Important:</strong> This is a <strong>Base network</strong> address.
-                <strong>Do not send USDC over any other network</strong> to this address or your funds may be lost.
-              </div>
-
-              <div class="copyRow">
-                <div class="copyBox">
-                  <code class="mono" id="baseTipAddr">0x1942866814727812830Ce352154aB73A999b4cf9</code>
-                </div>
-                <button class="copyBtn" onclick="copyText('baseTipAddr')">Copy address</button>
-              </div>
-
-              <p class="small" style="margin-top:10px;">
-                Thank you for supporting the SoulSound world — story, music, and artifacts built in public.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <footer>© <span id="yr"></span> SoulSound • Created by Samzin Kreave</footer>
-
-  </div>
-
-  <script>
-    document.getElementById('yr').textContent = new Date().getFullYear();
-
-    const buttons = [...document.querySelectorAll('.tabbtn')];
-    const panels  = [...document.querySelectorAll('.panel')];
-
-    function activate(t){
-      buttons.forEach(b => b.setAttribute('aria-selected', b.dataset.tab === t ? 'true' : 'false'));
-      panels.forEach(p => p.classList.toggle('active', p.id === `panel-${t}`));
-      history.replaceState(null,'',`#${t}`);
-    }
-
-    buttons.forEach(b => b.onclick = () => activate(b.dataset.tab));
-
-    const h = (location.hash || '').replace('#','');
-    if(h) activate(h);
-
-    async function copyText(id){
-      const el = document.getElementById(id);
-      const txt = el ? el.textContent.trim() : '';
-      if(!txt) return;
-      try{
-        await navigator.clipboard.writeText(txt);
-        alert('Copied!');
-      }catch(e){
-        const ta = document.createElement('textarea');
-        ta.value = txt;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
-        alert('Copied!');
-      }
-    }
-  </script>
-</body>
-  </html>
+          
