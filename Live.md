@@ -6,38 +6,40 @@ permalink: /live/
 
 # 🔴 SoulSound Live
 
-A public open-build portal — watch the work happen, then explore the artifacts.
+Welcome to the open build of **SoulSound World** — a living universe formed through sound, story, and memory.
+
+Everything here is built in public.  
+What you hear and see is not content — it is **construction**.
+
+The tools below are not platforms.  
+They are instruments used to shape this world.
 
 ---
 
-## 🎶 Suno — Live Build
+## 🎶 Suno — Generation Forge
 
-**Suno Profile (Artifacts):**  
+**Tool:** Suno (sound synthesis & emotional composition)  
+**Purpose:** Used to generate the raw musical artifacts that become part of SoulSound World.
+
+**Artifact Forge:**  
 https://suno.com/@soulsoundsamzin
 
-> Tip: If you don’t see an embed here yet, tap the link above — Suno doesn’t always allow clean iframe embedding, so we route people straight to your profile.
+---
+
+## 🎛 BandLab — Refinement Studio
+
+**Tool:** BandLab (arrangement, vocals, structure, mixing)  
+**Purpose:** Used to refine, shape, and complete the artifacts generated in the forge.
+
+**Studio Access:**  
+https://www.bandlab.com/sk88studiozinc
 
 ---
 
-## 🎛 BandLab — Studio
+## 📖 Pocket FM — Narrative Channel
 
-**BandLab Profile:**  
-PASTE_BANDLAB_LINK_HERE
+**Tool:** Pocket FM (serialized audio & story distribution)  
+**Purpose:** Used to transmit the story layer of SoulSound World — *Tomorrow’s Yesterday* and related narrative artifacts.
 
-(When you paste your BandLab link, I’ll also add the proper embed block if BandLab gives you one.)
-
----
-
-## 📖 Pocket FM — Listen
-
-**Tomorrow’s Yesterday (Pocket FM):**  
+**Story Channel:**  
 PASTE_POCKETFM_LINK_HERE
-
----
-
-## 🔥 Live Stream (optional but powerful)
-
-If you’re running a live screen-share (YouTube Live / Twitch), paste the link here and I’ll embed it:
-
-**Live stream link:**  
-PASTE_STREAM_LINK_HERE
