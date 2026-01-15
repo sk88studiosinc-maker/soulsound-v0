@@ -90,6 +90,22 @@
       box-shadow:none;
     }
 
+    /* MISSION SECTION (NEW) */
+    .mission{
+      margin-top:14px;
+      border:1px solid var(--border);
+      background:linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.02));
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:16px 18px 18px;
+    }
+    .mission h2{margin:0 0 8px;font-size:1.35rem}
+    .mission p{margin:10px 0;color:var(--muted);max-width:80ch}
+    .mission .missionTag{
+      margin-top:10px;
+      display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+    }
+
     .tabs{
       margin-top:18px;border:1px solid var(--border);border-radius:var(--radius);
       background:var(--panel);overflow:hidden;box-shadow:var(--shadow)
@@ -239,6 +255,31 @@
         </iframe>
       </div>
     </div>
+
+    <!-- MISSION (NEW) -->
+    <section class="mission" id="mission">
+      <h2>Our Mission</h2>
+      <p>
+        SoulSound exists to protect and amplify human emotional expression in a world increasingly shaped by automation, speed, and surface-level culture.
+      </p>
+      <p>
+        We build living story worlds, music, and creative tools that interlock — not to optimize attention, but to deepen connection. Every song is an artifact. Every story is a signal. Every creator is a voice that deserves space to unfold honestly.
+      </p>
+      <p>
+        SoulSound is not a platform for consumption — it is a space for resonance.
+      </p>
+      <p>
+        We support artists, writers, and listeners who are seeking meaning, not just reach; depth, not just scale; and alignment, not just growth.
+      </p>
+      <p>
+        Our mission is to help humans remember themselves through sound, story, and shared presence — and to build creative systems that feel alive, ethical, and emotionally true.
+      </p>
+
+      <div class="missionTag">
+        <a class="btn secondary" href="#openbuild" onclick="location.hash='#openbuild';return false;">Explore the build ↓</a>
+        <span class="badge">Built for resonance, not reach.</span>
+      </div>
+    </section>
 
     <div class="tabs">
       <div class="tabbar">
@@ -455,213 +496,4 @@
             <div class="picon" aria-hidden="true">🕰️</div>
             <div>
               <p class="ptitle">Tomorrow’s Yesterday</p>
-              <p class="pmeta">Temporal reflection — memory, time, and emotional recursion.</p>
-
-              <div class="pactions">
-                <a class="btn secondary" href="https://open.spotify.com/track/5lnWUVPsTM6fA27Gmv4sNL?si=cktbUvpzRZK-CEXsMTfnVw" target="_blank" rel="noopener">Spotify →</a>
-                <a class="btn ghost" href="https://youtu.be/orMgsG4lcgQ?si=nco4i7C2PAc10cxy" target="_blank" rel="noopener">YouTube →</a>
-                <span class="badge">Apple: processing</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="warn" style="margin-top:14px;">
-          <strong>Supporters & early lore fans:</strong> collecting artifacts keeps the story + sound building forward.
-          If you want to support directly, visit the <em>Tip the Build</em> tab.
-        </div>
-      </section>
-
-      <!-- SOCIAL -->
-      <section class="panel" id="panel-social">
-        <h2>Social Links</h2>
-        <p class="small">Follow the build in public — story, music, updates.</p>
-
-        <div class="grid">
-          <div class="platform col6">
-            <div class="picon" aria-hidden="true">🎬</div>
-            <div>
-              <p class="ptitle">TikTok</p>
-              <p class="pmeta">@soulsoundcreations</p>
-              <div class="pactions">
-                <a class="btn" href="https://www.tiktok.com/@soulsoundcreations" target="_blank" rel="noopener">Open TikTok →</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="platform col6">
-            <div class="picon" aria-hidden="true">📸</div>
-            <div>
-              <p class="ptitle">Instagram</p>
-              <p class="pmeta">@soulsound_creations</p>
-              <div class="pactions">
-                <a class="btn" href="https://www.instagram.com/soulsound_creations" target="_blank" rel="noopener">Open Instagram →</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="platform col6">
-            <div class="picon" aria-hidden="true">💼</div>
-            <div>
-              <p class="ptitle">LinkedIn</p>
-              <p class="pmeta">Professional updates + project hub</p>
-              <div class="pactions">
-                <a class="btn" href="https://www.linkedin.com/in/samzin-kreave-315848374" target="_blank" rel="noopener">Open LinkedIn →</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="platform col6">
-            <div class="picon" aria-hidden="true">👽</div>
-            <div>
-              <p class="ptitle">Reddit</p>
-              <p class="pmeta">u/Samzinkreave</p>
-              <div class="pactions">
-                <a class="btn" href="https://www.reddit.com/u/Samzinkreave/s/H6R9DBVVgO" target="_blank" rel="noopener">Open Reddit →</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ZORA -->
-      <section class="panel" id="panel-zora">
-        <h2>Zora</h2>
-        <p class="small">Collectable artifacts + drops for the SoulSound universe.</p>
-
-        <div class="grid">
-          <div class="platform col12">
-            <div class="picon" style="padding:0;">
-              <img src="./zora-soulsound.png" alt="SoulSound Zora logo" />
-            </div>
-            <div>
-              <p class="ptitle">SoulSound on Zora</p>
-              <p class="pmeta">Creator page + onchain artifacts</p>
-              <div class="pactions">
-                <a class="btn" href="https://zora.co/@soulsound_samzinkreave" target="_blank" rel="noopener">Open Zora →</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- TIP THE BUILD -->
-      <section class="panel" id="panel-tips">
-        <h2>Tip the Build</h2>
-        <p class="small">Support the SoulSound open build directly (no hype, no promises — just gratitude).</p>
-
-        <div class="grid">
-          <div class="platform col12">
-            <div class="picon" aria-hidden="true">🟦</div>
-            <div>
-              <p class="ptitle">Base Profile</p>
-              <p class="pmeta">@soulsound</p>
-              <div class="pactions">
-                <a class="btn" href="https://base.app/profile/soulsound" target="_blank" rel="noopener">Open Base →</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="platform col12">
-            <div class="picon" aria-hidden="true">🪙</div>
-            <div>
-              <p class="ptitle">Coinbase Referral</p>
-              <p class="pmeta">Optional — earn $30 BTC (Coinbase terms apply)</p>
-              <div class="pactions">
-                <a class="btn" href="https://coinbase.com/join/NM4TFLJ?src=android-share" target="_blank" rel="noopener">Open Coinbase referral →</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="platform col12">
-            <div class="picon" aria-hidden="true">💜</div>
-            <div>
-              <p class="ptitle">Main Tip Address (Base network)</p>
-              <p class="pmeta">Copy/paste the address below.</p>
-
-              <div class="warn">
-                <strong>Important:</strong> This is a <strong>Base network</strong> address.
-                <strong>Do not send USDC over any other network</strong> to this address or your funds may be lost.
-              </div>
-
-              <div class="copyRow">
-                <div class="copyBox">
-                  <code class="mono" id="baseTipAddr">0x1942866814727812830Ce352154aB73A999b4cf9</code>
-                </div>
-                <button class="copyBtn" type="button" onclick="copyText('baseTipAddr')">Copy address</button>
-              </div>
-
-              <p class="small" style="margin-top:10px;">
-                Thank you for supporting the SoulSound world — story, music, and artifacts built in public.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <footer>© <span id="yr"></span> SoulSound • Created by Samzin Kreave</footer>
-  </div>
-
-  <script>
-    (function(){
-      const yr = document.getElementById('yr');
-      if (yr) yr.textContent = new Date().getFullYear();
-
-      const buttons = Array.from(document.querySelectorAll('.tabbtn'));
-      const panels  = Array.from(document.querySelectorAll('.panel'));
-
-      function panelExists(tabName){
-        return panels.some(p => p.id === `panel-${tabName}`);
-      }
-
-      function activate(tabName){
-        if(!tabName || !panelExists(tabName)) tabName = 'openbuild';
-
-        buttons.forEach(b => {
-          b.setAttribute('aria-selected', b.dataset.tab === tabName ? 'true' : 'false');
-        });
-
-        panels.forEach(p => {
-          p.classList.toggle('active', p.id === `panel-${tabName}`);
-        });
-
-        try { history.replaceState(null,'',`#${tabName}`); } catch(e){}
-      }
-
-      buttons.forEach(b => {
-        b.addEventListener('click', (e) => {
-          e.preventDefault();
-          activate(b.dataset.tab);
-        });
-      });
-
-      const initial = (location.hash || '').replace('#','').trim();
-      activate(initial || 'openbuild');
-
-      window.addEventListener('hashchange', () => {
-        const h = (location.hash || '').replace('#','').trim();
-        activate(h || 'openbuild');
-      });
-
-      window.copyText = async function(id){
-        const el = document.getElementById(id);
-        const txt = el ? el.textContent.trim() : '';
-        if(!txt) return;
-        try{
-          await navigator.clipboard.writeText(txt);
-          alert('Copied!');
-        }catch(e){
-          const ta = document.createElement('textarea');
-          ta.value = txt;
-          document.body.appendChild(ta);
-          ta.select();
-          document.execCommand('copy');
-          document.body.removeChild(ta);
-          alert('Copied!');
-        }
-      };
-    })();
-  </script>
-</body>
-</html>
+              <
