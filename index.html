@@ -160,7 +160,7 @@
     }
     .ptitle{margin:0;font-weight:850;letter-spacing:.01em}
     .pmeta{margin:3px 0 10px;color:var(--muted2);font-size:.95rem}
-    .pactions{display:flex;gap:10px;flex-wrap:wrap}
+    .pactions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 
     .warn{
       border:1px solid rgba(255,255,255,0.14);
@@ -190,6 +190,14 @@
       padding:10px 14px;
       border-radius:999px;
       cursor:pointer;
+    }
+
+    /* Added helper for embeds (safe, isolated) */
+    .embedWrap{
+      display:flex;
+      justify-content:flex-start;
+      overflow:auto;
+      padding-bottom:4px;
     }
 
     footer{margin-top:18px;text-align:center;color:var(--muted2);font-size:.92rem}
@@ -370,19 +378,23 @@
         <iframe class="frame" src="./Soulexpression.html"></iframe>
       </section>
 
-      <!-- MUSIC -->
+      <!-- MUSIC (UPDATED, SAFE) -->
       <section class="panel" id="panel-music">
-        <h2>Music Links</h2>
-        <p class="small">Find SoulSound across platforms (Signal Archive + streaming + video).</p>
+        <h2>Music — Artifacts for Discovery</h2>
+        <p class="small">
+          Stream freely, share the signal, and follow the world across platforms.
+          Featured artifacts include direct links for listeners + early lore fans.
+        </p>
 
+        <!-- PLATFORM HUB -->
         <div class="grid">
           <div class="platform col12">
             <div class="picon" aria-hidden="true">🎧</div>
             <div>
-              <p class="ptitle">SoundCloud</p>
-              <p class="pmeta">SoulSound | Samzin Kreave</p>
+              <p class="ptitle">SoundCloud — Signal Archive</p>
+              <p class="pmeta">SoulSound | Samzin Kreave (artifacts + drops)</p>
               <div class="pactions">
-                <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank" rel="noopener">Follow on SoundCloud →</a>
+                <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank" rel="noopener">Open SoundCloud →</a>
               </div>
             </div>
           </div>
@@ -404,10 +416,59 @@
               <p class="ptitle">YouTube</p>
               <p class="pmeta">Channel hub</p>
               <div class="pactions">
-                <a class="btn" href="https://youtube.com/channel/UCIWC60U8vfRqhti9XFKdgxA?si=-T1QpIl-UW-zIWDb" target="_blank" rel="noopener">Open YouTube →</a>
+                <a class="btn" href="https://youtube.com/channel/UCIWC60U8vfRqhti9XFKdgxA?si=RRSMoeMAx8tQrAj6" target="_blank" rel="noopener">Open YouTube →</a>
               </div>
             </div>
           </div>
+        </div>
+
+        <!-- FEATURED ARTIFACT -->
+        <div class="card" style="margin-top:14px;">
+          <h2 style="margin:0 0 8px;">✨ Featured Artifact</h2>
+          <p class="small" style="margin:0 0 12px;">
+            <strong>Something More Beautiful</strong> — longing, openness, and the quiet pull toward something greater.
+          </p>
+
+          <div class="embedWrap">
+            <iframe
+              allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
+              frameborder="0"
+              height="450"
+              style="width:100%;max-width:660px;overflow:hidden;border-radius:10px;"
+              sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+              src="https://embed.music.apple.com/us/album/something-more-beautiful-single/1869211174">
+            </iframe>
+          </div>
+
+          <div class="ctaRow" style="margin-top:12px;">
+            <a class="btn" href="https://music.apple.com/us/album/something-more-beautiful-single/1869211174" target="_blank" rel="noopener">Apple Music →</a>
+            <a class="btn secondary" href="https://open.spotify.com/track/6ykwYxUW83ZcHeWJZ2zZ2P?si=BwZRJnEJQF-spEmJn3Cg_w" target="_blank" rel="noopener">Spotify →</a>
+            <a class="btn ghost" href="https://youtu.be/xsyiCiJm0UQ?si=HzD406CTrNwmYDFJ" target="_blank" rel="noopener">YouTube →</a>
+          </div>
+        </div>
+
+        <!-- ADDITIONAL ARTIFACTS -->
+        <div class="card" style="margin-top:14px;">
+          <h2 style="margin:0 0 8px;">📂 Additional Artifacts</h2>
+
+          <div class="platform col12" style="margin-top:10px;">
+            <div class="picon" aria-hidden="true">🕰️</div>
+            <div>
+              <p class="ptitle">Tomorrow’s Yesterday</p>
+              <p class="pmeta">Temporal reflection — memory, time, and emotional recursion.</p>
+
+              <div class="pactions">
+                <a class="btn secondary" href="https://open.spotify.com/track/5lnWUVPsTM6fA27Gmv4sNL?si=cktbUvpzRZK-CEXsMTfnVw" target="_blank" rel="noopener">Spotify →</a>
+                <a class="btn ghost" href="https://youtu.be/orMgsG4lcgQ?si=nco4i7C2PAc10cxy" target="_blank" rel="noopener">YouTube →</a>
+                <span class="badge">Apple: processing</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="warn" style="margin-top:14px;">
+          <strong>Supporters & early lore fans:</strong> collecting artifacts keeps the story + sound building forward.
+          If you want to support directly, visit the <em>Tip the Build</em> tab.
         </div>
       </section>
 
