@@ -90,6 +90,22 @@
       box-shadow:none;
     }
 
+    /* MISSION SECTION (NEW) */
+    .mission{
+      margin-top:14px;
+      border:1px solid var(--border);
+      background:linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.02));
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:16px 18px 18px;
+    }
+    .mission h2{margin:0 0 8px;font-size:1.35rem}
+    .mission p{margin:10px 0;color:var(--muted);max-width:80ch}
+    .mission .missionTag{
+      margin-top:10px;
+      display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+    }
+
     .tabs{
       margin-top:18px;border:1px solid var(--border);border-radius:var(--radius);
       background:var(--panel);overflow:hidden;box-shadow:var(--shadow)
@@ -239,6 +255,31 @@
         </iframe>
       </div>
     </div>
+
+    <!-- MISSION (NEW) -->
+    <section class="mission" id="mission">
+      <h2>Our Mission</h2>
+      <p>
+        SoulSound exists to protect and amplify human emotional expression in a world increasingly shaped by automation, speed, and surface-level culture.
+      </p>
+      <p>
+        We build living story worlds, music, and creative tools that interlock — not to optimize attention, but to deepen connection. Every song is an artifact. Every story is a signal. Every creator is a voice that deserves space to unfold honestly.
+      </p>
+      <p>
+        SoulSound is not a platform for consumption — it is a space for resonance.
+      </p>
+      <p>
+        We support artists, writers, and listeners who are seeking meaning, not just reach; depth, not just scale; and alignment, not just growth.
+      </p>
+      <p>
+        Our mission is to help humans remember themselves through sound, story, and shared presence — and to build creative systems that feel alive, ethical, and emotionally true.
+      </p>
+
+      <div class="missionTag">
+        <a class="btn secondary" href="#openbuild" onclick="location.hash='#openbuild';return false;">Explore the build ↓</a>
+        <span class="badge">Built for resonance, not reach.</span>
+      </div>
+    </section>
 
     <div class="tabs">
       <div class="tabbar">
