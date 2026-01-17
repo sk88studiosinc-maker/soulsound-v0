@@ -16,6 +16,15 @@
   <meta property="og:description" content="Open build hub for Tomorrow’s Yesterday and the Signal Archive." />
   <meta property="og:type" content="website" />
 
+  <!-- Share essentials (add og.png in your site root) -->
+  <link rel="canonical" href="https://www.soulsoundworld.world/" />
+  <meta property="og:url" content="https://www.soulsoundworld.world/" />
+  <meta property="og:image" content="https://www.soulsoundworld.world/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SoulSound World" />
+  <meta name="twitter:description" content="Open build hub for Tomorrow’s Yesterday and the Signal Archive." />
+  <meta name="twitter:image" content="https://www.soulsoundworld.world/og.png" />
+
   <style>
     :root{
       --bg:#07060b;
@@ -90,7 +99,7 @@
       box-shadow:none;
     }
 
-    /* MISSION SECTION (NEW) */
+    /* MISSION SECTION */
     .mission{
       margin-top:14px;
       border:1px solid var(--border);
@@ -113,13 +122,15 @@
 
     .tabbar{
       display:flex;gap:8px;padding:10px;border-bottom:1px solid var(--border);
-      background:rgba(0,0,0,0.22);overflow-x:auto;-webkit-overflow-scrolling:touch
+      background:rgba(0,0,0,0.22);overflow-x:auto;-webkit-overflow-scrolling:touch;
+      scroll-snap-type: x mandatory;
     }
 
     .tabbtn{
       appearance:none;border:1px solid var(--border);background:rgba(255,255,255,0.03);
       color:var(--muted);padding:10px 12px;border-radius:999px;font-weight:700;cursor:pointer;white-space:nowrap;
       display:flex;align-items:center;gap:8px;
+      scroll-snap-align: start;
     }
     .tabbtn[aria-selected="true"]{
       color:white;border-color:rgba(255,255,255,0.22);
@@ -208,7 +219,6 @@
       cursor:pointer;
     }
 
-    /* Added helper for embeds (safe, isolated) */
     .embedWrap{
       display:flex;
       justify-content:flex-start;
@@ -243,20 +253,20 @@
 
         <div class="ctaRow">
           <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank" rel="noopener">Open SoundCloud →</a>
-          <a class="btn secondary" href="#music" onclick="location.hash='#music';return false;">Jump to Music tab ↓</a>
+          <a class="btn secondary" href="#music">Jump to Music tab ↓</a>
         </div>
 
         <p class="small" style="margin:12px 0 6px;"><strong>Tomorrow’s Yesterday (player)</strong></p>
 
         <iframe
           class="player"
+          title="SoundCloud player — Tomorrow’s Yesterday"
           allow="autoplay"
           src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fsamzin-kreave-411244422%2Ftomorrows-yesterday&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&visual=true">
         </iframe>
       </div>
     </div>
 
-    <!-- MISSION (NEW) -->
     <section class="mission" id="mission">
       <h2>Our Mission</h2>
       <p>
@@ -276,7 +286,7 @@
       </p>
 
       <div class="missionTag">
-        <a class="btn secondary" href="#openbuild" onclick="location.hash='#openbuild';return false;">Explore the build ↓</a>
+        <a class="btn secondary" href="#openbuild">Explore the build ↓</a>
         <span class="badge">Built for resonance, not reach.</span>
       </div>
     </section>
@@ -288,13 +298,12 @@
         <button class="tabbtn" type="button" data-tab="story"><span>📖</span> Story</button>
         <button class="tabbtn" type="button" data-tab="signal"><span>🎛️</span> Signal</button>
         <button class="tabbtn" type="button" data-tab="tool"><span>✨</span> Tool</button>
-        <button class="tabbtn" type="button" data-tab="music" id="music"><span>🎵</span> Music</button>
+        <button class="tabbtn" type="button" data-tab="music"><span>🎵</span> Music</button>
         <button class="tabbtn" type="button" data-tab="social"><span>🌐</span> Social</button>
         <button class="tabbtn" type="button" data-tab="zora"><span>🟩</span> Zora</button>
         <button class="tabbtn" type="button" data-tab="tips"><span>💜</span> Tip the Build</button>
       </div>
 
-      <!-- OPEN BUILD -->
       <section class="panel active" id="panel-openbuild">
         <h2>Open Build</h2>
         <p class="small">SoulSound is being built in public — code, updates, and iteration history live on GitHub.</p>
@@ -314,7 +323,6 @@
         </div>
       </section>
 
-      <!-- LIVE BUILD -->
       <section class="panel" id="panel-live">
         <h2>Live Build — Tools of SoulSound World</h2>
         <p class="small">
@@ -369,7 +377,6 @@
         </div>
       </section>
 
-      <!-- STORY -->
       <section class="panel" id="panel-story">
         <h2>Tomorrow’s Yesterday</h2>
         <p class="small">The story lives on Pocket FM — listen free and follow the arc as it evolves.</p>
@@ -388,7 +395,6 @@
         </div>
       </section>
 
-      <!-- SIGNAL -->
       <section class="panel" id="panel-signal">
         <h2>Signal Archive</h2>
         <p class="small">Narrative artifacts + audio drops (SoundCloud).</p>
@@ -407,7 +413,6 @@
         </div>
       </section>
 
-      <!-- TOOL -->
       <section class="panel" id="panel-tool">
         <h2>Expression Tool</h2>
         <p class="small">Translate sound into captions, tags, and signal language.</p>
@@ -416,10 +421,9 @@
           <a class="btn" href="./Soulexpression.html" target="_blank" rel="noopener">Open Tool →</a>
         </div>
 
-        <iframe class="frame" src="./Soulexpression.html"></iframe>
+        <iframe class="frame" title="SoulExpression tool" src="./Soulexpression.html"></iframe>
       </section>
 
-      <!-- MUSIC (UPDATED, SAFE) -->
       <section class="panel" id="panel-music">
         <h2>Music — Artifacts for Discovery</h2>
         <p class="small">
@@ -427,7 +431,6 @@
           Featured artifacts include direct links for listeners + early lore fans.
         </p>
 
-        <!-- PLATFORM HUB -->
         <div class="grid">
           <div class="platform col12">
             <div class="picon" aria-hidden="true">🎧</div>
@@ -463,7 +466,6 @@
           </div>
         </div>
 
-        <!-- FEATURED ARTIFACT -->
         <div class="card" style="margin-top:14px;">
           <h2 style="margin:0 0 8px;">✨ Featured Artifact</h2>
           <p class="small" style="margin:0 0 12px;">
@@ -472,6 +474,7 @@
 
           <div class="embedWrap">
             <iframe
+              title="Apple Music embed — Something More Beautiful"
               allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
               frameborder="0"
               height="450"
@@ -488,7 +491,6 @@
           </div>
         </div>
 
-        <!-- ADDITIONAL ARTIFACTS -->
         <div class="card" style="margin-top:14px;">
           <h2 style="margin:0 0 8px;">📂 Additional Artifacts</h2>
 
@@ -513,7 +515,6 @@
         </div>
       </section>
 
-      <!-- SOCIAL -->
       <section class="panel" id="panel-social">
         <h2>Social Links</h2>
         <p class="small">Follow the build in public — story, music, updates.</p>
@@ -565,7 +566,6 @@
         </div>
       </section>
 
-      <!-- ZORA -->
       <section class="panel" id="panel-zora">
         <h2>Zora</h2>
         <p class="small">Collectable artifacts + drops for the SoulSound universe.</p>
@@ -586,7 +586,6 @@
         </div>
       </section>
 
-      <!-- TIP THE BUILD -->
       <section class="panel" id="panel-tips">
         <h2>Tip the Build</h2>
         <p class="small">Support the SoulSound open build directly (no hype, no promises — just gratitude).</p>
@@ -651,12 +650,13 @@
 
       const buttons = Array.from(document.querySelectorAll('.tabbtn'));
       const panels  = Array.from(document.querySelectorAll('.panel'));
+      const tabsEl  = document.querySelector('.tabs');
 
       function panelExists(tabName){
         return panels.some(p => p.id === `panel-${tabName}`);
       }
 
-      function activate(tabName){
+      function activate(tabName, opts = { scroll: false }){
         if(!tabName || !panelExists(tabName)) tabName = 'openbuild';
 
         buttons.forEach(b => {
@@ -668,21 +668,25 @@
         });
 
         try { history.replaceState(null,'',`#${tabName}`); } catch(e){}
+
+        if (opts.scroll && tabsEl) {
+          tabsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       }
 
       buttons.forEach(b => {
         b.addEventListener('click', (e) => {
           e.preventDefault();
-          activate(b.dataset.tab);
+          activate(b.dataset.tab, { scroll: true });
         });
       });
 
       const initial = (location.hash || '').replace('#','').trim();
-      activate(initial || 'openbuild');
+      activate(initial || 'openbuild', { scroll: false });
 
       window.addEventListener('hashchange', () => {
         const h = (location.hash || '').replace('#','').trim();
-        activate(h || 'openbuild');
+        activate(h || 'openbuild', { scroll: true });
       });
 
       window.copyText = async function(id){
