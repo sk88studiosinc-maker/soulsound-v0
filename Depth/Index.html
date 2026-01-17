@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Depth of Samzin Kreave — SoulSoundWorld</title>
+  <meta name="description" content="The Depth of Samzin Kreave — a signal record. Sound. Story. Survival. SoulSoundWorld." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="The Depth of Samzin Kreave — SoulSoundWorld" />
+  <meta property="og:description" content="A signal record. Sound. Story. Survival." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://soulsoundworld.world/depth/" />
+
+  <!-- Optional: If you have an image in repo, set it here -->
+  <!-- <meta property="og:image" content="https://soulsoundworld.world/assets/depth-cover.jpg" /> -->
+
+  <style>
+    :root{
+      --bg0:#070510;
+      --bg1:#0b0720;
+      --ink:#efeaff;
+      --muted:#b8a9d6;
+      --soft:#8f7db8;
+      --vio:#8a2be2;
+      --vio2:#b13cff;
+      --neon:#d34cff;
+      --line: rgba(190,140,255,.18);
+      --card: rgba(18,10,40,.62);
+      --glass: rgba(255,255,255,.06);
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --radius: 18px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 700px at 20% 10%, rgba(177,60,255,.22), transparent 60%),
+        radial-gradient(900px 650px at 80% 30%, rgba(138,43,226,.18), transparent 60%),
+        radial-gradient(800px 600px at 60% 90%, rgba(211,76,255,.12), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      overflow-x:hidden;
+    }
+
+    /* subtle grain */
+    body:before{
+      content:"";
+      position:fixed; inset:0;
+      pointer-events:none;
+      opacity:.14;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+    }
+
+    /* glow pulse */
+    .pulse{
+      position:absolute; inset:-120px -120px auto auto;
+      width:420px; height:420px;
+      background: radial-gradient(circle at 30% 30%, rgba(211,76,255,.45), rgba(138,43,226,.10) 55%, transparent 70%);
+      filter: blur(10px);
+      animation: breathe 6.5s ease-in-out infinite;
+      opacity:.7;
+    }
+    @keyframes breathe{
+      0%,100%{ transform:scale(1) rotate(0deg); opacity:.65;}
+      50%{ transform:scale(1.08) rotate(6deg); opacity:.82;}
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 28px 18px 60px;
+      position:relative;
+    }
+
+    .topbar{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; margin-bottom: 18px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+      opacity:.92;
+    }
+    .sigdot{
+      width:10px; height:10px; border-radius:99px;
+      background: radial-gradient(circle at 30% 30%, #fff, var(--neon));
+      box-shadow: 0 0 18px rgba(211,76,255,.9);
+    }
+    .nav{
+      display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;
+    }
+    .chip{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      padding:10px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--muted);
+      transition: .18s ease;
+    }
+    .chip:hover{ transform: translateY(-1px); color: var(--ink); border-color: rgba(211,76,255,.35); }
+
+    .hero{
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px 18px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      font-size: 12px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color: var(--muted);
+      border: 1px solid rgba(211,76,255,.22);
+      background: rgba(211,76,255,.08);
+      padding: 9px 12px;
+      border-radius: 999px;
+    }
+    .title{
+      margin: 14px 0 10px;
+      font-size: clamp(30px, 4.2vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -.02em;
+    }
+    .subtitle{
+      margin:0;
+      color: var(--muted);
+      font-size: 15.5px;
+      line-height: 1.65;
+      max-width: 62ch;
+    }
+
+    .ctaRow{
+      margin-top: 18px;
+      display:flex; gap:12px; flex-wrap:wrap;
+      align-items:center;
+    }
+    .btn{
+      display:inline-flex; align-items:center; gap:10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(211,76,255,.28);
+      background: linear-gradient(180deg, rgba(211,76,255,.20), rgba(138,43,226,.10));
+      box-shadow: 0 10px 30px rgba(138,43,226,.18);
+      font-weight: 650;
+      letter-spacing:.02em;
+      transition: .18s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); border-color: rgba(211,76,255,.5); }
+    .btnGhost{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+    }
+    .btnGhost:hover{ color:var(--ink); }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+    @media(min-width: 860px){
+      .grid{ grid-template-columns: 1.2fr .8fr; }
+    }
+
+    .card{
+      border:1px solid var(--line);
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      position:relative;
+      overflow:hidden;
+    }
+    .card:before{
+      content:"";
+      position:absolute; inset:-2px -2px auto auto;
+      width: 220px; height: 220px;
+      background: radial-gradient(circle at 35% 30%, rgba(211,76,255,.25), transparent 65%);
+      filter: blur(6px);
+      opacity:.7;
+      pointer-events:none;
+    }
+
+    h2{
+      margin: 0 0 10px;
+      font-size: 18px;
+      letter-spacing:.02em;
+    }
+    p{
+      margin: 0 0 12px;
+      color: var(--muted);
+      line-height: 1.75
