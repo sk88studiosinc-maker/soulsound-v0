@@ -1,7 +1,8 @@
 ---
-title: The Depth of Samzin Kreave
+title: "The Depth of Samzin Kreave"
 permalink: /depth/
----# The Depth of Samzin Kreave
+---
+# The Depth of Samzin Kreave
 
 This page is not a résumé.  
 It is not a pitch.  
