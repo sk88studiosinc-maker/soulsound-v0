@@ -10,13 +10,11 @@
   <title>SoulSound World</title>
   <meta name="description" content="SoulSound World — open build hub for Tomorrow’s Yesterday and the Signal Archive." />
 
-  <!-- Nice-to-have (safe) -->
   <meta name="theme-color" content="#07060b" />
   <meta property="og:title" content="SoulSound World" />
   <meta property="og:description" content="Open build hub for Tomorrow’s Yesterday and the Signal Archive." />
   <meta property="og:type" content="website" />
 
-  <!-- Share essentials (add og.png in your site root) -->
   <link rel="canonical" href="https://www.soulsoundworld.world/" />
   <meta property="og:url" content="https://www.soulsoundworld.world/" />
   <meta property="og:image" content="https://www.soulsoundworld.world/og.png" />
@@ -36,7 +34,6 @@
       --muted2:rgba(255,255,255,0.55);
       --shadow:0 18px 60px rgba(0,0,0,0.55);
       --radius:18px;
-
       --a: rgba(139,92,246,0.95);
       --b: rgba(236,72,153,0.85);
     }
@@ -81,15 +78,9 @@
     }
 
     .ctaRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;align-items:center}
-
-    /* Your remember section uses cta-row; keep it compatible */
     .cta-row{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:12px;
-      align-items:center;
-      justify-content:center;
+      display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;
+      align-items:center;justify-content:center;
     }
 
     .btn{
@@ -102,14 +93,10 @@
       background:rgba(255,255,255,0.05);color:var(--text);font-weight:650;box-shadow:none
     }
     .btn.ghost{
-      background:transparent;
-      color:var(--text);
-      font-weight:650;
-      border:1px solid rgba(255,255,255,0.14);
-      box-shadow:none;
+      background:transparent;color:var(--text);font-weight:650;
+      border:1px solid rgba(255,255,255,0.14);box-shadow:none;
     }
 
-    /* MISSION SECTION */
     .mission{
       margin-top:14px;
       border:1px solid var(--border);
@@ -120,10 +107,7 @@
     }
     .mission h2{margin:0 0 8px;font-size:1.35rem}
     .mission p{margin:10px 0;color:var(--muted);max-width:80ch}
-    .mission .missionTag{
-      margin-top:10px;
-      display:flex;gap:10px;flex-wrap:wrap;align-items:center;
-    }
+    .mission .missionTag{margin-top:10px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
 
     .tabs{
       margin-top:18px;border:1px solid var(--border);border-radius:var(--radius);
@@ -139,8 +123,7 @@
     .tabbtn{
       appearance:none;border:1px solid var(--border);background:rgba(255,255,255,0.03);
       color:var(--muted);padding:10px 12px;border-radius:999px;font-weight:700;cursor:pointer;white-space:nowrap;
-      display:flex;align-items:center;gap:8px;
-      scroll-snap-align: start;
+      display:flex;align-items:center;gap:8px;scroll-snap-align: start;
     }
     .tabbtn[aria-selected="true"]{
       color:white;border-color:rgba(255,255,255,0.22);
@@ -164,37 +147,24 @@
       width:100%;height:166px;border:0;border-radius:14px;overflow:hidden;background:rgba(0,0,0,0.20)
     }
 
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap:12px;
-      margin-top:10px;
-    }
+    .grid{display:grid;grid-template-columns: repeat(12, 1fr);gap:12px;margin-top:10px;}
     .col6{grid-column: span 6;}
     .col12{grid-column: span 12;}
-    @media (max-width: 820px){
-      .col6{grid-column: span 12;}
-    }
+    @media (max-width: 820px){ .col6{grid-column: span 12;} }
 
     .platform{
       border:1px solid rgba(255,255,255,0.12);
       background:rgba(0,0,0,0.22);
-      border-radius:16px;
-      padding:14px;
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
+      border-radius:16px;padding:14px;
+      display:flex;gap:12px;align-items:flex-start;
     }
     .picon{
       width:44px;height:44px;border-radius:12px;
       border:1px solid rgba(255,255,255,0.14);
       background:rgba(255,255,255,0.04);
-      display:flex;align-items:center;justify-content:center;
-      flex:0 0 auto;
+      display:flex;align-items:center;justify-content:center;flex:0 0 auto;
     }
-    .picon img{
-      width:100%;height:100%;object-fit:cover;border-radius:12px;
-    }
+    .picon img{width:100%;height:100%;object-fit:cover;border-radius:12px;}
     .ptitle{margin:0;font-weight:850;letter-spacing:.01em}
     .pmeta{margin:3px 0 10px;color:var(--muted2);font-size:.95rem}
     .pactions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
@@ -202,40 +172,25 @@
     .warn{
       border:1px solid rgba(255,255,255,0.14);
       background:rgba(255, 150, 0, 0.08);
-      border-radius:14px;
-      padding:12px;
-      margin-top:10px;
+      border-radius:14px;padding:12px;margin-top:10px;
     }
     .warn strong{color:rgba(255,255,255,0.92)}
-    .copyRow{
-      display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:10px;
-    }
+    .copyRow{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:10px;}
     .copyBox{
       flex: 1 1 320px;
       border:1px solid rgba(255,255,255,0.14);
       background:rgba(0,0,0,0.18);
-      border-radius:14px;
-      padding:10px 12px;
+      border-radius:14px;padding:10px 12px;
     }
     .copyBox code{word-break:break-all}
     .copyBtn{
-      appearance:none;
-      border:1px solid rgba(255,255,255,0.18);
+      appearance:none;border:1px solid rgba(255,255,255,0.18);
       background:rgba(255,255,255,0.05);
-      color:var(--text);
-      font-weight:800;
-      padding:10px 14px;
-      border-radius:999px;
-      cursor:pointer;
+      color:var(--text);font-weight:800;
+      padding:10px 14px;border-radius:999px;cursor:pointer;
     }
 
-    .embedWrap{
-      display:flex;
-      justify-content:flex-start;
-      overflow:auto;
-      padding-bottom:4px;
-    }
-
+    .embedWrap{display:flex;justify-content:flex-start;overflow:auto;padding-bottom:4px;}
     footer{margin-top:18px;text-align:center;color:var(--muted2);font-size:.92rem}
 
     .remember { margin-top: 28px; }
@@ -249,50 +204,30 @@
     }
     .remember .closing { text-align: center; }
 
-    /* =========================
-       Proof of Resonance styles
-       ========================= */
-    .por-wrap{max-width:980px;margin:0 auto}
-    .por-sub{margin:8px 0 14px;color:var(--muted);max-width:75ch}
-    .por-callout{
-      margin:14px 0 16px;
-      padding:14px 14px;
-      border:1px solid rgba(255,255,255,0.14);
-      border-radius:16px;
-      background:rgba(255,255,255,0.06);
-    }
+    /* Proof of Resonance styles */
     .por-grid{
       display:grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap:12px;
-      margin-top:10px;
+      margin-top:12px;
     }
     .por-card{
-      padding:14px 14px;
+      padding:14px;
       border:1px solid rgba(255,255,255,0.14);
       border-radius:16px;
       background:rgba(0,0,0,0.18);
       backdrop-filter: blur(6px);
     }
     .por-card h3{margin:0 0 8px;font-size:1.05rem}
-    .por-lead{margin:0 0 10px;color:var(--muted);line-height:1.5}
     .por-quote{
-      margin:0;
-      padding:12px 12px;
+      margin:0;padding:12px;
       border-left:3px solid rgba(255,255,255,0.22);
       background:rgba(255,255,255,0.05);
       border-radius:12px;
       line-height:1.6;
       color:rgba(255,255,255,0.88);
     }
-    .por-rule{
-      border:none;height:1px;background:rgba(255,255,255,0.14);
-      margin:18px 0;
-    }
-    .por-wide{margin-top:12px}
-    @media (max-width: 920px){
-      .por-grid{grid-template-columns: 1fr;}
-    }
+    @media (max-width: 920px){ .por-grid{grid-template-columns: 1fr;} }
   </style>
 </head>
 
@@ -320,7 +255,7 @@
         <div class="ctaRow">
           <a class="btn" href="https://on.soundcloud.com/5JTKq7WvXLq6x0oICU" target="_blank" rel="noopener">Open SoundCloud →</a>
           <a class="btn secondary" href="#music">Jump to Music tab ↓</a>
-          <a class="btn ghost" href="/depth-signal/">The Depth of Samzin Kreave →</a>
+          <a class="btn ghost" href="#depth">The Depth of Samzin Kreave →</a>
         </div>
 
         <p class="small" style="margin:12px 0 6px;"><strong>Tomorrow’s Yesterday (player)</strong></p>
@@ -385,13 +320,13 @@
         <div class="cta-row">
           <a href="#music" class="btn">Music</a>
           <a href="#story" class="btn">Story</a>
-          <a href="#layer" class="btn">The Layer</a>
+          <a href="#tool" class="btn">The Layer</a>
         </div>
       </div>
     </section>
 
     <div class="tabs">
-      <div class="tabbar">
+      <div class="tabbar" role="tablist">
         <button class="tabbtn" type="button" aria-selected="true" data-tab="openbuild"><span>🛠️</span> Open Build</button>
         <button class="tabbtn" type="button" data-tab="live"><span>🔴</span> Live Build</button>
         <button class="tabbtn" type="button" data-tab="story"><span>📖</span> Story</button>
@@ -400,13 +335,12 @@
         <button class="tabbtn" type="button" data-tab="music"><span>🎵</span> Music</button>
         <button class="tabbtn" type="button" data-tab="social"><span>🌐</span> Social</button>
         <button class="tabbtn" type="button" data-tab="zora"><span>🟩</span> Zora</button>
-
-        <!-- NEW TAB -->
+        <button class="tabbtn" type="button" data-tab="depth"><span>🧬</span> Depth</button>
         <button class="tabbtn" type="button" data-tab="resonance"><span>🗝️</span> Proof of Resonance</button>
-
         <button class="tabbtn" type="button" data-tab="tips"><span>💜</span> Tip the Build</button>
       </div>
 
+      <!-- OPEN BUILD -->
       <section class="panel active" id="panel-openbuild">
         <h2>Open Build</h2>
         <p class="small">SoulSound is being built in public — code, updates, and iteration history live on GitHub.</p>
@@ -426,6 +360,7 @@
         </div>
       </section>
 
+      <!-- LIVE -->
       <section class="panel" id="panel-live">
         <h2>Live Build — Tools of SoulSound World</h2>
         <p class="small">
@@ -466,20 +401,10 @@
               </div>
             </div>
           </div>
-
-          <div class="platform col12">
-            <div class="picon" aria-hidden="true">🔴</div>
-            <div>
-              <p class="ptitle">Want people to watch you work?</p>
-              <p class="pmeta">
-                Suno/BandLab can’t be embedded as a live “work view”. The clean way is to stream your screen (YouTube Live / Twitch),
-                then we embed the live player here.
-              </p>
-            </div>
-          </div>
         </div>
       </section>
 
+      <!-- STORY -->
       <section class="panel" id="panel-story">
         <h2>Tomorrow’s Yesterday</h2>
         <p class="small">The story lives on Pocket FM — listen free and follow the arc as it evolves.</p>
@@ -498,6 +423,7 @@
         </div>
       </section>
 
+      <!-- SIGNAL -->
       <section class="panel" id="panel-signal">
         <h2>Signal Archive</h2>
         <p class="small">Narrative artifacts + audio drops (SoundCloud).</p>
@@ -516,6 +442,7 @@
         </div>
       </section>
 
+      <!-- TOOL -->
       <section class="panel" id="panel-tool">
         <h2>Expression Tool</h2>
         <p class="small">Translate sound into captions, tags, and signal language.</p>
@@ -527,6 +454,7 @@
         <iframe class="frame" title="SoulExpression tool" src="./Soulexpression.html"></iframe>
       </section>
 
+      <!-- MUSIC -->
       <section class="panel" id="panel-music">
         <h2>Music — Artifacts for Discovery</h2>
         <p class="small">
@@ -558,12 +486,12 @@
           </div>
 
           <div class="platform col6">
-            <div class="picon" aria-hidden="true">▶️</div>
+            <div class="picon" aria-hidden="true">🍎</div>
             <div>
-              <p class="ptitle">YouTube</p>
-              <p class="pmeta">Music videos + artifact drops</p>
+              <p class="ptitle">Apple Music</p>
+              <p class="pmeta">Albums + singles</p>
               <div class="pactions">
-                <a class="btn" href="https://www.youtube.com" target="_blank" rel="noopener">Open YouTube →</a>
+                <a class="btn" href="https://music.apple.com/us/album/something-more-beautiful-single/1869211174" target="_blank" rel="noopener">Open Apple Music →</a>
               </div>
             </div>
           </div>
@@ -602,6 +530,311 @@
             <div>
               <p class="ptitle">Tomorrow’s Yesterday</p>
               <p class="pmeta">Temporal reflection — memory, time, and emotional recursion.</p>
-
               <div class="pactions">
                 <a class="btn secondary" href="https://open.spotify.com/track/5lnWUVPsTM6fA27Gmv4sNL?si=cktbUvpzRZK-CEXsMTfnVw" target="_blank" rel="noopener">Spotify →</a>
+                <a class="btn ghost" href="https://youtu.be/orMgsG4lcgQ?si=nco4i7C2PAc10cxy" target="_blank" rel="noopener">YouTube →</a>
+                <span class="badge">Apple: processing</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="warn" style="margin-top:14px;">
+          <strong>Supporters & early lore fans:</strong> collecting artifacts keeps the story + sound building forward.
+          If you want to support directly, visit the <em>Tip the Build</em> tab.
+        </div>
+      </section>
+
+      <!-- SOCIAL -->
+      <section class="panel" id="panel-social">
+        <h2>Social Links</h2>
+        <p class="small">Follow the build in public — story, music, updates.</p>
+
+        <div class="grid">
+          <div class="platform col6">
+            <div class="picon" aria-hidden="true">🎬</div>
+            <div>
+              <p class="ptitle">TikTok</p>
+              <p class="pmeta">@soulsoundcreations</p>
+              <div class="pactions">
+                <a class="btn" href="https://www.tiktok.com/@soulsoundcreations" target="_blank" rel="noopener">Open TikTok →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="platform col6">
+            <div class="picon" aria-hidden="true">📸</div>
+            <div>
+              <p class="ptitle">Instagram</p>
+              <p class="pmeta">@soulsound_creations</p>
+              <div class="pactions">
+                <a class="btn" href="https://www.instagram.com/soulsound_creations" target="_blank" rel="noopener">Open Instagram →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="platform col6">
+            <div class="picon" aria-hidden="true">💼</div>
+            <div>
+              <p class="ptitle">LinkedIn</p>
+              <p class="pmeta">Professional updates + project hub</p>
+              <div class="pactions">
+                <a class="btn" href="https://www.linkedin.com/in/samzin-kreave-315848374" target="_blank" rel="noopener">Open LinkedIn →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="platform col6">
+            <div class="picon" aria-hidden="true">👽</div>
+            <div>
+              <p class="ptitle">Reddit</p>
+              <p class="pmeta">u/Samzinkreave</p>
+              <div class="pactions">
+                <a class="btn" href="https://www.reddit.com/u/Samzinkreave/s/H6R9DBVVgO" target="_blank" rel="noopener">Open Reddit →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ZORA -->
+      <section class="panel" id="panel-zora">
+        <h2>Zora</h2>
+        <p class="small">Collectable artifacts + drops for the SoulSound universe.</p>
+
+        <div class="grid">
+          <div class="platform col12">
+            <div class="picon" style="padding:0;">
+              <img src="./zora-soulsound.png" alt="SoulSound Zora logo" />
+            </div>
+            <div>
+              <p class="ptitle">SoulSound on Zora</p>
+              <p class="pmeta">Creator page + onchain artifacts</p>
+              <div class="pactions">
+                <a class="btn" href="https://zora.co/@soulsound_samzinkreave" target="_blank" rel="noopener">Open Zora →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DEPTH (TAB) -->
+      <section class="panel" id="panel-depth">
+        <h2>The Depth of Samzin Kreave</h2>
+        <p class="small">This layer isn’t broadcast. It’s discovered.</p>
+
+        <div class="grid">
+          <div class="platform col12">
+            <div class="picon" aria-hidden="true">🧬</div>
+            <div>
+              <p class="ptitle">Enter the Depth Signal</p>
+              <p class="pmeta">
+                Origin frequency, intention, and the signal beneath the surface.
+              </p>
+              <div class="pactions">
+                <a class="btn" href="/depth-signal/" target="_blank" rel="noopener">Open Depth →</a>
+                <a class="btn ghost" href="/depth/" target="_blank" rel="noopener">Alternate Path →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROOF OF RESONANCE -->
+      <section class="panel" id="panel-resonance">
+        <h2>Proof of Resonance</h2>
+        <p class="small">
+          We frame the Zora coin <strong>($soulsound_samzinkreave)</strong> not as a transaction, but as <strong>Proof of Resonance</strong>.
+          It’s not about someone paying you — it’s about them owning a piece of the world they’re already obsessed with.
+        </p>
+
+        <div class="card">
+          <p class="muted" style="margin:0;">
+            Since the listeners are already digging deeper, the coin becomes the key to the next layer of the mystery — a way to mark, archive, and claim the signal as it evolves.
+          </p>
+        </div>
+
+        <div class="por-grid">
+          <div class="por-card">
+            <h3>1) The “Artifact” Collector’s Pass</h3>
+            <p class="small" style="margin:0 0 10px;">
+              Frame the tokens as a way for fans to <strong>claim</strong> the artifacts they find in your stories.
+            </p>
+            <p class="por-quote">
+              “The music you hear in Tomorrow’s Yesterday isn’t just audio; it’s a fragment of the SoulSound ecosystem.
+              Holding a piece of $soulsound is how you archive these moments into your own digital collection.”
+            </p>
+          </div>
+
+          <div class="por-card">
+            <h3>2) The “Open Build” Invitation</h3>
+            <p class="small" style="margin:0 0 10px;">
+              Leverage transparency — invite holders to be early settlers, not spectators.
+            </p>
+            <p class="por-quote">
+              “SoulSoundWorld isn’t a finished product; it’s a living build. Those who hold the token aren’t just fans;
+              they are the early settlers of this ecosystem. Your presence in the wallet is your vote on the direction of the next series.”
+            </p>
+          </div>
+
+          <div class="por-card">
+            <h3>3) The “Hidden Frequency” Access</h3>
+            <p class="small" style="margin:0 0 10px;">
+              Use mystery: hint that deeper lore lives off-broadcast.
+            </p>
+            <p class="por-quote">
+              “There are frequencies in the SoulSound that don’t make it to the main broadcast.
+              If you’ve found your way to my Zora, you’ve already bypassed the static. This is where the true narrative lives.”
+            </p>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px;">
+          <h2 style="margin:0 0 8px;">A Strategy for the “Stalkers”</h2>
+          <p class="small" style="margin:0 0 10px;">
+            Don’t give a link. Give a clue.
+          </p>
+          <p class="por-quote">
+            “For those digging through the shadows of SoulSoundWorld.world: the artifacts you seek have a heartbeat on the chain.
+            If you can find the $soulsound pulse, you’ve found the keys to the kingdom.”
+          </p>
+
+          <div class="ctaRow" style="margin-top:12px;">
+            <a class="btn" href="https://zora.co/@soulsound_samzinkreave" target="_blank" rel="noopener">Follow the pulse on Zora →</a>
+            <a class="btn ghost" href="#zora">Go to Zora tab →</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- TIPS -->
+      <section class="panel" id="panel-tips">
+        <h2>Tip the Build</h2>
+        <p class="small">Support the SoulSound open build directly (no hype, no promises — just gratitude).</p>
+
+        <div class="grid">
+          <div class="platform col12">
+            <div class="picon" aria-hidden="true">🟦</div>
+            <div>
+              <p class="ptitle">Base Profile</p>
+              <p class="pmeta">@soulsound</p>
+              <div class="pactions">
+                <a class="btn" href="https://base.app/profile/soulsound" target="_blank" rel="noopener">Open Base →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="platform col12">
+            <div class="picon" aria-hidden="true">🪙</div>
+            <div>
+              <p class="ptitle">Coinbase Referral</p>
+              <p class="pmeta">Optional — earn $30 BTC (Coinbase terms apply)</p>
+              <div class="pactions">
+                <a class="btn" href="https://coinbase.com/join/NM4TFLJ?src=android-share" target="_blank" rel="noopener">Open Coinbase referral →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="platform col12">
+            <div class="picon" aria-hidden="true">💜</div>
+            <div>
+              <p class="ptitle">Main Tip Address (Base network)</p>
+              <p class="pmeta">Copy/paste the address below.</p>
+
+              <div class="warn">
+                <strong>Important:</strong> This is a <strong>Base network</strong> address.
+                <strong>Do not send USDC over any other network</strong> to this address or your funds may be lost.
+              </div>
+
+              <div class="copyRow">
+                <div class="copyBox">
+                  <code class="mono" id="baseTipAddr">0x1942866814727812830Ce352154aB73A999b4cf9</code>
+                </div>
+                <button class="copyBtn" type="button" onclick="copyText('baseTipAddr')">Copy address</button>
+              </div>
+
+              <p class="small" style="margin-top:10px;">
+                Thank you for supporting the SoulSound world — story, music, and artifacts built in public.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer>© <span id="yr"></span> SoulSound • Created by Samzin Kreave</footer>
+  </div>
+
+  <script>
+    (function () {
+      const yr = document.getElementById("yr");
+      if (yr) yr.textContent = new Date().getFullYear();
+
+      const tabsRoot = document.querySelector(".tabs");
+      if (!tabsRoot) return;
+
+      const buttons = Array.from(tabsRoot.querySelectorAll(".tabbtn[data-tab]"));
+      const panels  = Array.from(tabsRoot.querySelectorAll(".panel[id^='panel-']"));
+
+      const tabNames = new Set(buttons.map(b => b.dataset.tab));
+      const panelNames = new Set(panels.map(p => p.id.replace("panel-", "")));
+
+      function activate(tabName, opts = { scroll: false }) {
+        if (!tabName || !tabNames.has(tabName) || !panelNames.has(tabName)) tabName = "openbuild";
+
+        // Hard reset
+        buttons.forEach((b) => {
+          const on = (b.dataset.tab === tabName);
+          b.setAttribute("aria-selected", on ? "true" : "false");
+        });
+
+        panels.forEach((p) => {
+          const on = (p.id === `panel-${tabName}`);
+          p.classList.toggle("active", on);
+          p.style.display = on ? "block" : "none";
+        });
+
+        try { history.replaceState(null, "", `#${tabName}`); } catch (e) {}
+
+        if (opts.scroll && tabsRoot) {
+          tabsRoot.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+
+      buttons.forEach((b) => {
+        b.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          activate(b.dataset.tab, { scroll: true });
+        });
+      });
+
+      const initial = (location.hash || "").replace("#", "").trim();
+      activate(initial || "openbuild", { scroll: false });
+
+      window.addEventListener("hashchange", () => {
+        const h = (location.hash || "").replace("#", "").trim();
+        activate(h || "openbuild", { scroll: true });
+      });
+
+      window.copyText = async function (id) {
+        const el = document.getElementById(id);
+        const txt = el ? el.textContent.trim() : "";
+        if (!txt) return;
+
+        try {
+          await navigator.clipboard.writeText(txt);
+          alert("Copied!");
+        } catch (e) {
+          const ta = document.createElement("textarea");
+          ta.value = txt;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          document.body.removeChild(ta);
+          alert("Copied!");
+        }
+      };
+    })();
+  </script>
+</body>
+</html>
