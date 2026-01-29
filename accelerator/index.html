@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accelerator — SoulSound World</title>
+  <meta name="description" content="Accelerator — the production + momentum tracker for SoulSound World." />
+  <meta name="theme-color" content="#07060b" />
+  <style>
+    :root{--bg:#07060b;--panel:rgba(255,255,255,.06);--text:#efe6c8;--muted:rgba(239,230,200,.72);--gold:#e6d7a3;--line:rgba(230,215,163,.18)}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:radial-gradient(900px 500px at 20% 10%, rgba(155,90,255,.22), transparent 65%),
+      radial-gradient(700px 420px at 80% 20%, rgba(255,199,90,.12), transparent 60%),
+      radial-gradient(900px 700px at 50% 110%, rgba(90,210,255,.10), transparent 60%),var(--bg)}
+    a{color:var(--gold);text-decoration:none} a:hover{text-decoration:underline}
+    .wrap{max-width:980px;margin:0 auto;padding:22px 16px 44px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+    .brand{display:flex;flex-direction:column;gap:4px}
+    .brand .top{font-weight:800;letter-spacing:.3px}
+    .brand .sub{color:var(--muted);font-size:13px}
+    .chip{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(0,0,0,.22);font-size:12px;color:var(--muted)}
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 16px rgba(230,215,163,.45)}
+    nav{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 18px;padding:12px;border-radius:16px;border:1px solid var(--line);background:var(--panel)}
+    nav a{padding:8px 10px;border-radius:12px;border:1px solid transparent}
+    nav a:hover{border-color:var(--line);background:rgba(0,0,0,.18)}
+    .hero{border:1px solid var(--line);background:var(--panel);border-radius:20px;padding:18px 16px;margin-bottom:14px}
+    h1{margin:0 0 8px;font-size:22px}
+    p{margin:0;color:var(--muted);line-height:1.55}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;margin-top:12px}
+    .card{grid-column:span 12;border:1px solid var(--line);background:rgba(0,0,0,.22);border-radius:18px;padding:14px}
+    .card h2{margin:0 0 6px;font-size:16px}
+    .card p{font-size:13px}
+    .list{margin:8px 0 0;padding-left:18px;color:var(--muted);line-height:1.6}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}
+    @media(min-width:820px){.card{grid-column:span 6}}
+    footer{margin-top:26px;color:rgba(239,230,200,.55);font-size:12px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="top">SoulSound World</div>
+        <div class="sub">Accelerator — production + momentum</div>
+      </div>
+      <div class="chip"><span class="dot"></span>LIVE <span class="mono">/accelerator/</span></div>
+    </header>
+
+    <nav>
+      <a href="../">Home</a>
+      <a href="../social-world/">Social World</a>
+      <a href="../accelerator/">Accelerator</a>
+      <a href="../vault/">Vault</a>
+      <a href="../signals/">Signals</a>
+      <a href="../contact/">Contact</a>
+    </nav>
+
+    <section class="hero">
+      <h1>Accelerator</h1>
+      <p>
+        This is the “engine room” page — a fast way to show what’s being built, shipped, and scaled across story + music + signal.
+      </p>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>Current Sprint</h2>
+        <p>Upload + release pipeline first, then story execution. No scattered priorities.</p>
+        <ul class="list">
+          <li>Finish uploads</li>
+          <li>Link destinations here</li>
+          <li>Post loops: Reddit / X / TikTok / IG</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>Weekly Targets</h2>
+        <p>Simple, public targets (keeps momentum visible).</p>
+        <ul class="list">
+          <li>Chapters shipped</li>
+          <li>Songs released</li>
+          <li>One “signal recap” post</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>System Rule</h2>
+        <p>Depth beats speed. We ship consistently — no burnout spirals.</p>
+      </div>
+      <div class="card">
+        <h2>Next Upgrade</h2>
+        <p>We can add a lightweight “log” section so updates stack by date.</p>
+      </div>
+    </section>
+
+    <footer>© <span id="y"></span> SoulSound World — built in public.</footer>
+  </div>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
