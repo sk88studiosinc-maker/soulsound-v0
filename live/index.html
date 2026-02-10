@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="SoulSound v0 — Touch the signal: Generator + Frequency Stacking Lite. Creator-first, meaning-first." />
+  <title>SoulSound v0 — Live</title>
+  <style>
+    :root{
+      --bg:#07060a; --panel:#0f0c16;
+      --text:#f2effa; --muted:#bdb2d6;
+      --a:#b58cff; --a2:#ffd88a; --ok:#7dffbf;
+      --border: rgba(255,255,255,.09);
+      --shadow: 0 16px 50px rgba(0,0,0,.55);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1100px 700px at 20% -10%, rgba(181,140,255,.22), transparent 60%),
+        radial-gradient(900px 600px at 85% 10%, rgba(255,216,138,.18), transparent 55%),
+        radial-gradient(900px 700px at 40% 120%, rgba(125,255,191,.10), transparent 60%),
+        var(--bg);
+      min-height:100vh;
+    }
+    a{color:inherit}
+    .wrap{max-width:980px; margin:0 auto; padding:28px 18px 50px;}
+    .top{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:22px;}
+    .badge{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 12px; border:1px solid var(--border); background:rgba(255,255,255,.04);
+      border-radius:999px; box-shadow: var(--shadow);
+      letter-spacing:.2px;
+    }
+    .dot{width:10px; height:10px; border-radius:50%; background:linear-gradient(90deg,var(--a),var(--a2)); box-shadow: 0 0 18px rgba(181,140,255,.45)}
+    .hero{
+      padding:28px; border-radius: var(--radius);
+      border:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+    }
+    h1{margin:0 0 10px; font-size: clamp(28px, 4vw, 42px); line-height:1.08;}
+    p{margin:0 0 12px; color:var(--muted); line-height:1.55; font-size: 15.5px;}
+    .ctaRow{display:flex; flex-wrap:wrap; gap:12px; margin-top:18px;}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 14px; border-radius: 14px;
+      border:1px solid var(--border); background:rgba(255,255,255,.05);
+      text-decoration:none; font-weight:650;
+      transition:transform .08s ease, background .2s ease, border-color .2s ease;
+    }
+    .btn:hover{transform: translateY(-1px); background:rgba(255,255,255,.08); border-color: rgba(255,255,255,.18);}
+    .btnPrimary{
+      background: linear-gradient(90deg, rgba(181,140,255,.24), rgba(255,216,138,.18));
+      border-color: rgba(181,140,255,.35);
+    }
+    .grid{display:grid; grid-template-columns: repeat(12, 1fr); gap:12px; margin-top:14px;}
+    .card{
+      grid-column: span 6;
+      padding:16px; border-radius: var(--radius);
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      box-shadow: 0 12px 38px rgba(0,0,0,.35);
+    }
+    .card h3{margin:0 0 6px; font-size:16px;}
+    .card p{margin:0; font-size: 14px; color:var(--muted); line-height:1.55}
+    .pill{
+      display:inline-flex; padding:6px 10px; border-radius:999px;
+      border:1px solid var(--border); background:rgba(255,255,255,.03);
+      color:var(--muted); font-size:12.5px; margin-top:10px;
+    }
+    .foot{margin-top:18px; padding-top:16px; border-top:1px solid rgba(255,255,255,.08); color:var(--muted); font-size: 13.5px;}
+    .smallLinks{display:flex; flex-wrap:wrap; gap:10px; margin-top:8px;}
+    .smallLinks a{opacity:.9}
+    @media (max-width:760px){ .card{grid-column: span 12;} }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div class="badge">
+        <span class="dot"></span>
+        <strong>SoulSound v0</strong>
+        <span style="color:var(--muted)">Live prototype layer</span>
+      </div>
+      <div style="color:var(--muted); font-size:13px;">
+        Burnout-safe · No installs · GitHub Pages ready
+      </div>
+    </div>
+
+    <section class="hero">
+      <h1>Touch the signal.</h1>
+      <p>
+        This <strong>/live</strong> folder is a clean, shareable layer on top of your existing repo.
+        It does not replace anything you already built.
+      </p>
+      <p><strong>No villains. Only costs.</strong> Rest is victory.</p>
+
+      <div class="ctaRow">
+        <a class="btn btnPrimary" href="./generator.html">Try the Signal Generator →</a>
+        <a class="btn" href="./frequency-stacking-lite.html">Play Frequency Stacking Lite →</a>
+        <a class="btn" href="https://github.com/sk88studiosinc-maker/soulsound-v0" target="_blank" rel="noreferrer">Repo / Open Build →</a>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Signal Generator</h3>
+          <p>Paste a vibe, lyric idea, or track description. Get captions, hashtags, and a “Soul Signal” you can post.</p>
+          <div class="pill">Fast · Shareable · No lore required</div>
+        </div>
+        <div class="card">
+          <h3>Frequency Stacking Lite</h3>
+          <p>Choose a class. Set stats. Generate a coherence prompt. Save it. Export it as an image.</p>
+          <div class="pill">Consent-first · Safety-focused · Solo-friendly</div>
+        </div>
+      </div>
+
+      <div class="foot">
+        Feedback / resonance: <strong>soulsoundworld.live@gmail.com</strong>
+        <div class="smallLinks">
+          <a href="../">Back to main site</a>
+          <a href="./generator.html">Generator</a>
+          <a href="./frequency-stacking-lite.html">Frequency Stacking Lite</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
