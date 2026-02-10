@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="SoulSound Signal Generator — sound/emotion to captions, hashtags, and signals." />
+  <title>SoulSound — Signal Generator (Live)</title>
+  <style>
+    :root{
+      --bg:#07060a; --text:#f2effa; --muted:#bdb2d6;
+      --a:#b58cff; --a2:#ffd88a;
+      --border: rgba(255,255,255,.10);
+      --shadow: 0 16px 50px rgba(0,0,0,.55);
+      --radius: 18px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1100px 700px at 20% -10%, rgba(181,140,255,.22), transparent 60%),
+        radial-gradient(900px 600px at 85% 10%, rgba(255,216,138,.18), transparent 55%),
+        radial-gradient(900px 700px at 40% 120%, rgba(125,255,191,.10), transparent 60%),
+        var(--bg);
+      min-height:100vh;
+    }
+    a{color:inherit}
+    .wrap{max-width:1020px; margin:0 auto; padding:22px 16px 56px;}
+    .top{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:16px;}
+    .brand{display:flex; align-items:center; gap:10px;}
+    .dot{width:10px;height:10px;border-radius:50%; background:linear-gradient(90deg,var(--a),var(--a2)); box-shadow:0 0 18px rgba(181,140,255,.45)}
+    .nav{display:flex; gap:10px; flex-wrap:wrap;}
+    .nav a{opacity:.92; text-decoration:none; border:1px solid var(--border); background:rgba(255,255,255,.03); padding:8px 10px; border-radius:12px;}
+    .nav a:hover{background:rgba(255,255,255,.06)}
+    .panel{
+      border:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:16px;
+    }
+    h1{margin:0 0 6px; font-size: clamp(22px, 3.2vw, 30px);}
+    p{margin:0 0 12px; color:var(--muted); line-height:1.55; font-size:14.6px;}
+    .grid{display:grid; grid-template-columns: 1.1fr .9fr; gap:12px; margin-top:12px;}
+    textarea, select{
+      width:100%;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 12px 12px;
+      outline: none;
+      font-size: 14px;
+    }
+    textarea{min-height:160px; resize:vertical; line-height:1.5}
+    label{display:block; font-size:12.6px; color:var(--muted); margin:10px 0 6px;}
+    .row{display:grid; grid-template-columns: 1fr 1fr; gap:10px;}
+    .btnRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px;}
+    button{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      padding: 11px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      font-weight:700;
+      transition: transform .08s ease, background .2s ease, border-color .2s ease;
+    }
+    button:hover{transform: translateY(-1px); background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18);}
+    .primary{background: linear-gradient(90deg, rgba(181,140,255,.25), rgba(255,216,138,.18)); border-color: rgba(181,140,255,.35);}
+    .out{
+      margin-top:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      border-radius: 16px;
+      padding: 12px;
+      white-space: pre-wrap;
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .asideCard{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius: 16px;
+      padding: 12px;
+    }
+    .chip{
+      display:inline-flex; padding:6px 10px; border-radius:999px; font-size:12.2px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      margin-right:6px;
+      margin-bottom:6px;
+    }
+    .toast{
+      position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%);
+      background: rgba(15,12,22,.92); border:1px solid rgba(255,255,255,.14);
+      padding: 10px 12px; border-radius: 14px; box-shadow: var(--shadow);
+      opacity:0; pointer-events:none; transition: opacity .2s ease;
+      font-size:13px; color: var(--text);
+    }
+    .toast.show{opacity:1}
+    @media (max-width: 900px){ .grid{grid-template-columns: 1fr;} }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">
+        <span class="dot"></span>
+        <strong>SoulSound</strong>
+        <span style="color:var(--muted)">Signal Generator · Live</span>
+      </div>
+      <div class="nav">
+        <a href="./index.html">Live Home</a>
+        <a href="./frequency-stacking-lite.html">Frequency Stacking Lite</a>
+        <a href="../">Main site</a>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h1>Sound → captions, hashtags, and a Soul Signal.</h1>
+      <p>This is offline-friendly “mock AI” so you can ship now and collect feedback. Later we can swap the generator core to real AI without changing the UI.</p>
+
+      <div class="grid">
+        <div>
+          <label for="input">Your vibe / track / lyric fragment</label>
+          <textarea id="input" placeholder="Example: Dusty Star Particles — lo-fi cosmic melancholy, slow pulse, hopeful ache, memory fog."></textarea>
+
+          <div class="row">
+            <div>
+              <label for="platform">Platform</label>
+              <select id="platform">
+                <option value="tiktok">TikTok</option>
+                <option value="instagram">Instagram</option>
+                <option value="youtube">YouTube Shorts</option>
+                <option value="reddit">Reddit</option>
+                <option value="x">X (Twitter)</option>
+              </select>
+            </div>
+            <div>
+              <label for="tone">Tone</label>
+              <select id="tone">
+                <option value="poetic">Poetic</option>
+                <option value="grounded">Grounded</option>
+                <option value="mystic">Mystic</option>
+                <option value="minimal">Minimal</option>
+                <option value="bold">Bold</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label for="intensity">Intensity</label>
+              <select id="intensity">
+                <option value="soft">Soft</option>
+                <option value="medium" selected>Medium</option>
+                <option value="intense">Intense</option>
+              </select>
+            </div>
+            <div>
+              <label for="hashtagCount">Hashtag count</label>
+              <select id="hashtagCount">
+                <option>5</option>
+                <option selected>9</option>
+                <option>12</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="btnRow">
+            <button class="primary" id="gen">Generate</button>
+            <button id="copy">Copy output</button>
+            <button id="random">Random prompt</button>
+            <button id="clear">Clear</button>
+          </div>
+
+          <div id="output" class="out" aria-live="polite">Output will appear here.</div>
+        </div>
+
+        <aside class="asideCard">
+          <div style="margin-bottom:10px;">
+            <span class="chip">Creator-first</span>
+            <span class="chip">Meaning-first</span>
+            <span class="chip">No villains</span>
+            <span class="chip">Only costs</span>
+          </div>
+          <p style="margin:0 0 10px; color:var(--muted); line-height:1.55; font-size:14px;">
+            Use this as a *starting point*, not a cage. Keep what resonates. Delete the rest.
+          </p>
+          <p style="margin:0; color:var(--muted); line-height:1.55; font-size:14px;">
+            Feedback: <strong>soulsoundworld.live@gmail.com</strong>
+          </p>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+
+    const banks = {
+      adjectives: ["dusty","cosmic","hollow","warm","slow-burning","glitch-kissed","velvet","electric","tender","storm-lit","soft","heavy","quiet","bright","wounded","golden","nocturnal","lunar","glasslike","embered"],
+      nouns: ["signal","artifact","echo","thread","pulse","memory","shadow","halo","frequency","stillpoint","drift","resonance","breath","orbit","afterglow","horizon","aura","mirror","lantern","salt"],
+      verbs: ["stitch","carry","hold","translate","remember","return","unfold","breathe","hover","burn","forgive","rise","soften","anchor","drift","listen","align","wake","glow","heal"],
+      emotions: ["melancholy","hope","ache","relief","yearning","clarity","grief","peace","longing","courage","tenderness","defiance","calm","wonder","belonging","forgiveness"],
+      hooks: [
+        "Some signals are silent. Some carry sound.",
+        "If sound created everything, these are the artifacts.",
+        "Made for creators who choose meaning over metrics.",
+        "No villains. Only costs. Rest is victory.",
+        "A love letter to coherence in a loud world."
+      ],
+      calls: [
+        "If this hit you, leave a 🜂 or a single word.",
+        "Tell me what you felt in one sentence.",
+        "Save this if you’ve been trying to stay you.",
+        "Drop your track name — I’ll generate a signal for it.",
+        "If you’re building soul-first, you’re not alone."
+      ],
+      hashtagsCore: [
+        "SoulSound","SoulSignals","FrequencyStacking","IndieArtist","ProducerLife","MusicCreators",
+        "StoryWorld","ArtAsTherapy","EmotionalResonance","MeaningOverMetrics","CreatorFirst","SoundDesign",
+        "AmbientMusic","LoFi","AltPop","IndieDev","BuildInPublic","PocketFM","SunoAI","Narrative"
+      ],
+      platforms: { tiktok:{maxLen:220}, instagram:{maxLen:600}, youtube:{maxLen:220}, reddit:{maxLen:700}, x:{maxLen:260} }
+    };
+
+    const randomFrom = (arr) => arr[Math.floor(Math.random()*arr.length)];
+    const pickUnique = (arr, n) => {
+      const copy = [...arr];
+      const out = [];
+      while(out.length < n && copy.length){
+        const i = Math.floor(Math.random()*copy.length);
+        out.push(copy.splice(i,1)[0]);
+      }
+      return out;
+    };
+
+    function normalizeInput(s){ return (s || "").trim().replace(/\s+/g," "); }
+    function makeHashtags(count){
+      const core = pickUnique(banks.hashtagsCore, Math.min(count, banks.hashtagsCore.length));
+      return core.map(h => "#" + h.replace(/\s+/g,"")).join(" ");
+    }
+
+    function buildCaption({prompt, tone, intensity, platform}){
+      const adj = randomFrom(banks.adjectives);
+      const noun = randomFrom(banks.nouns);
+      const verb = randomFrom(banks.verbs);
+      const emo = randomFrom(banks.emotions);
+      const hook = randomFrom(banks.hooks);
+      const call = randomFrom(banks.calls);
+
+      const intensityLine = intensity === "soft"
+        ? "Soft enough to breathe through."
+        : intensity === "intense"
+          ? "It burns, but it doesn’t break you."
+          : "Steady, honest, alive.";
+
+      const seed = prompt ? `"${prompt}"` : "this moment";
+
+      let lines = [];
+      if(tone === "minimal"){
+        lines = [hook, `A ${adj} ${noun} for ${emo}.`, intensityLine, "— SoulSound"];
+      } else if(tone === "grounded"){
+        lines = [
+          `I made something from ${seed}.`,
+          `It’s a ${adj} ${noun} — built to ${verb} the ${emo} without pretending it’s easy.`,
+          intensityLine,
+          call
+        ];
+      } else if(tone === "bold"){
+        lines = [hook, `This is a ${adj} ${noun}. It’s not here to perform.`, `It’s here to ${verb} your ${emo}.`, intensityLine, call];
+      } else if(tone === "mystic"){
+        lines = [hook, `A ${adj} ${noun} slipped out of ${seed}.`, `I ${verb} it until it sounded like ${emo}.`, intensityLine, "Choose meaning. Keep your signal."];
+      } else {
+        lines = [hook, `From ${seed} — a ${adj} ${noun} that learned how to ${verb}.`, `If you feel ${emo}, you’re not broken. You’re tuned.`, intensityLine, "— SoulSound"];
+      }
+
+      const maxLen = banks.platforms[platform]?.maxLen ?? 300;
+      let text = lines.join("\n");
+      if(text.length > maxLen){
+        while(text.length > maxLen && lines.length > 2){
+          lines.splice(lines.length-2, 1);
+          text = lines.join("\n");
+        }
+        if(text.length > maxLen) text = text.slice(0, maxLen-1) + "…";
+      }
+      return text;
+    }
+
+    function buildSignalTags(){
+      const tags = pickUnique([
+        "Vybe: Warm-Melancholy",
+        "Pace: Slow Drift",
+        "Texture: Velvet / Dust",
+        "Direction: Inward → Upward",
+        "Core: Coherence under pressure",
+        "Best Moment: The quiet return",
+        "Warning: Don’t outrun yourself"
+      ], 4);
+      return tags;
+    }
+
+    function toast(msg){
+      const t = $("toast");
+      t.textContent = msg;
+      t.classList.add("show");
+      setTimeout(()=>t.classList.remove("show"), 1200);
+    }
+
+    function generate(){
+      const prompt = normalizeInput($("input").value);
+      const platform = $("platform").value;
+      const tone = $("tone").value;
+      const intensity = $("intensity").value;
+      const hashtagCount = parseInt($("hashtagCount").value, 10);
+
+      const caption = buildCaption({prompt, tone, intensity, platform});
+      const hashtags = makeHashtags(hashtagCount);
+      const signalTags = buildSignalTags();
+
+      const output =
+`CAPTION
+${caption}
+
+HASHTAGS
+${hashtags}
+
+SOUL SIGNAL TAGS
+- ${signalTags.join("\n- ")}
+
+NOTES (optional)
+Keep what resonates. Delete the rest.`;
+
+      $("output").textContent = output;
+      localStorage.setItem("soulsound_live_last_output", output);
+      localStorage.setItem("soulsound_live_last_prompt", prompt);
+    }
+
+    function copyOutput(){
+      const text = $("output").textContent || "";
+      if(!text || text === "Output will appear here.") return toast("Nothing to copy yet.");
+      navigator.clipboard.writeText(text).then(()=>toast("Copied."));
+    }
+
+    function randomPrompt(){
+      const samples = [
+        "Dusty Star Particles — lo-fi cosmic melancholy, slow pulse, hopeful ache, memory fog.",
+        "A love song that feels like rain on warm pavement at 2am.",
+        "Aggressive drums + angelic pads — battle between speed and stillness.",
+        "Ambient healing track — grief softens into clarity, breath returns.",
+        "Sci-fi noir synthwave — neon loneliness with a quiet triumph."
+      ];
+      $("input").value = randomFrom(samples);
+      toast("Random prompt loaded.");
+    }
+
+    function clearAll(){
+      $("input").value = "";
+      $("output").textContent = "Output will appear here.";
+      localStorage.removeItem("soulsound_live_last_output");
+      localStorage.removeItem("soulsound_live_last_prompt");
+      toast("Cleared.");
+    }
+
+    $("gen").addEventListener("click", generate);
+    $("copy").addEventListener("click", copyOutput);
+    $("random").addEventListener("click", randomPrompt);
+    $("clear").addEventListener("click", clearAll);
+
+    const lastPrompt = localStorage.getItem("soulsound_live_last_prompt");
+    const lastOutput = localStorage.getItem("soulsound_live_last_output");
+    if(lastPrompt) $("input").value = lastPrompt;
+    if(lastOutput) $("output").textContent = lastOutput;
+  </script>
+</body>
+</html>
