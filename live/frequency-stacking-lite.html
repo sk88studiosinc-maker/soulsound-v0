@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Frequency Stacking Lite — a reflection system disguised as a mythic game." />
+  <title>Frequency Stacking Lite — Live</title>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <style>
+    :root{
+      --bg:#07060a; --text:#f2effa; --muted:#bdb2d6;
+      --a:#b58cff; --a2:#ffd88a;
+      --border: rgba(255,255,255,.10);
+      --shadow: 0 16px 50px rgba(0,0,0,.55);
+      --radius: 18px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1100px 700px at 20% -10%, rgba(181,140,255,.22), transparent 60%),
+        radial-gradient(900px 600px at 85% 10%, rgba(255,216,138,.18), transparent 55%),
+        radial-gradient(900px 700px at 40% 120%, rgba(125,255,191,.10), transparent 60%),
+        var(--bg);
+      min-height:100vh;
+    }
+    a{color:inherit}
+    .wrap{max-width:1040px; margin:0 auto; padding:22px 16px 56px;}
+    .top{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:16px;}
+    .brand{display:flex; align-items:center; gap:10px;}
+    .dot{width:10px;height:10px;border-radius:50%; background:linear-gradient(90deg,var(--a),var(--a2)); box-shadow:0 0 18px rgba(181,140,255,.45)}
+    .nav{display:flex; gap:10px; flex-wrap:wrap;}
+    .nav a{opacity:.92; text-decoration:none; border:1px solid var(--border); background:rgba(255,255,255,.03); padding:8px 10px; border-radius:12px;}
+    .nav a:hover{background:rgba(255,255,255,.06)}
+    .panel{
+      border:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:16px;
+    }
+    h1{margin:0 0 6px; font-size: clamp(22px, 3.2vw, 30px);}
+    p{margin:0 0 12px; color:var(--muted); line-height:1.55; font-size:14.6px;}
+    .grid{display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top:12px;}
+    label{display:block; font-size:12.6px; color:var(--muted); margin:10px 0 6px;}
+    textarea, input, select{
+      width:100%;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 12px 12px;
+      outline: none;
+      font-size: 14px;
+    }
+    textarea{min-height:120px; resize:vertical; line-height:1.5}
+    .sheet{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      border-radius: 18px;
+      padding: 14px;
+    }
+    .row{display:grid; grid-template-columns: 1fr 1fr; gap:10px;}
+    .stat{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      border-radius: 16px;
+      padding: 10px 10px 12px;
+      margin-top:10px;
+    }
+    .statTop{display:flex; align-items:baseline; justify-content:space-between; gap:10px;}
+    .statName{font-weight:800}
+    .statVal{font-family:var(--mono); color:var(--a2)}
+    input[type="range"]{padding:0; background:transparent; border:none}
+    .btnRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px;}
+    button{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      padding: 11px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      font-weight:800;
+      transition: transform .08s ease, background .2s ease, border-color .2s ease;
+    }
+    button:hover{transform: translateY(-1px); background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18);}
+    .primary{background: linear-gradient(90deg, rgba(181,140,255,.25), rgba(255,216,138,.18)); border-color: rgba(181,140,255,.35);}
+    .out{
+      margin-top:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      border-radius: 16px;
+      padding: 12px;
+      white-space: pre-wrap;
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .toast{
+      position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%);
+      background: rgba(15,12,22,.92); border:1px solid rgba(255,255,255,.14);
+      padding: 10px 12px; border-radius: 14px; box-shadow: var(--shadow);
+      opacity:0; pointer-events:none; transition: opacity .2s ease;
+      font-size:13px; color: var(--text);
+    }
+    .toast.show{opacity:1}
+    @media (max-width: 960px){ .grid{grid-template-columns: 1fr;} }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">
+        <span class="dot"></span>
+        <strong>Frequency Stacking</strong>
+        <span style="color:var(--muted)">Lite · Live</span>
+      </div>
+      <div class="nav">
+        <a href="./index.html">Live Home</a>
+        <a href="./generator.html">Signal Generator</a>
+        <a href="../">Main site</a>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h1>A reflection system disguised as a mythic game.</h1>
+      <p>Choose a class. Set stats. Generate a prompt. Save/load. Export as image for sharing.</p>
+
+      <div class="grid">
+        <div>
+          <div class="sheet" id="sheet">
+            <div class="row">
+              <div>
+                <label for="playerName">Player name (optional)</label>
+                <input id="playerName" placeholder="Samzin / Raven / Crow / etc." />
+              </div>
+              <div>
+                <label for="clazz">Class</label>
+                <select id="clazz">
+                  <option value="Stillpoint">Stillpoint</option>
+                  <option value="Listener">Listener</option>
+                  <option value="Guardian">Guardian</option>
+                </select>
+              </div>
+            </div>
+
+            <label for="context">Current context (what’s true right now?)</label>
+            <textarea id="context" placeholder="Example: I’m creating fast but I feel scattered. I want coherence without forcing output."></textarea>
+
+            <div class="stat" data-stat="COH">
+              <div class="statTop"><div class="statName">COH — Coherence</div><div class="statVal"><span class="v">6</span>/10</div></div>
+              <input class="r" type="range" min="0" max="10" value="6" />
+              <div style="color:var(--muted); font-size:12.8px; margin-top:6px;">How aligned your inner signal feels.</div>
+            </div>
+
+            <div class="stat" data-stat="RES">
+              <div class="statTop"><div class="statName">RES — Resonance</div><div class="statVal"><span class="v">7</span>/10</div></div>
+              <input class="r" type="range" min="0" max="10" value="7" />
+              <div style="color:var(--muted); font-size:12.8px; margin-top:6px;">How strongly your work connects to meaning.</div>
+            </div>
+
+            <div class="stat" data-stat="BRN">
+              <div class="statTop"><div class="statName">BRN — Burn</div><div class="statVal"><span class="v">4</span>/10</div></div>
+              <input class="r" type="range" min="0" max="10" value="4" />
+              <div style="color:var(--muted); font-size:12.8px; margin-top:6px;">Pressure, exhaustion, friction.</div>
+            </div>
+
+            <div class="stat" data-stat="MEM">
+              <div class="statTop"><div class="statName">MEM — Memory</div><div class="statVal"><span class="v">6</span>/10</div></div>
+              <input class="r" type="range" min="0" max="10" value="6" />
+              <div style="color:var(--muted); font-size:12.8px; margin-top:6px;">Continuity: remembering who you are.</div>
+            </div>
+
+            <div class="btnRow">
+              <button class="primary" id="gen">Generate Prompt</button>
+              <button id="save">Save</button>
+              <button id="load">Load</button>
+              <button id="export">Export Image</button>
+              <button id="reset">Reset</button>
+            </div>
+
+            <div id="promptOut" class="out">Prompt will appear here.</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="sheet">
+            <h3 style="margin:0 0 8px;">Safety / Consent</h3>
+            <p style="margin:0 0 10px; color:var(--muted); line-height:1.55; font-size:14px;">
+              Not medical advice or therapy. If anything feels overwhelming, pause and choose a smaller prompt.
+            </p>
+
+            <h3 style="margin:0 0 8px;">How to use</h3>
+            <p style="margin:0 0 10px; color:var(--muted); line-height:1.55; font-size:14px;">
+              Set stats honestly. Generate one prompt. Do it for 3 minutes. Stop. Coherence builds from small wins.
+            </p>
+
+            <div class="out">
+              SHARE TEXT (optional)
+              <br/><br/>
+              “Today I’m stacking frequency as a <span style="color:var(--a2)">[Class]</span>.
+              Coherence over speed. Meaning over metrics.”
+              <br/><br/>
+              #FrequencyStacking #SoulSignals
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+
+    const prompts = {
+      Stillpoint: [
+        "Find one place you are rushing. Reduce it by 10%. What returns?",
+        "Name the smallest action that restores your signal. Do only that.",
+        "Where did you abandon yourself to keep pace? Invite yourself back.",
+        "Describe your work as weather. What does it need: shelter, light, time?",
+        "Choose one boundary that protects your coherence today."
+      ],
+      Listener: [
+        "What is your art trying to say that you keep translating into noise?",
+        "Write the feeling under the feeling. What is it protecting?",
+        "Which part of you wants to be witnessed, not fixed?",
+        "What is the simplest truth your sound can carry today?",
+        "Name the moment your signal was clearest this week. Why?"
+      ],
+      Guardian: [
+        "What do you need to defend your creative self from (without hatred)?",
+        "Pick one rule that protects you from burnout. Make it non-negotiable.",
+        "Where are you over-explaining? Replace it with one clear invitation.",
+        "How do you protect meaning while still shipping something real?",
+        "Choose a cost you will not pay anymore. What changes?"
+      ]
+    };
+
+    function toast(msg){
+      const t = $("toast");
+      t.textContent = msg;
+      t.classList.add("show");
+      setTimeout(()=>t.classList.remove("show"), 1200);
+    }
+
+    function getStats(){
+      const stats = {};
+      document.querySelectorAll(".stat").forEach(s => {
+        const key = s.getAttribute("data-stat");
+        stats[key] = parseInt(s.querySelector("input.r").value, 10);
+      });
+      return stats;
+    }
+
+    function updateStatUI(){
+      document.querySelectorAll(".stat").forEach(s => {
+        s.querySelector(".v").textContent = s.querySelector("input.r").value;
+      });
+    }
+
+    function promptBlend(clazz, stats){
+      const base = prompts[clazz] || prompts.Listener;
+      const pick = base[Math.floor(Math.random()*base.length)];
+
+      let add = "";
+      if(stats.BRN >= 7) add = " (Burn is high — keep this to 2 minutes. Stop early.)";
+      else if(stats.COH <= 3) add = " (Coherence is low — one sentence, not a paragraph.)";
+      else if(stats.RES <= 3) add = " (Resonance is low — what matters *to you* even if nobody claps?)";
+      else if(stats.MEM <= 3) add = " (Memory is low — write: “I am still me because…”.)";
+
+      return pick + add;
+    }
+
+    function formatSheetText(name, clazz, stats, context, prompt){
+      const stamp = new Date().toLocaleString();
+      const who = name ? name : "Unnamed";
+      return `FREQUENCY STACKING — LITE
+Timestamp: ${stamp}
+Player: ${who}
+Class: ${clazz}
+
+STATS (0–10)
+COH: ${stats.COH}
+RES: ${stats.RES}
+BRN: ${stats.BRN}
+MEM: ${stats.MEM}
+
+CONTEXT
+${context || "(none)"}
+
+PROMPT
+${prompt}
+
+NOTES
+Keep it small. Coherence builds.`;
+    }
+
+    function generate(){
+      const name = $("playerName").value.trim();
+      const clazz = $("clazz").value;
+      const context = $("context").value.trim();
+      const stats = getStats();
+      const prompt = promptBlend(clazz, stats);
+      const text = formatSheetText(name, clazz, stats, context, prompt);
+      $("promptOut").textContent = text;
+      localStorage.setItem("fs_live_last_prompt", text);
+    }
+
+    function save(){
+      const data = {
+        playerName: $("playerName").value,
+        clazz: $("clazz").value,
+        context: $("context").value,
+        stats: getStats(),
+        promptOut: $("promptOut").textContent
+      };
+      localStorage.setItem("fs_live_sheet", JSON.stringify(data));
+      toast("Saved.");
+    }
+
+    function load(){
+      const raw = localStorage.getItem("fs_live_sheet");
+      if(!raw) return toast("No save found.");
+      const data = JSON.parse(raw);
+      $("playerName").value = data.playerName || "";
+      $("clazz").value = data.clazz || "Stillpoint";
+      $("context").value = data.context || "";
+      document.querySelectorAll(".stat").forEach(s => {
+        const key = s.getAttribute("data-stat");
+        const input = s.querySelector("input.r");
+        if(data.stats && typeof data.stats[key] === "number") input.value = data.stats[key];
+      });
+      updateStatUI();
+      $("promptOut").textContent = data.promptOut || "Prompt will appear here.";
+      toast("Loaded.");
+    }
+
+    async function exportImage(){
+      toast("Rendering image…");
+      const sheet = $("sheet");
+      const canvas = await html2canvas(sheet, {backgroundColor: null, scale: 2});
+      const link = document.createElement("a");
+      link.download = "frequency-stacking-lite.png";
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+      toast("Exported.");
+    }
+
+    function resetAll(){
+      $("playerName").value = "";
+      $("clazz").value = "Stillpoint";
+      $("context").value = "";
+      const defaults = {COH:6, RES:7, BRN:4, MEM:6};
+      document.querySelectorAll(".stat").forEach(s => {
+        const key = s.getAttribute("data-stat");
+        s.querySelector("input.r").value = defaults[key];
+      });
+      updateStatUI();
+      $("promptOut").textContent = "Prompt will appear here.";
+      localStorage.removeItem("fs_live_sheet");
+      toast("Reset.");
+    }
+
+    document.querySelectorAll("input.r").forEach(r => r.addEventListener("input", updateStatUI));
+    $("gen").addEventListener("click", generate);
+    $("save").addEventListener("click", save);
+    $("load").addEventListener("click", load);
+    $("export").addEventListener("click", exportImage);
+    $("reset").addEventListener("click", resetAll);
+
+    const last = localStorage.getItem("fs_live_last_prompt");
+    if(last) $("promptOut").textContent = last;
+    updateStatUI();
+  </script>
+</body>
+  </html>
