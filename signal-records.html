@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Signal Records</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      background: #07060b;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin-bottom: 8px;
+    }
+
+    .lead {
+      color: rgba(255,255,255,0.72);
+      margin-bottom: 30px;
+    }
+
+    .card {
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .meta {
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 10px;
+    }
+
+    .error {
+      color: #ff8a8a;
+      font-weight: bold;
+    }
+
+    a.back {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: white;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 10px 14px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="index.html">← Back to SoulSound World</a>
+    <h1>Signal Records</h1>
+    <p class="lead">Verified Origin & Build Timeline</p>
+
+    <div id="records-container">Loading records...</div>
+  </div>
+
+  <script>
+    fetch('./signals/entries.json')
+      .then(function(res) {
+        if (!res.ok) {
+          throw new Error('Failed to load entries.json');
+        }
+        return res.json();
+      })
+      .then(function(data) {
+        var container = document.getElementById('records-container');
+        container.innerHTML = '';
+
+        data.forEach(function(entry) {
+          var card = document.createElement('div');
+          card.className = 'card';
+
+          card.innerHTML =
+            '<h2>' + entry.title + '</h2>' +
+            '<div class="meta"><strong>Date:</strong> ' + entry.date + ' | <strong>Source:</strong> ' + entry.source + '</div>' +
+            '<p>' + entry.summary + '</p>' +
+            '<p><strong>Status:</strong> ' + entry.status + '</p>';
+
+          container.appendChild(card);
+        });
+
+        if (!data.length) {
+          container.innerHTML = '<p>No records found.</p>';
+        }
+      })
+      .catch(function(err) {
+        document.getElementById('records-container').innerHTML =
+          '<p class="error">Could not load Signal Records.</p><p>' + err.message + '</p>';
+      });
+  </script>
+</body>
+</html>
