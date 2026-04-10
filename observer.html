@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Observer Interface | SoulSound World</title>
+  <meta
+    name="description"
+    content="Observer Interface — the prototype SoulSound World dashboard for resonance, anomalies, artifacts, and future unlockable signal layers."
+  />
+
+  <meta property="og:title" content="Observer Interface | SoulSound World" />
+  <meta
+    property="og:description"
+    content="Prototype dashboard for SoulSound World — resonance mapping, anomaly scanning, artifact vault access, and future wallet-gated signal layers."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.soulsoundworld.world/observer.html" />
+  <meta property="og:image" content="https://www.soulsoundworld.world/og.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Observer Interface | SoulSound World" />
+  <meta
+    name="twitter:description"
+    content="Prototype dashboard for SoulSound World — resonance mapping, anomaly scanning, artifact vault access, and future wallet-gated signal layers."
+  />
+  <meta name="twitter:image" content="https://www.soulsoundworld.world/og.png" />
+
+  <link rel="canonical" href="https://www.soulsoundworld.world/observer.html" />
+  <meta name="theme-color" content="#07060b" />
+
+  <style>
+    :root {
+      --bg: #07060b;
+      --bg2: #0d0b14;
+      --panel: rgba(255, 255, 255, 0.045);
+      --panel2: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.12);
+      --text: rgba(255, 255, 255, 0.94);
+      --muted: rgba(255, 255, 255, 0.72);
+      --muted2: rgba(255, 255, 255, 0.54);
+      --glowA: rgba(139, 92, 246, 0.32);
+      --glowB: rgba(236, 72, 153, 0.2);
+      --accent: #b58cff;
+      --accent2: #ffd88a;
+      --danger: #ff7e9e;
+      --ok: #91f2b3;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
+      --radius: 22px;
+      --radius-sm: 16px;
+      --max: 1160px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(181, 140, 255, 0.14), transparent 28%),
+        radial-gradient(circle at top right, rgba(255, 216, 138, 0.08), transparent 22%),
+        linear-gradient(180deg, #060509 0%, #09070f 48%, #07060b 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .shell {
+      width: min(var(--max), calc(100% - 28px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      background: rgba(7, 6, 11, 0.62);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .topbar-inner {
+      width: min(var(--max), calc(100% - 28px));
+      margin: 0 auto;
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 30px rgba(181, 140, 255, 0.8);
+      flex: 0 0 auto;
+    }
+
+    .brand-copy {
+      min-width: 0;
+    }
+
+    .brand-kicker {
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted2);
+      margin-bottom: 2px;
+    }
+
+    .brand-title {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .btn {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      padding: 11px 16px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.07);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, rgba(181,140,255,0.18), rgba(255,216,138,0.12));
+      border-color: rgba(181,140,255,0.4);
+      box-shadow: 0 10px 40px rgba(181,140,255,0.12);
+    }
+
+    .hero {
+      padding: 54px 0 26px;
+    }
+
+    .hero-card {
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 30px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025)),
+        radial-gradient(circle at top left, var(--glowA), transparent 34%),
+        radial-gradient(circle at right center, var(--glowB), transparent 28%);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      padding: 30px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.11);
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--ok);
+      box-shadow: 0 0 16px rgba(145,242,179,0.7);
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2rem, 4vw, 4.3rem);
+      line-height: 0.96;
+      letter-spacing: -0.045em;
+    }
+
+    .hero-copy p {
+      margin: 0 0 22px;
+      max-width: 60ch;
+      color: var(--muted);
+      font-size: 1.03rem;
+      line-height: 1.65;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .meta-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .meta-box {
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.035);
+      border-radius: 18px;
+      padding: 14px;
+    }
+
+    .meta-label {
+      font-size: 0.74rem;
+      color: var(--muted2);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .meta-value {
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .signal-panel {
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 24px;
+      background: rgba(255,255,255,0.038);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100%;
+    }
+
+    .signal-grid {
+      position: relative;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        radial-gradient(circle at 20% 30%, rgba(181,140,255,0.18), transparent 14%),
+        radial-gradient(circle at 65% 42%, rgba(255,216,138,0.1), transparent 12%),
+        radial-gradient(circle at 82% 72%, rgba(236,72,153,0.14), transparent 12%),
+        linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.02));
+      min-height: 260px;
+      overflow: hidden;
+    }
+
+    .scan-line {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.035) 48%, transparent 100%);
+      animation: scan 5s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes scan {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100%); }
+    }
+
+    .node {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 18px rgba(181,140,255,0.85);
+      opacity: 0.95;
+    }
+
+    .node.n2 {
+      background: var(--accent2);
+      box-shadow: 0 0 18px rgba(255,216,138,0.85);
+    }
+
+    .node.n3 {
+      background: var(--danger);
+      box-shadow: 0 0 18px rgba(255,126,158,0.85);
+    }
+
+    .signal-footer {
+      margin-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .section {
+      padding: 18px 0 8px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: end;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .section-kicker {
+      color: var(--muted2);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.76rem;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(1.35rem, 2vw, 2.1rem);
+      letter-spacing: -0.03em;
+    }
+
+    .section-copy {
+      color: var(--muted);
+      max-width: 62ch;
+      line-height: 1.65;
+    }
+
+    .panel-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      position: relative;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.1);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.025));
+      padding: 20px;
+      overflow: hidden;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.18);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, rgba(181,140,255,0.16), transparent 70%);
+      pointer-events: none;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+
+    .badge {
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+      font-size: 0.76rem;
+      padding: 7px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .locked {
+      color: var(--danger);
+      border-color: rgba(255,126,158,0.24);
+      background: rgba(255,126,158,0.08);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.05rem;
+    }
+
+    .card p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 0.96rem;
+    }
+
+    .list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.035);
+      border-radius: 14px;
+      padding: 11px 12px;
+      font-size: 0.94rem;
+    }
+
+    .list span:last-child {
+      color: var(--muted2);
+      white-space: nowrap;
+    }
+
+    .status-strip {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .status-box {
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.035);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .status-num {
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .status-label {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .log-wrap {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 16px;
+    }
+
+    .log {
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.03);
+      border-radius: 22px;
+      padding: 18px;
+    }
+
+    .log h3 {
+      margin: 0 0 14px;
+      font-size: 1.05rem;
+    }
+
+    .log-line {
+      display: grid;
+      grid-template-columns: 108px 1fr;
+      gap: 14px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.95rem;
+    }
+
+    .log-line:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .log-time {
+      color: var(--muted2);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .log-text {
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .foot {
+      padding: 28px 0 60px;
+    }
+
+    .foot-card {
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.03);
+      border-radius: 24px;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .foot-copy {
+      color: var(--muted);
+      max-width: 58ch;
+      line-height: 1.65;
+    }
+
+    .mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92rem;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .small {
+      font-size: 0.88rem;
+      color: var(--muted2);
+    }
+
+    .separator {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.14), transparent);
+      margin: 8px 0 0;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .log-wrap,
+      .panel-grid,
+      .status-strip,
+      .meta-row {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        padding: 22px;
+      }
+
+      .topbar-inner {
+        min-height: 68px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .shell,
+      .topbar-inner {
+        width: min(var(--max), calc(100% - 20px));
+      }
+
+      .hero {
+        padding-top: 28px;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .top-actions {
+        width: 100%;
+      }
+
+      .foot-card {
+        padding: 18px;
+      }
+
+      .log-line {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="/index.html">
+        <span class="brand-mark"></span>
+        <div class="brand-copy">
+          <div class="brand-kicker">SoulSound World</div>
+          <div class="brand-title">Observer Interface Prototype</div>
+        </div>
+      </a>
+
+      <div class="top-actions">
+        <a class="btn" href="/index.html">← Back Home</a>
+        <a class="btn btn-primary" href="#gateway">Connect Layer</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero shell">
+      <div class="hero-card">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="eyebrow">
+              <span class="dot"></span>
+              Prototype Layer Active
+            </div>
+
+            <h1>Observe the signal before the world calls it content.</h1>
+
+            <p>
+              This interface is the first live prototype of the SoulSound World observer layer —
+              a place for resonance, anomaly detection, artifact access, and future ownership-based
+              signal unlocks. Right now it is public. Next phase: wallet connection, artifact checks,
+              and Zora-gated access tiers.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#gateway">Open Gateway</a>
+              <a class="btn" href="#logs">View Anomaly Logs</a>
+            </div>
+
+            <div class="meta-row">
+              <div class="meta-box">
+                <div class="meta-label">Current State</div>
+                <div class="meta-value">Public Prototype</div>
+              </div>
+              <div class="meta-box">
+                <div class="meta-label">Next Unlock</div>
+                <div class="meta-value">Wallet Layer</div>
+              </div>
+              <div class="meta-box">
+                <div class="meta-label">Target Chain</div>
+                <div class="meta-value">Base / Zora</div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="signal-panel" aria-label="Signal Field Preview">
+            <div class="signal-grid">
+              <div class="scan-line"></div>
+              <span class="node" style="top:22%;left:17%;"></span>
+              <span class="node n2" style="top:36%;left:64%;"></span>
+              <span class="node n3" style="top:71%;left:78%;"></span>
+              <span class="node" style="top:58%;left:28%;"></span>
+              <span class="node n2" style="top:16%;left:82%;"></span>
+            </div>
+            <div class="signal-footer">
+              <span><strong>Field:</strong> Semi-stable</span>
+              <span><strong>Ghost Signal:</strong> Detected</span>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="gateway" class="section shell">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Access Layer</div>
+          <h2>Gateway status and unlock architecture</h2>
+        </div>
+        <div class="section-copy">
+          Built to support progressive access. Public view first. Wallet connection second. Artifact ownership third.
+          Reactive interface behavior after that.
+        </div>
+      </div>
+
+      <div class="panel-grid">
+        <article class="card">
+          <div class="card-top">
+            <div>
+              <h3>Wallet State</h3>
+            </div>
+            <span class="badge">Ready</span>
+          </div>
+          <p>
+            This block is reserved for wallet connection status. In the next pass, this will show:
+            disconnected, connected wallet, and artifact ownership state.
+          </p>
+          <ul class="list">
+            <li><span>Connection</span><span>Not connected</span></li>
+            <li><span>Network</span><span>Awaiting Base</span></li>
+            <li><span>Identity</span><span>Wallet = access key</span></li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <div>
+              <h3>Unlock Tiers</h3>
+            </div>
+            <span class="badge locked">Locked Logic Pending</span>
+          </div>
+          <p>
+            Artifacts will unlock layered reality access instead of generic premium content. Each tier opens more of the system.
+          </p>
+          <ul class="list">
+            <li><span>Tier 1</span><span>Signal Holder</span></li>
+            <li><span>Tier 2</span><span>Anomaly Access</span></li>
+            <li><span>Tier 3</span><span>Observer Layer</span></li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <div>
+              <h3>Zora Mapping</h3>
+            </div>
+            <span class="badge">Planned</span>
+          </div>
+          <p>
+            Future wiring will map specific SoulSound artifacts to specific interface privileges and hidden modules.
+          </p>
+          <ul class="list">
+            <li><span>Any artifact</span><span>Base access</span></li>
+            <li><span>Specific drop</span><span>Module unlock</span></li>
+            <li><span>Rare set</span><span>Architect tier</span></li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="status-strip">
+        <div class="status-box">
+          <div class="status-num">01</div>
+          <div class="status-label">Live prototype page deployed</div>
+        </div>
+        <div class="status-box">
+          <div class="status-num">02</div>
+          <div class="status-label">Homepage connection ready</div>
+        </div>
+        <div class="status-box">
+          <div class="status-num">03</div>
+          <div class="status-label">Wallet layer prepared</div>
+        </div>
+        <
