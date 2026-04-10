@@ -67,7 +67,7 @@
   </div>
 
   <script>
-    fetch('signals/entries.json')
+    fetch('./signals/entries.json?v=' + Date.now())
       .then(function(res) {
         if (!res.ok) {
           throw new Error('Failed to load entries.json');
