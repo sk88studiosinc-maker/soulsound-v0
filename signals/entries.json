@@ -1,16 +1,219 @@
 [
   {
-    "title": "Observer Interface Activated",
+    "title": "SoulSoundWorld Initial Commit",
+    "date": "2025-12-28",
+    "source": "GitHub",
+    "summary": "The SoulSoundWorld web build begins with the first committed landing-page foundation.",
+    "status": "Origin"
+  },
+  {
+    "title": "Landing Page Design + Manifesto Layer Formed",
+    "date": "2025-12-28",
+    "source": "GitHub",
+    "summary": "The site evolves from a simple landing page into a more intentional brand surface with manifesto language, mood framing, and refined structure.",
+    "status": "Built"
+  },
+  {
+    "title": "Funding Signal Added",
+    "date": "2025-12-30",
+    "source": "GitHub",
+    "summary": "Support infrastructure begins to appear with creator-funding references added to the ecosystem.",
+    "status": "Built"
+  },
+  {
+    "title": "Caption + Hashtag Generator Added",
+    "date": "2026-01-04",
+    "source": "GitHub",
+    "summary": "Early creator-tooling layer added to support promotional output and artist workflow.",
+    "status": "Built"
+  },
+  {
+    "title": "Live Sync / Chapter Tracking Layer Started",
+    "date": "2026-01-06",
+    "source": "GitHub",
+    "summary": "Documentation and live-sync tracking begin appearing, connecting publishing progress to visible build records.",
+    "status": "Built"
+  },
+  {
+    "title": "Story Tab + Pocket FM Linkage Added",
+    "date": "2026-01-07",
+    "source": "GitHub",
+    "summary": "Narrative IP becomes part of the public site structure through story sections and Pocket FM connections.",
+    "status": "Built"
+  },
+  {
+    "title": "SoulExpression Tool Layer Created",
+    "date": "2026-01-07",
+    "source": "GitHub",
+    "summary": "The site expands beyond static presentation into usable creator tooling with SoulExpression interfaces and music-link support.",
+    "status": "Built"
+  },
+  {
+    "title": "Tool Section Made Visible in Main Site",
+    "date": "2026-01-07",
+    "source": "GitHub",
+    "summary": "Utility and interface layers are surfaced more clearly in the main website experience.",
+    "status": "Built"
+  },
+  {
+    "title": "Music Section Refactor + SoundCloud Tool Cleanup",
+    "date": "2026-01-10",
+    "source": "GitHub",
+    "summary": "Music-facing infrastructure is refined, improving presentation, structure, and tool readiness.",
+    "status": "Built"
+  },
+  {
+    "title": "Tab Logic + Core Interface Stabilized",
+    "date": "2026-01-10",
+    "source": "GitHub",
+    "summary": "Core navigation and tab-selection behavior are stabilized as the site becomes more system-like.",
+    "status": "Resolved"
+  },
+  {
+    "title": "Crypto / Zora Profile Layer Added",
+    "date": "2026-01-11",
+    "source": "GitHub",
+    "summary": "Web3 identity and artifact-facing links are integrated into the site, expanding SoulSoundWorld beyond music and story into ownership layers.",
+    "status": "Built"
+  },
+  {
+    "title": "Frequency Stacking Canon System Added",
+    "date": "2026-01-11",
+    "source": "GitHub",
+    "summary": "A full lore and systems layer is introduced through Frequency Stacking classes, worlds, factions, rules, artifacts, pressures, and player-sheet documentation.",
+    "status": "Built"
+  },
+  {
+    "title": "Live Tab + Build Log Layer Added",
+    "date": "2026-01-12",
+    "source": "GitHub",
+    "summary": "The public site begins to reflect active development and live ecosystem movement rather than static branding alone.",
+    "status": "Built"
+  },
+  {
+    "title": "Streaming / Link Surface Expanded",
+    "date": "2026-01-15",
+    "source": "GitHub",
+    "summary": "Music links, players, and platform routing are expanded, strengthening SoulSoundWorld as a multi-platform listening hub.",
+    "status": "Built"
+  },
+  {
+    "title": "Depth of Samzin Kreave Page Created",
+    "date": "2026-01-17",
+    "source": "GitHub",
+    "summary": "A deeper identity and narrative layer is added to the ecosystem through a dedicated founder-focused page and linked content.",
+    "status": "Built"
+  },
+  {
+    "title": "Accelerator System Introduced",
+    "date": "2026-01-22",
+    "source": "GitHub",
+    "summary": "The SoulSound Accelerator and related health, stats, opportunity, and revenue-analysis components are added, pushing the site toward dashboard-like ecosystem management.",
+    "status": "Built"
+  },
+  {
+    "title": "Remember Who You Are Section Added",
+    "date": "2026-01-25",
+    "source": "GitHub",
+    "summary": "A core philosophical identity section is added, strengthening the site’s emotional and ideological center.",
+    "status": "Built"
+  },
+  {
+    "title": "Index Refactor for Clarity + New Features",
+    "date": "2026-01-26",
+    "source": "GitHub",
+    "summary": "The main homepage architecture is reworked to improve coherence, navigation, and ecosystem readability.",
+    "status": "Built"
+  },
+  {
+    "title": "Vault, Social World, and Intake Structures Added",
+    "date": "2026-01-29",
+    "source": "GitHub",
+    "summary": "The ecosystem expands into multiple world-specific pages and intake structures, increasing internal modularity.",
+    "status": "Built"
+  },
+  {
+    "title": "SoulSound v0 Live Page Created",
+    "date": "2026-02-09",
+    "source": "GitHub",
+    "summary": "A dedicated live-page structure is introduced, supporting a more active presentation of the build.",
+    "status": "Built"
+  },
+  {
+    "title": "SoulSound Signal Generator Added",
+    "date": "2026-02-09",
+    "source": "GitHub",
+    "summary": "A specialized signal-generation tool is added, reinforcing the site’s role as a creator operating system rather than just a destination.",
+    "status": "Built"
+  },
+  {
+    "title": "Frequency Stacking Lite Interface Created",
+    "date": "2026-02-09",
+    "source": "GitHub",
+    "summary": "A lighter UI and logic layer for Frequency Stacking is created, making the canon system more interactable.",
+    "status": "Built"
+  },
+  {
+    "title": "SoulSound Studio Hero Image Integrated",
+    "date": "2026-02-10",
+    "source": "GitHub",
+    "summary": "Visual branding is upgraded with the SoulSound studio image added and organized into live assets.",
+    "status": "Built"
+  },
+  {
+    "title": "Live Test Section Pushed from Termux",
     "date": "2026-04-10",
     "source": "Termux + GitHub",
-    "summary": "Initial live deployment of the Observer Interface system.",
+    "summary": "The mobile-first build pipeline is publicly proven through direct Termux-to-GitHub live deployment activity.",
     "status": "Live"
   },
   {
-    "title": "Signal Records Online",
+    "title": "Observer Interface Finalized",
+    "date": "2026-04-10",
+    "source": "GitHub",
+    "summary": "The Observer Interface and homepage entry are finalized, marking a stable activation point for the live ecosystem.",
+    "status": "Live"
+  },
+  {
+    "title": "Signal Records Tab Added",
+    "date": "2026-04-10",
+    "source": "GitHub",
+    "summary": "A dedicated entry point for build-proof records is added to the main site navigation.",
+    "status": "Live"
+  },
+  {
+    "title": "Signal Records Page Created",
+    "date": "2026-04-10",
+    "source": "GitHub",
+    "summary": "A standalone Signal Records page is created to display structured ecosystem milestones publicly.",
+    "status": "Live"
+  },
+  {
+    "title": "Signal Records Data Layer Created",
+    "date": "2026-04-10",
+    "source": "GitHub",
+    "summary": "A dedicated entries.json file is added to power the Signal Records system dynamically.",
+    "status": "Live"
+  },
+  {
+    "title": "Skool Community Connected",
+    "date": "2026-04-10",
+    "source": "GitHub + Website",
+    "summary": "The community layer is connected back into the main site through the Join the Signal button, tightening the ecosystem loop.",
+    "status": "Live"
+  },
+  {
+    "title": "Signal Records Render Path Fixed",
+    "date": "2026-04-10",
+    "source": "GitHub",
+    "summary": "The fetch path for Signal Records is corrected, allowing the page to render live milestone cards from the JSON data source.",
+    "status": "Resolved"
+  },
+  {
+    "title": "Proof of Resonance Layer Activated",
     "date": "2026-04-10",
     "source": "SoulSoundWorld",
-    "summary": "Proof of Resonance system now tracking build history.",
+    "summary": "Signal Records goes live as a public proof layer linking build actions, GitHub history, and visible ecosystem evolution.",
     "status": "Active"
   }
 ]
